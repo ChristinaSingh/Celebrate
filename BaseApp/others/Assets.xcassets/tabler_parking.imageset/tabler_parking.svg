@@ -1,0 +1,8 @@
+<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="tabler:parking">
+<g id="Group">
+<path id="Vector" d="M3 5.94727C3 5.41683 3.21071 4.90812 3.58579 4.53305C3.96086 4.15798 4.46957 3.94727 5 3.94727H19C19.5304 3.94727 20.0391 4.15798 20.4142 4.53305C20.7893 4.90812 21 5.41683 21 5.94727V19.9473C21 20.4777 20.7893 20.9864 20.4142 21.3615C20.0391 21.7366 19.5304 21.9473 19 21.9473H5C4.46957 21.9473 3.96086 21.7366 3.58579 21.3615C3.21071 20.9864 3 20.4777 3 19.9473V5.94727Z" stroke="#35CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M10 16.9473V8.94727H12.667C13.403 8.94727 14 9.84227 14 10.9473C14 12.0523 13.403 12.9473 12.667 12.9473H10" stroke="#35CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

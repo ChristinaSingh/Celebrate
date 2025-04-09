@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "no_friends_found.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

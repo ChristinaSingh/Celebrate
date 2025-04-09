@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "reject_friend_request.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

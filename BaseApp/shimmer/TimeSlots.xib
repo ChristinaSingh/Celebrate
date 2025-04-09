@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hGq-0h-20S">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5vu-3E-6Ej">
+                    <rect key="frame" x="204" y="89" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zV7-kc-UBL">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="8KK-Wf-Dxp"/>
+                                <constraint firstAttribute="height" constant="20" id="Xiu-uZ-qf7"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-f0-D0W">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="ROu-ST-bOe"/>
+                                <constraint firstAttribute="height" constant="20" id="n9K-eM-KIt"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="A5N-f0-D0W" firstAttribute="centerX" secondItem="5vu-3E-6Ej" secondAttribute="centerX" id="Ndh-6y-JVq"/>
+                        <constraint firstAttribute="height" constant="90" id="WYX-mF-CHM"/>
+                        <constraint firstItem="zV7-kc-UBL" firstAttribute="centerX" secondItem="5vu-3E-6Ej" secondAttribute="centerX" id="dnS-8Q-08r"/>
+                        <constraint firstItem="A5N-f0-D0W" firstAttribute="top" secondItem="zV7-kc-UBL" secondAttribute="bottom" constant="8" id="jka-h7-hiT"/>
+                        <constraint firstItem="zV7-kc-UBL" firstAttribute="top" secondItem="5vu-3E-6Ej" secondAttribute="top" constant="20" id="uiG-Gc-qte"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAg-Sb-3Wi">
+                    <rect key="frame" x="16" y="89" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty2-L3-FFs">
+                            <rect key="frame" x="34.333333333333343" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="3Ia-4y-kr2"/>
+                                <constraint firstAttribute="width" constant="100" id="FiK-RJ-rVP"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMu-Qv-ENe">
+                            <rect key="frame" x="34.333333333333343" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="ICe-GL-zyX"/>
+                                <constraint firstAttribute="height" constant="20" id="rGi-4a-m3P"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="ty2-L3-FFs" firstAttribute="centerX" secondItem="XAg-Sb-3Wi" secondAttribute="centerX" id="46h-N7-aK9"/>
+                        <constraint firstItem="ty2-L3-FFs" firstAttribute="top" secondItem="XAg-Sb-3Wi" secondAttribute="top" constant="20" id="48H-bK-pbL"/>
+                        <constraint firstItem="BMu-Qv-ENe" firstAttribute="centerX" secondItem="XAg-Sb-3Wi" secondAttribute="centerX" id="5mC-UT-YFH"/>
+                        <constraint firstItem="BMu-Qv-ENe" firstAttribute="top" secondItem="ty2-L3-FFs" secondAttribute="bottom" constant="8" id="Prd-qm-aRt"/>
+                        <constraint firstAttribute="height" constant="90" id="StO-28-gww"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siW-yK-70x">
+                    <rect key="frame" x="208" y="195" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44J-IP-1u3">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="5Ih-OJ-3Hg"/>
+                                <constraint firstAttribute="height" constant="20" id="myj-Lg-kxl"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEq-s5-1RU">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="5cv-ul-lqL"/>
+                                <constraint firstAttribute="height" constant="20" id="paL-lR-uK4"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="XEq-s5-1RU" firstAttribute="centerX" secondItem="siW-yK-70x" secondAttribute="centerX" id="241-bW-1Me"/>
+                        <constraint firstAttribute="height" constant="90" id="GHb-kN-9mx"/>
+                        <constraint firstItem="44J-IP-1u3" firstAttribute="centerX" secondItem="siW-yK-70x" secondAttribute="centerX" id="QSq-HY-PcA"/>
+                        <constraint firstItem="44J-IP-1u3" firstAttribute="top" secondItem="siW-yK-70x" secondAttribute="top" constant="20" id="hFD-4y-aCp"/>
+                        <constraint firstItem="XEq-s5-1RU" firstAttribute="top" secondItem="44J-IP-1u3" secondAttribute="bottom" constant="8" id="xhZ-wp-yVk"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dor-He-KrO">
+                    <rect key="frame" x="16" y="195" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oyh-4V-JCv">
+                            <rect key="frame" x="34.333333333333343" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="8AR-cf-bjC"/>
+                                <constraint firstAttribute="height" constant="20" id="Lol-6n-hGI"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iud-ws-z2m">
+                            <rect key="frame" x="34.333333333333343" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="oeO-ow-sGv"/>
+                                <constraint firstAttribute="width" constant="100" id="rO4-7r-ntM"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="iud-ws-z2m" firstAttribute="top" secondItem="Oyh-4V-JCv" secondAttribute="bottom" constant="8" id="11P-nL-Jmg"/>
+                        <constraint firstItem="iud-ws-z2m" firstAttribute="centerX" secondItem="dor-He-KrO" secondAttribute="centerX" id="2gX-7B-vED"/>
+                        <constraint firstItem="Oyh-4V-JCv" firstAttribute="centerX" secondItem="dor-He-KrO" secondAttribute="centerX" id="LQI-Pa-Y7D"/>
+                        <constraint firstAttribute="height" constant="90" id="aVp-SZ-Q8f"/>
+                        <constraint firstItem="Oyh-4V-JCv" firstAttribute="top" secondItem="dor-He-KrO" secondAttribute="top" constant="20" id="hfb-4J-i1b"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-Dz-Big">
+                    <rect key="frame" x="207" y="301" width="170" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sH2-QQ-Akg">
+                            <rect key="frame" x="35" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="5T6-xJ-nD1"/>
+                                <constraint firstAttribute="width" constant="100" id="hJ5-ix-exb"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NfK-rt-xDR">
+                            <rect key="frame" x="35" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="RvL-aZ-pSR"/>
+                                <constraint firstAttribute="height" constant="20" id="nzc-Jq-MB9"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="9eE-F7-Y3g"/>
+                        <constraint firstItem="NfK-rt-xDR" firstAttribute="top" secondItem="sH2-QQ-Akg" secondAttribute="bottom" constant="8" id="IEm-kK-xwq"/>
+                        <constraint firstItem="NfK-rt-xDR" firstAttribute="centerX" secondItem="zqR-Dz-Big" secondAttribute="centerX" id="IOy-iL-Pr6"/>
+                        <constraint firstItem="sH2-QQ-Akg" firstAttribute="top" secondItem="zqR-Dz-Big" secondAttribute="top" constant="20" id="dfr-Gx-M4X"/>
+                        <constraint firstItem="sH2-QQ-Akg" firstAttribute="centerX" secondItem="zqR-Dz-Big" secondAttribute="centerX" id="uiE-5z-mzf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cb4-YJ-Pls">
+                    <rect key="frame" x="18" y="301" width="170" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJE-rA-RFw">
+                            <rect key="frame" x="35" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="8Po-Us-B9s"/>
+                                <constraint firstAttribute="width" constant="100" id="BHG-iN-xS8"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42B-ZQ-0Y2">
+                            <rect key="frame" x="35" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="FKw-oB-guG"/>
+                                <constraint firstAttribute="height" constant="20" id="hUS-OD-7pF"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="42B-ZQ-0Y2" firstAttribute="centerX" secondItem="Cb4-YJ-Pls" secondAttribute="centerX" id="8BW-NL-Vfe"/>
+                        <constraint firstAttribute="height" constant="90" id="9pL-fZ-Wfv"/>
+                        <constraint firstItem="gJE-rA-RFw" firstAttribute="top" secondItem="Cb4-YJ-Pls" secondAttribute="top" constant="20" id="DH3-i4-xL2"/>
+                        <constraint firstItem="gJE-rA-RFw" firstAttribute="centerX" secondItem="Cb4-YJ-Pls" secondAttribute="centerX" id="XJu-3d-CjI"/>
+                        <constraint firstItem="42B-ZQ-0Y2" firstAttribute="top" secondItem="gJE-rA-RFw" secondAttribute="bottom" constant="8" id="kZT-rl-L7c"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qE0-e7-je5">
+                    <rect key="frame" x="211" y="407" width="170" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNd-8q-UIG">
+                            <rect key="frame" x="35" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="9kg-wr-pM6"/>
+                                <constraint firstAttribute="height" constant="20" id="ZqN-cU-YxS"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iji-sp-JjR">
+                            <rect key="frame" x="35" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="5n9-xf-egf"/>
+                                <constraint firstAttribute="width" constant="100" id="FoT-FE-yu6"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="6wB-Cs-g3M"/>
+                        <constraint firstItem="LNd-8q-UIG" firstAttribute="centerX" secondItem="qE0-e7-je5" secondAttribute="centerX" id="C3U-co-ntd"/>
+                        <constraint firstItem="Iji-sp-JjR" firstAttribute="centerX" secondItem="qE0-e7-je5" secondAttribute="centerX" id="K1q-t7-XE0"/>
+                        <constraint firstItem="Iji-sp-JjR" firstAttribute="top" secondItem="LNd-8q-UIG" secondAttribute="bottom" constant="8" id="LIi-DU-tWF"/>
+                        <constraint firstItem="LNd-8q-UIG" firstAttribute="top" secondItem="qE0-e7-je5" secondAttribute="top" constant="20" id="ZyK-gf-5VY"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4AO-qe-gRr">
+                    <rect key="frame" x="18" y="407" width="170" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEa-eV-vex">
+                            <rect key="frame" x="35" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="4kH-iX-JU8"/>
+                                <constraint firstAttribute="width" constant="100" id="Rb5-cW-t01"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezd-fG-Vnk">
+                            <rect key="frame" x="35" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="3Js-Fu-Ho9"/>
+                                <constraint firstAttribute="width" constant="100" id="fP7-4w-ERV"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="0zT-zv-fJs"/>
+                        <constraint firstItem="Ezd-fG-Vnk" firstAttribute="centerX" secondItem="4AO-qe-gRr" secondAttribute="centerX" id="2Zb-An-1nu"/>
+                        <constraint firstItem="Ezd-fG-Vnk" firstAttribute="top" secondItem="qEa-eV-vex" secondAttribute="bottom" constant="8" id="H0V-Ny-bWj"/>
+                        <constraint firstItem="qEa-eV-vex" firstAttribute="centerX" secondItem="4AO-qe-gRr" secondAttribute="centerX" id="ZiP-hb-afu"/>
+                        <constraint firstItem="qEa-eV-vex" firstAttribute="top" secondItem="4AO-qe-gRr" secondAttribute="top" constant="20" id="drm-00-agZ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-aZ-Qor">
+                    <rect key="frame" x="208" y="513" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSa-mo-bWb">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="D6X-cR-TxY"/>
+                                <constraint firstAttribute="height" constant="20" id="lsc-n0-BiE"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-bj-NJU">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="jrc-F4-2VA"/>
+                                <constraint firstAttribute="width" constant="100" id="lft-WT-L3i"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="tpo-bj-NJU" firstAttribute="centerX" secondItem="lWQ-aZ-Qor" secondAttribute="centerX" id="Bli-mJ-npa"/>
+                        <constraint firstAttribute="height" constant="90" id="Inc-aE-4Ij"/>
+                        <constraint firstItem="tpo-bj-NJU" firstAttribute="top" secondItem="LSa-mo-bWb" secondAttribute="bottom" constant="8" id="OPB-Wb-uQz"/>
+                        <constraint firstItem="LSa-mo-bWb" firstAttribute="centerX" secondItem="lWQ-aZ-Qor" secondAttribute="centerX" id="QnO-8a-oHY"/>
+                        <constraint firstItem="LSa-mo-bWb" firstAttribute="top" secondItem="lWQ-aZ-Qor" secondAttribute="top" constant="20" id="uV7-tM-XPE"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lho-kz-f1Q">
+                    <rect key="frame" x="16" y="513" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRL-p3-Ggo">
+                            <rect key="frame" x="34.333333333333343" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Mwr-sk-9Md"/>
+                                <constraint firstAttribute="width" constant="100" id="Z2W-7N-mvZ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnL-gn-s8U">
+                            <rect key="frame" x="34.333333333333343" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="2wg-sA-KPh"/>
+                                <constraint firstAttribute="height" constant="20" id="MEe-pe-vcN"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="rRL-p3-Ggo" firstAttribute="top" secondItem="lho-kz-f1Q" secondAttribute="top" constant="20" id="B55-pN-5TR"/>
+                        <constraint firstItem="rRL-p3-Ggo" firstAttribute="centerX" secondItem="lho-kz-f1Q" secondAttribute="centerX" id="Ngs-sT-eST"/>
+                        <constraint firstAttribute="height" constant="90" id="Tdl-L9-sTI"/>
+                        <constraint firstItem="fnL-gn-s8U" firstAttribute="top" secondItem="rRL-p3-Ggo" secondAttribute="bottom" constant="8" id="V8v-ku-tmV"/>
+                        <constraint firstItem="fnL-gn-s8U" firstAttribute="centerX" secondItem="lho-kz-f1Q" secondAttribute="centerX" id="bnD-zN-hDi"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ina-yP-gY7">
+                    <rect key="frame" x="208" y="619" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73q-K7-cp0">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="9ZB-bW-kpu"/>
+                                <constraint firstAttribute="width" constant="100" id="xEK-WV-xgd"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-Uk-Yvr">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="4xz-XV-IzN"/>
+                                <constraint firstAttribute="height" constant="20" id="mcq-Ed-FxE"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="BJf-Uk-Yvr" firstAttribute="centerX" secondItem="ina-yP-gY7" secondAttribute="centerX" id="65T-EC-t79"/>
+                        <constraint firstItem="73q-K7-cp0" firstAttribute="top" secondItem="ina-yP-gY7" secondAttribute="top" constant="20" id="Wxx-3l-uqZ"/>
+                        <constraint firstAttribute="height" constant="90" id="Zcb-iO-fkl"/>
+                        <constraint firstItem="BJf-Uk-Yvr" firstAttribute="top" secondItem="73q-K7-cp0" secondAttribute="bottom" constant="8" id="sbR-AR-JNt"/>
+                        <constraint firstItem="73q-K7-cp0" firstAttribute="centerX" secondItem="ina-yP-gY7" secondAttribute="centerX" id="w7y-4L-W8r"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ig-L6-g1E">
+                    <rect key="frame" x="20" y="619" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5oO-8G-P1m">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="FqJ-3W-6fv"/>
+                                <constraint firstAttribute="width" constant="100" id="shK-8t-VSo"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xq6-6J-uJC">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="96g-Ge-dgf"/>
+                                <constraint firstAttribute="width" constant="100" id="OFK-3n-EKc"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="5oO-8G-P1m" firstAttribute="centerX" secondItem="5ig-L6-g1E" secondAttribute="centerX" id="CNS-IF-BgN"/>
+                        <constraint firstItem="xq6-6J-uJC" firstAttribute="top" secondItem="5oO-8G-P1m" secondAttribute="bottom" constant="8" id="SaI-up-C3R"/>
+                        <constraint firstItem="xq6-6J-uJC" firstAttribute="centerX" secondItem="5ig-L6-g1E" secondAttribute="centerX" id="WhT-fL-M1k"/>
+                        <constraint firstItem="5oO-8G-P1m" firstAttribute="top" secondItem="5ig-L6-g1E" secondAttribute="top" constant="20" id="lqr-zd-iVG"/>
+                        <constraint firstAttribute="height" constant="90" id="vGC-Xq-6G0"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E16-7m-TID">
+                    <rect key="frame" x="212" y="725" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xv5-pd-Ssd">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="7Vv-bz-WTG"/>
+                                <constraint firstAttribute="height" constant="20" id="VOO-bh-nh0"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-kL-USx">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="EqI-q0-zeL"/>
+                                <constraint firstAttribute="width" constant="100" id="kbb-xx-Zos"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="Xv5-pd-Ssd" firstAttribute="centerX" secondItem="E16-7m-TID" secondAttribute="centerX" id="6H4-9d-lIu"/>
+                        <constraint firstAttribute="height" constant="90" id="AFE-6S-w2V"/>
+                        <constraint firstItem="Xv5-pd-Ssd" firstAttribute="top" secondItem="E16-7m-TID" secondAttribute="top" constant="20" id="AoZ-Lm-Nhd"/>
+                        <constraint firstItem="aUz-kL-USx" firstAttribute="centerX" secondItem="E16-7m-TID" secondAttribute="centerX" id="ZMy-H8-6G3"/>
+                        <constraint firstItem="aUz-kL-USx" firstAttribute="top" secondItem="Xv5-pd-Ssd" secondAttribute="bottom" constant="8" id="kZH-fv-KCe"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZK-S3-na8">
+                    <rect key="frame" x="20" y="725" width="169" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sui-46-Mqu">
+                            <rect key="frame" x="34.666666666666657" y="20" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="uxU-25-Da8"/>
+                                <constraint firstAttribute="width" constant="100" id="vjR-bs-E2U"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-MT-mrr">
+                            <rect key="frame" x="34.666666666666657" y="48" width="100" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="6TZ-nJ-dTn"/>
+                                <constraint firstAttribute="height" constant="20" id="XrX-zx-p52"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="Q3K-MT-mrr" firstAttribute="top" secondItem="Sui-46-Mqu" secondAttribute="bottom" constant="8" id="92e-OY-gle"/>
+                        <constraint firstItem="Sui-46-Mqu" firstAttribute="top" secondItem="SZK-S3-na8" secondAttribute="top" constant="20" id="Lee-Db-9zA"/>
+                        <constraint firstItem="Sui-46-Mqu" firstAttribute="centerX" secondItem="SZK-S3-na8" secondAttribute="centerX" id="gMU-KM-LXp"/>
+                        <constraint firstAttribute="height" constant="90" id="qHg-yE-QPM"/>
+                        <constraint firstItem="Q3K-MT-mrr" firstAttribute="centerX" secondItem="SZK-S3-na8" secondAttribute="centerX" id="zsm-G4-lDP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vBV-1v-f63"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="XAg-Sb-3Wi" firstAttribute="width" secondItem="5vu-3E-6Ej" secondAttribute="width" id="0VU-MQ-s4I"/>
+                <constraint firstItem="zqR-Dz-Big" firstAttribute="top" secondItem="siW-yK-70x" secondAttribute="bottom" constant="16" id="0ye-p8-uPh"/>
+                <constraint firstItem="lWQ-aZ-Qor" firstAttribute="centerX" secondItem="ina-yP-gY7" secondAttribute="centerX" id="3xR-r2-ejl"/>
+                <constraint firstItem="lWQ-aZ-Qor" firstAttribute="trailing" secondItem="zqR-Dz-Big" secondAttribute="trailing" id="4NC-9P-2rV"/>
+                <constraint firstItem="vBV-1v-f63" firstAttribute="trailing" secondItem="5vu-3E-6Ej" secondAttribute="trailing" constant="20" id="6nX-w2-NnD"/>
+                <constraint firstItem="Cb4-YJ-Pls" firstAttribute="width" secondItem="zqR-Dz-Big" secondAttribute="width" id="7A3-3D-ADl"/>
+                <constraint firstItem="Cb4-YJ-Pls" firstAttribute="centerY" secondItem="zqR-Dz-Big" secondAttribute="centerY" id="7Qu-WI-8u7"/>
+                <constraint firstItem="dor-He-KrO" firstAttribute="centerY" secondItem="siW-yK-70x" secondAttribute="centerY" id="BUV-s9-dvi"/>
+                <constraint firstItem="siW-yK-70x" firstAttribute="width" secondItem="5vu-3E-6Ej" secondAttribute="width" id="DYy-b8-wtR"/>
+                <constraint firstItem="siW-yK-70x" firstAttribute="top" secondItem="5vu-3E-6Ej" secondAttribute="bottom" constant="16" id="ELK-Fp-Pdi"/>
+                <constraint firstItem="qE0-e7-je5" firstAttribute="width" secondItem="zqR-Dz-Big" secondAttribute="width" id="HoK-9R-X1f"/>
+                <constraint firstItem="XAg-Sb-3Wi" firstAttribute="leading" secondItem="vBV-1v-f63" secondAttribute="leading" constant="16" id="IS3-Yo-TVG"/>
+                <constraint firstItem="Cb4-YJ-Pls" firstAttribute="leading" secondItem="vBV-1v-f63" secondAttribute="leading" constant="18" id="Kbk-5b-7dQ"/>
+                <constraint firstItem="dor-He-KrO" firstAttribute="width" secondItem="siW-yK-70x" secondAttribute="width" id="MCm-Er-uV1"/>
+                <constraint firstItem="lWQ-aZ-Qor" firstAttribute="leading" secondItem="siW-yK-70x" secondAttribute="leading" id="O99-th-L3A"/>
+                <constraint firstItem="siW-yK-70x" firstAttribute="trailing" secondItem="hGq-0h-20S" secondAttribute="trailingMargin" id="Pbh-No-a8l"/>
+                <constraint firstItem="zqR-Dz-Big" firstAttribute="leading" secondItem="Cb4-YJ-Pls" secondAttribute="trailing" constant="19" id="V7C-A7-yYO"/>
+                <constraint firstItem="5vu-3E-6Ej" firstAttribute="top" secondItem="vBV-1v-f63" secondAttribute="top" constant="30" id="WOp-2d-i9S"/>
+                <constraint firstItem="lho-kz-f1Q" firstAttribute="centerY" secondItem="lWQ-aZ-Qor" secondAttribute="centerY" id="Xsb-fQ-HVc"/>
+                <constraint firstItem="vBV-1v-f63" firstAttribute="trailing" secondItem="zqR-Dz-Big" secondAttribute="trailing" constant="16" id="YqV-fY-gWc"/>
+                <constraint firstItem="E16-7m-TID" firstAttribute="width" secondItem="ina-yP-gY7" secondAttribute="width" id="cGN-BW-0wP"/>
+                <constraint firstItem="dor-He-KrO" firstAttribute="leading" secondItem="vBV-1v-f63" secondAttribute="leading" constant="16" id="cng-MF-zSD"/>
+                <constraint firstItem="4AO-qe-gRr" firstAttribute="width" secondItem="qE0-e7-je5" secondAttribute="width" id="dHW-mC-vJe"/>
+                <constraint firstItem="qE0-e7-je5" firstAttribute="leading" secondItem="4AO-qe-gRr" secondAttribute="trailing" constant="23" id="dep-9W-sw3"/>
+                <constraint firstItem="5ig-L6-g1E" firstAttribute="centerY" secondItem="ina-yP-gY7" secondAttribute="centerY" id="eNd-kl-t4q"/>
+                <constraint firstItem="lWQ-aZ-Qor" firstAttribute="top" secondItem="qE0-e7-je5" secondAttribute="bottom" constant="16" id="ebY-iK-fIm"/>
+                <constraint firstItem="ina-yP-gY7" firstAttribute="top" secondItem="lWQ-aZ-Qor" secondAttribute="bottom" constant="16" id="eyE-d9-8kt"/>
+                <constraint firstItem="Cb4-YJ-Pls" firstAttribute="leading" secondItem="4AO-qe-gRr" secondAttribute="leading" id="gUb-kK-HeQ"/>
+                <constraint firstItem="lho-kz-f1Q" firstAttribute="leading" secondItem="dor-He-KrO" secondAttribute="leading" id="gWK-BK-XNl"/>
+                <constraint firstItem="5ig-L6-g1E" firstAttribute="leading" secondItem="SZK-S3-na8" secondAttribute="leading" id="hFm-sX-AMg"/>
+                <constraint firstItem="XAg-Sb-3Wi" firstAttribute="centerY" secondItem="5vu-3E-6Ej" secondAttribute="centerY" id="j5v-PZ-cq9"/>
+                <constraint firstItem="SZK-S3-na8" firstAttribute="width" secondItem="E16-7m-TID" secondAttribute="width" id="jx4-Qe-5ol"/>
+                <constraint firstItem="5vu-3E-6Ej" firstAttribute="width" secondItem="hGq-0h-20S" secondAttribute="width" multiplier="0.43" id="lxt-m2-G6E"/>
+                <constraint firstItem="lWQ-aZ-Qor" firstAttribute="trailing" secondItem="ina-yP-gY7" secondAttribute="trailing" id="mgm-yc-CV2"/>
+                <constraint firstItem="SZK-S3-na8" firstAttribute="centerY" secondItem="E16-7m-TID" secondAttribute="centerY" id="otb-eX-YdH"/>
+                <constraint firstItem="4AO-qe-gRr" firstAttribute="centerY" secondItem="qE0-e7-je5" secondAttribute="centerY" id="q4v-Kn-IWn"/>
+                <constraint firstItem="5ig-L6-g1E" firstAttribute="width" secondItem="ina-yP-gY7" secondAttribute="width" id="qBT-vT-iWZ"/>
+                <constraint firstItem="qE0-e7-je5" firstAttribute="top" secondItem="zqR-Dz-Big" secondAttribute="bottom" constant="16" id="sqM-WB-8Nz"/>
+                <constraint firstItem="E16-7m-TID" firstAttribute="top" secondItem="ina-yP-gY7" secondAttribute="bottom" constant="16" id="tVE-96-4lJ"/>
+                <constraint firstItem="lho-kz-f1Q" firstAttribute="width" secondItem="lWQ-aZ-Qor" secondAttribute="width" id="uMP-gD-ApG"/>
+                <constraint firstItem="ina-yP-gY7" firstAttribute="leading" secondItem="5ig-L6-g1E" secondAttribute="trailing" constant="19" id="z08-Nv-Nma"/>
+                <constraint firstItem="E16-7m-TID" firstAttribute="leading" secondItem="SZK-S3-na8" secondAttribute="trailing" constant="23" id="zHW-4r-Sha"/>
+            </constraints>
+            <point key="canvasLocation" x="139.69465648854961" y="-627.46478873239437"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BlackCalendarColor10">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.05000000074505806" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="shimmer">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.18000000715255737" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icons8-time 3.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

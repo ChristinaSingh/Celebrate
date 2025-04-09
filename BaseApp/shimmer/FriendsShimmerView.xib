@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBo-xf-ccV">
+                    <rect key="frame" x="0.0" y="243" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pq-Od-eXo">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="Y6k-KM-310"/>
+                                <constraint firstAttribute="height" constant="64" id="arI-8u-e8f"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnW-bl-Ydk">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="g2Z-Iw-PpV"/>
+                                <constraint firstAttribute="width" constant="97" id="sLB-BV-O2h"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xoc-nl-Log">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="esF-ve-rQq"/>
+                                <constraint firstAttribute="width" constant="110" id="gKD-wX-rcT"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="hnW-bl-Ydk" firstAttribute="top" secondItem="8pq-Od-eXo" secondAttribute="top" constant="8" id="0Lf-Hx-xd9"/>
+                        <constraint firstItem="8pq-Od-eXo" firstAttribute="leading" secondItem="tBo-xf-ccV" secondAttribute="leading" constant="16" id="KVn-CD-fk8"/>
+                        <constraint firstItem="Xoc-nl-Log" firstAttribute="leading" secondItem="hnW-bl-Ydk" secondAttribute="leading" id="VjT-DS-1JE"/>
+                        <constraint firstItem="hnW-bl-Ydk" firstAttribute="leading" secondItem="8pq-Od-eXo" secondAttribute="trailing" constant="16" id="XMH-Mo-P9w"/>
+                        <constraint firstItem="Xoc-nl-Log" firstAttribute="top" secondItem="hnW-bl-Ydk" secondAttribute="bottom" constant="8" id="elQ-bu-ByY"/>
+                        <constraint firstItem="hnW-bl-Ydk" firstAttribute="top" secondItem="tBo-xf-ccV" secondAttribute="top" constant="16" id="sNg-o7-x7y"/>
+                        <constraint firstItem="8pq-Od-eXo" firstAttribute="centerY" secondItem="tBo-xf-ccV" secondAttribute="centerY" id="udf-tL-skS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEe-1L-oBl">
+                    <rect key="frame" x="0.0" y="643" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoh-Hf-Kt3">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="V5S-dy-Zp2"/>
+                                <constraint firstAttribute="height" constant="64" id="z1u-db-7OI"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1P-LS-jDf">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="QQL-OU-CWR"/>
+                                <constraint firstAttribute="width" constant="97" id="xhi-an-ZAb"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dM4-Wz-1RY">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="2Kw-vW-gL5"/>
+                                <constraint firstAttribute="height" constant="20" id="HaW-E3-h8S"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="p1P-LS-jDf" firstAttribute="top" secondItem="uoh-Hf-Kt3" secondAttribute="top" constant="8" id="CCf-Mv-ZEF"/>
+                        <constraint firstItem="uoh-Hf-Kt3" firstAttribute="leading" secondItem="xEe-1L-oBl" secondAttribute="leading" constant="16" id="Flb-Ti-2OD"/>
+                        <constraint firstItem="p1P-LS-jDf" firstAttribute="leading" secondItem="uoh-Hf-Kt3" secondAttribute="trailing" constant="16" id="Oj0-MS-rV5"/>
+                        <constraint firstItem="uoh-Hf-Kt3" firstAttribute="centerY" secondItem="xEe-1L-oBl" secondAttribute="centerY" id="Z6G-WJ-4dC"/>
+                        <constraint firstItem="p1P-LS-jDf" firstAttribute="top" secondItem="xEe-1L-oBl" secondAttribute="top" constant="16" id="bZB-Uu-ld1"/>
+                        <constraint firstItem="dM4-Wz-1RY" firstAttribute="top" secondItem="p1P-LS-jDf" secondAttribute="bottom" constant="8" id="h4t-7m-O1A"/>
+                        <constraint firstItem="dM4-Wz-1RY" firstAttribute="leading" secondItem="p1P-LS-jDf" secondAttribute="leading" id="vbg-Sa-ySa"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-Lc-biw">
+                    <rect key="frame" x="0.0" y="723" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARr-qZ-Nqy">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="AJz-tH-36x"/>
+                                <constraint firstAttribute="width" constant="64" id="I2C-3d-vON"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5P-qP-cjH">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="97" id="gGL-MZ-kzK"/>
+                                <constraint firstAttribute="height" constant="20" id="xAR-Qi-frO"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8C-QH-FPd">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Stp-XU-mBS"/>
+                                <constraint firstAttribute="width" constant="110" id="TBF-Qb-42g"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="U5P-qP-cjH" firstAttribute="leading" secondItem="ARr-qZ-Nqy" secondAttribute="trailing" constant="16" id="Dan-7x-yZB"/>
+                        <constraint firstItem="S8C-QH-FPd" firstAttribute="leading" secondItem="U5P-qP-cjH" secondAttribute="leading" id="FhQ-bB-QQ5"/>
+                        <constraint firstItem="ARr-qZ-Nqy" firstAttribute="centerY" secondItem="EUc-Lc-biw" secondAttribute="centerY" id="FkN-zO-mR6"/>
+                        <constraint firstItem="U5P-qP-cjH" firstAttribute="top" secondItem="ARr-qZ-Nqy" secondAttribute="top" constant="8" id="OFu-iB-gnd"/>
+                        <constraint firstItem="S8C-QH-FPd" firstAttribute="top" secondItem="U5P-qP-cjH" secondAttribute="bottom" constant="8" id="cbl-5T-uuL"/>
+                        <constraint firstItem="ARr-qZ-Nqy" firstAttribute="leading" secondItem="EUc-Lc-biw" secondAttribute="leading" constant="16" id="gW3-Pt-mgf"/>
+                        <constraint firstItem="U5P-qP-cjH" firstAttribute="top" secondItem="EUc-Lc-biw" secondAttribute="top" constant="16" id="kbw-md-dGJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OA-YD-krv">
+                    <rect key="frame" x="0.0" y="803" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yf-l0-bps">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="Mwg-tz-h9p"/>
+                                <constraint firstAttribute="width" constant="64" id="lqk-L3-qfJ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWG-BK-XNA">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="SUU-5s-BIU"/>
+                                <constraint firstAttribute="width" constant="97" id="XIe-oj-eDh"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-oK-3ye">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="PSE-M4-JJt"/>
+                                <constraint firstAttribute="height" constant="20" id="h3p-Q2-6Pt"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="WOh-oK-3ye" firstAttribute="leading" secondItem="HWG-BK-XNA" secondAttribute="leading" id="Aq2-ec-3P0"/>
+                        <constraint firstItem="HWG-BK-XNA" firstAttribute="top" secondItem="7yf-l0-bps" secondAttribute="top" constant="8" id="Hvc-Qu-AKB"/>
+                        <constraint firstItem="7yf-l0-bps" firstAttribute="centerY" secondItem="4OA-YD-krv" secondAttribute="centerY" id="JwS-W6-xpg"/>
+                        <constraint firstItem="HWG-BK-XNA" firstAttribute="leading" secondItem="7yf-l0-bps" secondAttribute="trailing" constant="16" id="V03-KM-feM"/>
+                        <constraint firstItem="HWG-BK-XNA" firstAttribute="top" secondItem="4OA-YD-krv" secondAttribute="top" constant="16" id="aMO-IO-Y2L"/>
+                        <constraint firstItem="7yf-l0-bps" firstAttribute="leading" secondItem="4OA-YD-krv" secondAttribute="leading" constant="16" id="b8h-tJ-Tw6"/>
+                        <constraint firstItem="WOh-oK-3ye" firstAttribute="top" secondItem="HWG-BK-XNA" secondAttribute="bottom" constant="8" id="urv-lA-TH2"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vb-2b-Sx7">
+                    <rect key="frame" x="0.0" y="83" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xs-oT-X98">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="QVZ-23-XBY"/>
+                                <constraint firstAttribute="height" constant="64" id="z7x-om-50E"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gav-gk-pRm">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="97" id="DxS-kw-PHA"/>
+                                <constraint firstAttribute="height" constant="20" id="TcR-Ce-XrS"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-tK-UQB">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="QjG-Zz-WZI"/>
+                                <constraint firstAttribute="height" constant="20" id="h7h-kZ-IK7"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.12156862745098039" green="0.098039215686274508" blue="0.14901960784313725" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="gav-gk-pRm" firstAttribute="leading" secondItem="5xs-oT-X98" secondAttribute="trailing" constant="16" id="0dq-Zk-yat"/>
+                        <constraint firstItem="5xs-oT-X98" firstAttribute="centerY" secondItem="5Vb-2b-Sx7" secondAttribute="centerY" id="Hwa-HT-tJl"/>
+                        <constraint firstItem="gav-gk-pRm" firstAttribute="top" secondItem="5Vb-2b-Sx7" secondAttribute="top" constant="16" id="Jlo-Rh-s4A"/>
+                        <constraint firstItem="Phd-tK-UQB" firstAttribute="leading" secondItem="gav-gk-pRm" secondAttribute="leading" id="K3a-0q-wQM"/>
+                        <constraint firstItem="5xs-oT-X98" firstAttribute="leading" secondItem="5Vb-2b-Sx7" secondAttribute="leading" constant="16" id="TGX-vQ-Yqd"/>
+                        <constraint firstItem="gav-gk-pRm" firstAttribute="top" secondItem="5xs-oT-X98" secondAttribute="top" constant="8" id="lRl-lu-zJX"/>
+                        <constraint firstItem="Phd-tK-UQB" firstAttribute="top" secondItem="gav-gk-pRm" secondAttribute="bottom" constant="8" id="o9k-Yf-CR3"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r08-qt-Fbd">
+                    <rect key="frame" x="0.0" y="323" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SL-ac-7BX">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="FqU-wl-H6i"/>
+                                <constraint firstAttribute="height" constant="64" id="ZFo-zX-S66"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YA1-05-evP">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="97" id="Kni-Lv-Khc"/>
+                                <constraint firstAttribute="height" constant="20" id="w0X-ga-pse"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNM-JY-ZiL">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="cff-jp-SSs"/>
+                                <constraint firstAttribute="height" constant="20" id="vwf-CK-L0f"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="uNM-JY-ZiL" firstAttribute="leading" secondItem="YA1-05-evP" secondAttribute="leading" id="3u8-2a-VGM"/>
+                        <constraint firstItem="uNM-JY-ZiL" firstAttribute="top" secondItem="YA1-05-evP" secondAttribute="bottom" constant="8" id="C04-IR-nhm"/>
+                        <constraint firstItem="YA1-05-evP" firstAttribute="top" secondItem="r08-qt-Fbd" secondAttribute="top" constant="16" id="Pw0-Rm-N4B"/>
+                        <constraint firstItem="7SL-ac-7BX" firstAttribute="leading" secondItem="r08-qt-Fbd" secondAttribute="leading" constant="16" id="ePk-al-1U2"/>
+                        <constraint firstItem="YA1-05-evP" firstAttribute="leading" secondItem="7SL-ac-7BX" secondAttribute="trailing" constant="16" id="hMI-cg-4xC"/>
+                        <constraint firstItem="YA1-05-evP" firstAttribute="top" secondItem="7SL-ac-7BX" secondAttribute="top" constant="8" id="qZX-Vq-JQY"/>
+                        <constraint firstItem="7SL-ac-7BX" firstAttribute="centerY" secondItem="r08-qt-Fbd" secondAttribute="centerY" id="xgD-vR-9Xa"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qtc-yf-R0b">
+                    <rect key="frame" x="0.0" y="483" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsv-Ug-SOr">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="0rg-Qc-ftH"/>
+                                <constraint firstAttribute="height" constant="64" id="8Ve-dR-l5T"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOR-i5-3Vf">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="5al-5o-bXs"/>
+                                <constraint firstAttribute="width" constant="97" id="bFJ-ba-uxB"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ux-co-lyu">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="6bW-z0-06f"/>
+                                <constraint firstAttribute="height" constant="20" id="uFc-V6-PWB"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="8Ux-co-lyu" firstAttribute="top" secondItem="mOR-i5-3Vf" secondAttribute="bottom" constant="8" id="AHK-tS-dYv"/>
+                        <constraint firstItem="rsv-Ug-SOr" firstAttribute="leading" secondItem="Qtc-yf-R0b" secondAttribute="leading" constant="16" id="XH0-VC-z54"/>
+                        <constraint firstItem="mOR-i5-3Vf" firstAttribute="leading" secondItem="rsv-Ug-SOr" secondAttribute="trailing" constant="16" id="bz1-LP-Vse"/>
+                        <constraint firstItem="mOR-i5-3Vf" firstAttribute="top" secondItem="Qtc-yf-R0b" secondAttribute="top" constant="16" id="ei9-TU-ZaA"/>
+                        <constraint firstItem="mOR-i5-3Vf" firstAttribute="top" secondItem="rsv-Ug-SOr" secondAttribute="top" constant="8" id="kiO-p9-6h4"/>
+                        <constraint firstItem="8Ux-co-lyu" firstAttribute="leading" secondItem="mOR-i5-3Vf" secondAttribute="leading" id="l5X-9b-Hrj"/>
+                        <constraint firstItem="rsv-Ug-SOr" firstAttribute="centerY" secondItem="Qtc-yf-R0b" secondAttribute="centerY" id="unG-iq-kH4"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgM-X8-q8E">
+                    <rect key="frame" x="0.0" y="163" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlZ-eN-ZRl">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="K88-fL-KRZ"/>
+                                <constraint firstAttribute="width" constant="64" id="u5v-WU-JBy"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqs-Ra-wR8">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="MjZ-Xj-RA8"/>
+                                <constraint firstAttribute="width" constant="97" id="cdQ-1r-pyH"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFt-KV-03c">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="8ql-bp-K91"/>
+                                <constraint firstAttribute="height" constant="20" id="hHM-zd-6t9"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="qlZ-eN-ZRl" firstAttribute="leading" secondItem="WgM-X8-q8E" secondAttribute="leading" constant="16" id="Dci-v0-KKw"/>
+                        <constraint firstItem="Dqs-Ra-wR8" firstAttribute="leading" secondItem="qlZ-eN-ZRl" secondAttribute="trailing" constant="16" id="MDW-Uc-eD1"/>
+                        <constraint firstItem="Dqs-Ra-wR8" firstAttribute="top" secondItem="WgM-X8-q8E" secondAttribute="top" constant="16" id="Qqb-cG-047"/>
+                        <constraint firstItem="dFt-KV-03c" firstAttribute="leading" secondItem="Dqs-Ra-wR8" secondAttribute="leading" id="bJy-Zi-BJp"/>
+                        <constraint firstItem="dFt-KV-03c" firstAttribute="top" secondItem="Dqs-Ra-wR8" secondAttribute="bottom" constant="8" id="bTC-Ww-XKQ"/>
+                        <constraint firstItem="qlZ-eN-ZRl" firstAttribute="centerY" secondItem="WgM-X8-q8E" secondAttribute="centerY" id="cma-Q4-670"/>
+                        <constraint firstItem="Dqs-Ra-wR8" firstAttribute="top" secondItem="qlZ-eN-ZRl" secondAttribute="top" constant="8" id="yin-oV-REf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRx-01-FXW">
+                    <rect key="frame" x="0.0" y="403" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euh-ue-NXq">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="NPz-t2-cgB"/>
+                                <constraint firstAttribute="width" constant="64" id="cZW-1R-mcA"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZd-aN-wyw">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="CIR-0t-Vnd"/>
+                                <constraint firstAttribute="width" constant="97" id="u4F-LC-apY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNK-W1-Ppm">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="8kL-vl-tQy"/>
+                                <constraint firstAttribute="width" constant="110" id="V0h-qY-nqe"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="fZd-aN-wyw" firstAttribute="leading" secondItem="euh-ue-NXq" secondAttribute="trailing" constant="16" id="4OJ-4g-HPq"/>
+                        <constraint firstItem="fZd-aN-wyw" firstAttribute="top" secondItem="euh-ue-NXq" secondAttribute="top" constant="8" id="7EL-j6-wjU"/>
+                        <constraint firstItem="euh-ue-NXq" firstAttribute="leading" secondItem="XRx-01-FXW" secondAttribute="leading" constant="16" id="O9f-ea-SZZ"/>
+                        <constraint firstItem="RNK-W1-Ppm" firstAttribute="leading" secondItem="fZd-aN-wyw" secondAttribute="leading" id="ceS-1E-bne"/>
+                        <constraint firstItem="fZd-aN-wyw" firstAttribute="top" secondItem="XRx-01-FXW" secondAttribute="top" constant="16" id="h7D-R2-eR5"/>
+                        <constraint firstItem="euh-ue-NXq" firstAttribute="centerY" secondItem="XRx-01-FXW" secondAttribute="centerY" id="mBT-kI-jlO"/>
+                        <constraint firstItem="RNK-W1-Ppm" firstAttribute="top" secondItem="fZd-aN-wyw" secondAttribute="bottom" constant="8" id="mKk-Qy-hu7"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxV-f6-zpX">
+                    <rect key="frame" x="0.0" y="563" width="393" height="80"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbB-v4-alL">
+                            <rect key="frame" x="16" y="8" width="64" height="64"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="C0P-y5-bbe"/>
+                                <constraint firstAttribute="width" constant="64" id="H5g-li-olQ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ak-zn-M6H">
+                            <rect key="frame" x="96" y="16" width="97" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="8cF-HT-E0a"/>
+                                <constraint firstAttribute="width" constant="97" id="Ddj-7v-sQ8"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7R-XE-lqe">
+                            <rect key="frame" x="96" y="44" width="110" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="3QZ-XH-HCz"/>
+                                <constraint firstAttribute="width" constant="110" id="7Ua-KR-LxD"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isCoverable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="z7R-XE-lqe" firstAttribute="leading" secondItem="7Ak-zn-M6H" secondAttribute="leading" id="1Fe-14-VTY"/>
+                        <constraint firstItem="LbB-v4-alL" firstAttribute="leading" secondItem="zxV-f6-zpX" secondAttribute="leading" constant="16" id="Oo3-1V-51Y"/>
+                        <constraint firstItem="7Ak-zn-M6H" firstAttribute="top" secondItem="zxV-f6-zpX" secondAttribute="top" constant="16" id="aaL-qB-Bsg"/>
+                        <constraint firstItem="7Ak-zn-M6H" firstAttribute="leading" secondItem="LbB-v4-alL" secondAttribute="trailing" constant="16" id="fyy-FV-xGg"/>
+                        <constraint firstItem="z7R-XE-lqe" firstAttribute="top" secondItem="7Ak-zn-M6H" secondAttribute="bottom" constant="8" id="hlw-fo-eb9"/>
+                        <constraint firstItem="LbB-v4-alL" firstAttribute="centerY" secondItem="zxV-f6-zpX" secondAttribute="centerY" id="kyh-Uv-1IR"/>
+                        <constraint firstItem="7Ak-zn-M6H" firstAttribute="top" secondItem="LbB-v4-alL" secondAttribute="top" constant="8" id="mIe-wu-2px"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isShimmering" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yji-FE-XfC">
+                    <rect key="frame" x="0.0" y="59" width="393" height="24"/>
+                    <color key="backgroundColor" red="0.1215686275" green="0.098039215690000001" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="CEz-Zx-r4B"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="EUc-Lc-biw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0HD-Zf-uPT"/>
+                <constraint firstItem="r08-qt-Fbd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4fP-Hq-Gzj"/>
+                <constraint firstItem="Qtc-yf-R0b" firstAttribute="top" secondItem="XRx-01-FXW" secondAttribute="bottom" id="6qt-gd-2fl"/>
+                <constraint firstItem="Qtc-yf-R0b" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AVo-bm-pRK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="r08-qt-Fbd" secondAttribute="trailing" id="Bhk-sE-8G2"/>
+                <constraint firstItem="XRx-01-FXW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JIs-Jc-mwG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WgM-X8-q8E" secondAttribute="trailing" id="JYd-L7-p9F"/>
+                <constraint firstItem="EUc-Lc-biw" firstAttribute="top" secondItem="xEe-1L-oBl" secondAttribute="bottom" id="LKs-Y1-nbK"/>
+                <constraint firstItem="5Vb-2b-Sx7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="R1C-Vy-y1H"/>
+                <constraint firstItem="yji-FE-XfC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="R7B-c4-CI5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tBo-xf-ccV" secondAttribute="trailing" id="TTg-EB-s7B"/>
+                <constraint firstItem="zxV-f6-zpX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XaC-hv-spk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yji-FE-XfC" secondAttribute="trailing" id="Zf5-hc-52P"/>
+                <constraint firstItem="4OA-YD-krv" firstAttribute="top" secondItem="EUc-Lc-biw" secondAttribute="bottom" id="aDI-2R-jgn"/>
+                <constraint firstItem="WgM-X8-q8E" firstAttribute="top" secondItem="5Vb-2b-Sx7" secondAttribute="bottom" id="bAe-7d-jPd"/>
+                <constraint firstItem="xEe-1L-oBl" firstAttribute="top" secondItem="zxV-f6-zpX" secondAttribute="bottom" id="bnZ-GA-TSo"/>
+                <constraint firstItem="yji-FE-XfC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fRG-ti-AHm"/>
+                <constraint firstItem="tBo-xf-ccV" firstAttribute="top" secondItem="WgM-X8-q8E" secondAttribute="bottom" id="fbM-jy-bUK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5Vb-2b-Sx7" secondAttribute="trailing" id="kIx-vl-lZu"/>
+                <constraint firstItem="tBo-xf-ccV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="l9q-Pi-WeT"/>
+                <constraint firstItem="4OA-YD-krv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="n2f-jO-0ze"/>
+                <constraint firstItem="WgM-X8-q8E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oN9-Ex-nvX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EUc-Lc-biw" secondAttribute="trailing" id="pbR-4F-igT"/>
+                <constraint firstItem="xEe-1L-oBl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="piX-yd-zLW"/>
+                <constraint firstItem="5Vb-2b-Sx7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="q0v-rD-hDq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XRx-01-FXW" secondAttribute="trailing" id="qKG-gx-XNe"/>
+                <constraint firstItem="zxV-f6-zpX" firstAttribute="top" secondItem="Qtc-yf-R0b" secondAttribute="bottom" id="qf4-Pt-QB9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Qtc-yf-R0b" secondAttribute="trailing" id="rC5-Lr-XSO"/>
+                <constraint firstItem="r08-qt-Fbd" firstAttribute="top" secondItem="tBo-xf-ccV" secondAttribute="bottom" id="rbf-Wf-Ihj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xEe-1L-oBl" secondAttribute="trailing" id="rt6-uv-vVJ"/>
+                <constraint firstItem="XRx-01-FXW" firstAttribute="top" secondItem="r08-qt-Fbd" secondAttribute="bottom" id="sd9-PR-8AG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zxV-f6-zpX" secondAttribute="trailing" id="yCg-S6-Cra"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4OA-YD-krv" secondAttribute="trailing" id="z8G-JV-rAM"/>
+            </constraints>
+            <point key="canvasLocation" x="93.89312977099236" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="shimmer">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.18000000715255737" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

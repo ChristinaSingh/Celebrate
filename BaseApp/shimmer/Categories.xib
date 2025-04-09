@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23086.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23076"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPw-8d-lVP">
+                    <rect key="frame" x="24" y="0.0" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66I-sl-JEF">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Jys-cJ-zO2"/>
+                                <constraint firstAttribute="width" constant="32" id="uHq-tc-6TR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LrK-kh-srw">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="cTa-05-w5y"/>
+                                <constraint firstAttribute="height" constant="20" id="gVj-8U-iIR"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="4UA-nE-dot"/>
+                        <constraint firstItem="LrK-kh-srw" firstAttribute="centerY" secondItem="66I-sl-JEF" secondAttribute="centerY" id="4Y3-dK-g5u"/>
+                        <constraint firstItem="LrK-kh-srw" firstAttribute="leading" secondItem="66I-sl-JEF" secondAttribute="trailing" constant="16" id="Qwf-10-6oa"/>
+                        <constraint firstItem="66I-sl-JEF" firstAttribute="centerY" secondItem="fPw-8d-lVP" secondAttribute="centerY" id="pJM-VS-DpP"/>
+                        <constraint firstItem="66I-sl-JEF" firstAttribute="leading" secondItem="fPw-8d-lVP" secondAttribute="leading" constant="24" id="xoD-Ay-HoY"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLS-kn-9Xz">
+                    <rect key="frame" x="24" y="70" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHE-4K-h0W">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="MKp-u0-jLo"/>
+                                <constraint firstAttribute="height" constant="32" id="fbq-Ku-0lC"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBR-a5-BuU">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="7Ke-KO-dCh"/>
+                                <constraint firstAttribute="height" constant="20" id="FGe-BC-ggB"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxp-eY-cjN">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="wBY-96-sX3"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="6hd-lk-MG6"/>
+                        <constraint firstItem="oxp-eY-cjN" firstAttribute="top" secondItem="BLS-kn-9Xz" secondAttribute="top" id="DF6-1k-2ib"/>
+                        <constraint firstItem="yBR-a5-BuU" firstAttribute="leading" secondItem="dHE-4K-h0W" secondAttribute="trailing" constant="16" id="MUV-3e-BgJ"/>
+                        <constraint firstItem="dHE-4K-h0W" firstAttribute="leading" secondItem="BLS-kn-9Xz" secondAttribute="leading" constant="24" id="NpQ-0F-CdS"/>
+                        <constraint firstItem="yBR-a5-BuU" firstAttribute="centerY" secondItem="dHE-4K-h0W" secondAttribute="centerY" id="hkk-pj-7k7"/>
+                        <constraint firstItem="oxp-eY-cjN" firstAttribute="leading" secondItem="BLS-kn-9Xz" secondAttribute="leading" id="sWS-v9-XeL"/>
+                        <constraint firstAttribute="trailing" secondItem="oxp-eY-cjN" secondAttribute="trailing" id="wTR-Af-Wrh"/>
+                        <constraint firstItem="dHE-4K-h0W" firstAttribute="centerY" secondItem="BLS-kn-9Xz" secondAttribute="centerY" id="zEz-sr-yje"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fh-D9-qeQ">
+                    <rect key="frame" x="24" y="140" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-6l-KGX">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="e3w-nu-HWN"/>
+                                <constraint firstAttribute="height" constant="32" id="hJC-OG-qKG"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIX-u3-ZqK">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="0o2-32-KpT"/>
+                                <constraint firstAttribute="height" constant="20" id="eE1-cx-T9Y"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op5-NF-pzg">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="M6W-Ww-7dw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="8zw-6l-KGX" firstAttribute="leading" secondItem="3fh-D9-qeQ" secondAttribute="leading" constant="24" id="0fz-l3-N5z"/>
+                        <constraint firstItem="zIX-u3-ZqK" firstAttribute="leading" secondItem="8zw-6l-KGX" secondAttribute="trailing" constant="16" id="9dK-EA-D76"/>
+                        <constraint firstItem="zIX-u3-ZqK" firstAttribute="centerY" secondItem="8zw-6l-KGX" secondAttribute="centerY" id="Ahr-nQ-2xP"/>
+                        <constraint firstItem="Op5-NF-pzg" firstAttribute="leading" secondItem="3fh-D9-qeQ" secondAttribute="leading" id="EdZ-xp-nG3"/>
+                        <constraint firstAttribute="height" constant="70" id="JKy-HQ-qJJ"/>
+                        <constraint firstItem="8zw-6l-KGX" firstAttribute="centerY" secondItem="3fh-D9-qeQ" secondAttribute="centerY" id="Lan-WP-Gnd"/>
+                        <constraint firstAttribute="trailing" secondItem="Op5-NF-pzg" secondAttribute="trailing" id="wUG-qN-k5A"/>
+                        <constraint firstItem="Op5-NF-pzg" firstAttribute="top" secondItem="3fh-D9-qeQ" secondAttribute="top" id="zlR-kG-Ulm"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlc-u6-00M">
+                    <rect key="frame" x="24" y="210" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgp-OI-v5j">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="A0c-12-0iR"/>
+                                <constraint firstAttribute="width" constant="32" id="gUW-Cg-0Oq"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLX-Xn-Arp">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Q3m-Rj-XCl"/>
+                                <constraint firstAttribute="width" constant="168" id="yba-Ss-oer"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-cz-4wK">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="0qt-kb-dQi"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="Vgp-OI-v5j" firstAttribute="leading" secondItem="wlc-u6-00M" secondAttribute="leading" constant="24" id="2FD-BT-Z6t"/>
+                        <constraint firstItem="bLX-Xn-Arp" firstAttribute="leading" secondItem="Vgp-OI-v5j" secondAttribute="trailing" constant="16" id="375-sC-AcE"/>
+                        <constraint firstAttribute="height" constant="70" id="5qN-em-GsI"/>
+                        <constraint firstItem="bLX-Xn-Arp" firstAttribute="centerY" secondItem="Vgp-OI-v5j" secondAttribute="centerY" id="Ajb-E3-Jjn"/>
+                        <constraint firstItem="KLf-cz-4wK" firstAttribute="leading" secondItem="wlc-u6-00M" secondAttribute="leading" id="EKN-Wm-9ZN"/>
+                        <constraint firstItem="Vgp-OI-v5j" firstAttribute="centerY" secondItem="wlc-u6-00M" secondAttribute="centerY" id="btm-U2-vhY"/>
+                        <constraint firstItem="KLf-cz-4wK" firstAttribute="top" secondItem="wlc-u6-00M" secondAttribute="top" id="iDW-Rg-UDo"/>
+                        <constraint firstAttribute="trailing" secondItem="KLf-cz-4wK" secondAttribute="trailing" id="vVc-p7-apL"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgq-K4-7Xu">
+                    <rect key="frame" x="24" y="280" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJF-bb-txd">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="GIQ-7P-gRA"/>
+                                <constraint firstAttribute="height" constant="32" id="M9k-ja-hvF"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MY-8Q-zeq">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="4DT-1h-Ny3"/>
+                                <constraint firstAttribute="width" constant="168" id="ckb-8K-owC"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fz9-k2-2xO">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="dIE-UL-882"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="1yk-R4-QFU"/>
+                        <constraint firstItem="EJF-bb-txd" firstAttribute="centerY" secondItem="mgq-K4-7Xu" secondAttribute="centerY" id="2bE-ah-8Ic"/>
+                        <constraint firstItem="fz9-k2-2xO" firstAttribute="top" secondItem="mgq-K4-7Xu" secondAttribute="top" id="4dF-vm-MlH"/>
+                        <constraint firstItem="fz9-k2-2xO" firstAttribute="leading" secondItem="mgq-K4-7Xu" secondAttribute="leading" id="FGG-gk-1EI"/>
+                        <constraint firstItem="4MY-8Q-zeq" firstAttribute="leading" secondItem="EJF-bb-txd" secondAttribute="trailing" constant="16" id="UdQ-Eo-WoO"/>
+                        <constraint firstItem="EJF-bb-txd" firstAttribute="leading" secondItem="mgq-K4-7Xu" secondAttribute="leading" constant="24" id="bud-aw-KGH"/>
+                        <constraint firstAttribute="trailing" secondItem="fz9-k2-2xO" secondAttribute="trailing" id="k1z-j5-WxB"/>
+                        <constraint firstItem="4MY-8Q-zeq" firstAttribute="centerY" secondItem="EJF-bb-txd" secondAttribute="centerY" id="rIK-5x-ZYD"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oue-YJ-jwo">
+                    <rect key="frame" x="24" y="350" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3z-9W-gJ6">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="L9F-56-jBW"/>
+                                <constraint firstAttribute="width" constant="32" id="fXM-Hw-KbS"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-uI-1OP">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="5W6-ZC-ccM"/>
+                                <constraint firstAttribute="height" constant="20" id="nZI-va-wZN"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEZ-bm-qLv">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="ptI-9d-qzH"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="nEZ-bm-qLv" firstAttribute="top" secondItem="Oue-YJ-jwo" secondAttribute="top" id="5tD-9I-Jtl"/>
+                        <constraint firstItem="Ofd-uI-1OP" firstAttribute="centerY" secondItem="M3z-9W-gJ6" secondAttribute="centerY" id="ATB-Ph-7LE"/>
+                        <constraint firstAttribute="trailing" secondItem="nEZ-bm-qLv" secondAttribute="trailing" id="EGD-bg-vbg"/>
+                        <constraint firstAttribute="height" constant="70" id="MPL-K6-XYA"/>
+                        <constraint firstItem="nEZ-bm-qLv" firstAttribute="leading" secondItem="Oue-YJ-jwo" secondAttribute="leading" id="TGd-L4-jjp"/>
+                        <constraint firstItem="M3z-9W-gJ6" firstAttribute="centerY" secondItem="Oue-YJ-jwo" secondAttribute="centerY" id="XU7-Vj-aP6"/>
+                        <constraint firstItem="Ofd-uI-1OP" firstAttribute="leading" secondItem="M3z-9W-gJ6" secondAttribute="trailing" constant="16" id="epR-iO-PiR"/>
+                        <constraint firstItem="M3z-9W-gJ6" firstAttribute="leading" secondItem="Oue-YJ-jwo" secondAttribute="leading" constant="24" id="rEs-NG-fvu"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Q-sp-fkz">
+                    <rect key="frame" x="24" y="420" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqf-8m-zfj">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="XcO-If-ggV"/>
+                                <constraint firstAttribute="height" constant="32" id="zBl-Fw-qsm"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aY4-2H-I25">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="5sf-aB-Dka"/>
+                                <constraint firstAttribute="height" constant="20" id="Ngt-J5-qNE"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xj2-bL-F8T">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="BI6-uT-Yii"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="aY4-2H-I25" firstAttribute="leading" secondItem="cqf-8m-zfj" secondAttribute="trailing" constant="16" id="Abj-da-F19"/>
+                        <constraint firstAttribute="height" constant="70" id="Dgr-68-dCy"/>
+                        <constraint firstItem="xj2-bL-F8T" firstAttribute="leading" secondItem="Z9Q-sp-fkz" secondAttribute="leading" id="RG1-BJ-dcQ"/>
+                        <constraint firstItem="cqf-8m-zfj" firstAttribute="leading" secondItem="Z9Q-sp-fkz" secondAttribute="leading" constant="24" id="Rf1-dq-Bhq"/>
+                        <constraint firstAttribute="trailing" secondItem="xj2-bL-F8T" secondAttribute="trailing" id="WqB-VP-MlJ"/>
+                        <constraint firstItem="cqf-8m-zfj" firstAttribute="centerY" secondItem="Z9Q-sp-fkz" secondAttribute="centerY" id="Ylc-FR-H74"/>
+                        <constraint firstItem="aY4-2H-I25" firstAttribute="centerY" secondItem="cqf-8m-zfj" secondAttribute="centerY" id="wo9-0y-Gu3"/>
+                        <constraint firstItem="xj2-bL-F8T" firstAttribute="top" secondItem="Z9Q-sp-fkz" secondAttribute="top" id="znf-68-Kt3"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDr-T7-z6f">
+                    <rect key="frame" x="24" y="490" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oga-VY-7J4">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="ZnC-Nh-0OD"/>
+                                <constraint firstAttribute="width" constant="32" id="bKu-hT-Mxx"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jL8-sj-Jmd">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="hPJ-Z1-hQx"/>
+                                <constraint firstAttribute="height" constant="20" id="o71-dg-dtu"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKH-UT-vOv">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="mPH-Zo-cou"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="jL8-sj-Jmd" firstAttribute="leading" secondItem="Oga-VY-7J4" secondAttribute="trailing" constant="16" id="AYP-9y-5sJ"/>
+                        <constraint firstItem="dKH-UT-vOv" firstAttribute="top" secondItem="eDr-T7-z6f" secondAttribute="top" id="DDF-PX-Xc9"/>
+                        <constraint firstItem="dKH-UT-vOv" firstAttribute="leading" secondItem="eDr-T7-z6f" secondAttribute="leading" id="HL7-4v-FhU"/>
+                        <constraint firstAttribute="trailing" secondItem="dKH-UT-vOv" secondAttribute="trailing" id="b98-HB-eMb"/>
+                        <constraint firstItem="Oga-VY-7J4" firstAttribute="leading" secondItem="eDr-T7-z6f" secondAttribute="leading" constant="24" id="dr3-Gr-ppq"/>
+                        <constraint firstItem="jL8-sj-Jmd" firstAttribute="centerY" secondItem="Oga-VY-7J4" secondAttribute="centerY" id="nfg-42-rle"/>
+                        <constraint firstItem="Oga-VY-7J4" firstAttribute="centerY" secondItem="eDr-T7-z6f" secondAttribute="centerY" id="t2O-15-reJ"/>
+                        <constraint firstAttribute="height" constant="70" id="wqV-AW-whI"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kj1-f8-mVP">
+                    <rect key="frame" x="24" y="560" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jms-6B-OeY">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="jaZ-cJ-dYf"/>
+                                <constraint firstAttribute="height" constant="32" id="qZE-Ko-oNa"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjd-wQ-ddR">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="J1b-mR-e18"/>
+                                <constraint firstAttribute="width" constant="168" id="UA5-VQ-MU1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELa-6Q-4fX">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="OqW-wd-dKv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="jms-6B-OeY" firstAttribute="centerY" secondItem="kj1-f8-mVP" secondAttribute="centerY" id="SqW-Fb-ihb"/>
+                        <constraint firstItem="ELa-6Q-4fX" firstAttribute="leading" secondItem="kj1-f8-mVP" secondAttribute="leading" id="TDs-9e-7EL"/>
+                        <constraint firstAttribute="height" constant="70" id="Wlt-Ql-TQv"/>
+                        <constraint firstItem="pjd-wQ-ddR" firstAttribute="leading" secondItem="jms-6B-OeY" secondAttribute="trailing" constant="16" id="bQn-hE-N9m"/>
+                        <constraint firstAttribute="trailing" secondItem="ELa-6Q-4fX" secondAttribute="trailing" id="fQS-Bl-5nK"/>
+                        <constraint firstItem="ELa-6Q-4fX" firstAttribute="top" secondItem="kj1-f8-mVP" secondAttribute="top" id="ic6-9d-3f2"/>
+                        <constraint firstItem="jms-6B-OeY" firstAttribute="leading" secondItem="kj1-f8-mVP" secondAttribute="leading" constant="24" id="vgg-o2-AdE"/>
+                        <constraint firstItem="pjd-wQ-ddR" firstAttribute="centerY" secondItem="jms-6B-OeY" secondAttribute="centerY" id="yTC-dl-p7i"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6E-Ez-uQp">
+                    <rect key="frame" x="24" y="630" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GW-XK-dP1">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="VH3-P3-LaU"/>
+                                <constraint firstAttribute="width" constant="32" id="siF-5z-rvh"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYE-bc-cBh">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="5pz-nW-kLS"/>
+                                <constraint firstAttribute="width" constant="168" id="fZJ-z1-aUm"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaI-wG-5t2">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Fn0-RX-rT6"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="kaI-wG-5t2" secondAttribute="trailing" id="8Bg-G2-4g9"/>
+                        <constraint firstItem="kaI-wG-5t2" firstAttribute="leading" secondItem="p6E-Ez-uQp" secondAttribute="leading" id="EXc-uO-f54"/>
+                        <constraint firstItem="kaI-wG-5t2" firstAttribute="top" secondItem="p6E-Ez-uQp" secondAttribute="top" id="FO6-eO-2OY"/>
+                        <constraint firstAttribute="height" constant="70" id="Lrt-wy-Vxe"/>
+                        <constraint firstItem="0GW-XK-dP1" firstAttribute="centerY" secondItem="p6E-Ez-uQp" secondAttribute="centerY" id="Ls3-TU-aHK"/>
+                        <constraint firstItem="0GW-XK-dP1" firstAttribute="leading" secondItem="p6E-Ez-uQp" secondAttribute="leading" constant="24" id="P13-ts-R1P"/>
+                        <constraint firstItem="gYE-bc-cBh" firstAttribute="leading" secondItem="0GW-XK-dP1" secondAttribute="trailing" constant="16" id="dNE-cH-L2H"/>
+                        <constraint firstItem="gYE-bc-cBh" firstAttribute="centerY" secondItem="0GW-XK-dP1" secondAttribute="centerY" id="x4I-un-WZz"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-j3-ddL">
+                    <rect key="frame" x="24" y="700" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9p-9z-UfI">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="27l-ET-P3I"/>
+                                <constraint firstAttribute="width" constant="32" id="abB-bU-QWg"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPS-Lv-Xeh">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="KsO-ll-BI3"/>
+                                <constraint firstAttribute="height" constant="20" id="Zse-VM-feX"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9V-Fd-Lzk">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="4ap-k1-ARv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="o9p-9z-UfI" firstAttribute="leading" secondItem="5eI-j3-ddL" secondAttribute="leading" constant="24" id="BC1-3y-Rcq"/>
+                        <constraint firstAttribute="height" constant="70" id="CcC-kh-Rm5"/>
+                        <constraint firstItem="o9p-9z-UfI" firstAttribute="centerY" secondItem="5eI-j3-ddL" secondAttribute="centerY" id="bFz-fH-501"/>
+                        <constraint firstItem="rPS-Lv-Xeh" firstAttribute="leading" secondItem="o9p-9z-UfI" secondAttribute="trailing" constant="16" id="dAh-rv-NBV"/>
+                        <constraint firstItem="g9V-Fd-Lzk" firstAttribute="top" secondItem="5eI-j3-ddL" secondAttribute="top" id="hcj-GO-4H9"/>
+                        <constraint firstItem="rPS-Lv-Xeh" firstAttribute="centerY" secondItem="o9p-9z-UfI" secondAttribute="centerY" id="iAH-Aw-6Y9"/>
+                        <constraint firstAttribute="trailing" secondItem="g9V-Fd-Lzk" secondAttribute="trailing" id="jc7-d0-cgH"/>
+                        <constraint firstItem="g9V-Fd-Lzk" firstAttribute="leading" secondItem="5eI-j3-ddL" secondAttribute="leading" id="kLt-yQ-nZi"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgt-WI-Jph">
+                    <rect key="frame" x="24" y="770" width="345" height="70"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4h-y9-KJw">
+                            <rect key="frame" x="24" y="19" width="32" height="32"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="DWl-fU-Fzq"/>
+                                <constraint firstAttribute="height" constant="32" id="yeX-U3-oFn"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biF-NE-czi">
+                            <rect key="frame" x="72" y="25" width="168" height="20"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="168" id="6Fh-Ix-PiL"/>
+                                <constraint firstAttribute="height" constant="20" id="dvw-e3-4VU"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-RH-eoE">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="1"/>
+                            <color key="backgroundColor" name="shimmer"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="6Ej-to-b29"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="BlackCalendarColor10"/>
+                    <constraints>
+                        <constraint firstItem="biF-NE-czi" firstAttribute="centerY" secondItem="U4h-y9-KJw" secondAttribute="centerY" id="88Y-pj-m8Z"/>
+                        <constraint firstItem="U4h-y9-KJw" firstAttribute="leading" secondItem="Tgt-WI-Jph" secondAttribute="leading" constant="24" id="EYj-it-BYS"/>
+                        <constraint firstItem="biF-NE-czi" firstAttribute="leading" secondItem="U4h-y9-KJw" secondAttribute="trailing" constant="16" id="F4d-AF-yix"/>
+                        <constraint firstAttribute="trailing" secondItem="q3d-RH-eoE" secondAttribute="trailing" id="N9H-PE-oW5"/>
+                        <constraint firstItem="U4h-y9-KJw" firstAttribute="centerY" secondItem="Tgt-WI-Jph" secondAttribute="centerY" id="m8q-n6-XDB"/>
+                        <constraint firstItem="q3d-RH-eoE" firstAttribute="leading" secondItem="Tgt-WI-Jph" secondAttribute="leading" id="ukV-os-jiu"/>
+                        <constraint firstItem="q3d-RH-eoE" firstAttribute="top" secondItem="Tgt-WI-Jph" secondAttribute="top" id="wUS-Ra-Dbv"/>
+                        <constraint firstAttribute="height" constant="70" id="xSQ-4c-7iQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3fh-D9-qeQ" secondAttribute="trailing" constant="24" id="0TJ-f9-mTb"/>
+                <constraint firstItem="eDr-T7-z6f" firstAttribute="leading" secondItem="Z9Q-sp-fkz" secondAttribute="leading" id="1qj-lI-X1z"/>
+                <constraint firstItem="eDr-T7-z6f" firstAttribute="top" secondItem="Z9Q-sp-fkz" secondAttribute="bottom" id="4O1-ck-nCQ"/>
+                <constraint firstItem="BLS-kn-9Xz" firstAttribute="top" secondItem="fPw-8d-lVP" secondAttribute="bottom" id="56p-4p-vi7"/>
+                <constraint firstItem="fPw-8d-lVP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="60g-e4-DpR"/>
+                <constraint firstItem="wlc-u6-00M" firstAttribute="leading" secondItem="3fh-D9-qeQ" secondAttribute="leading" id="9O2-mi-PWy"/>
+                <constraint firstItem="Z9Q-sp-fkz" firstAttribute="leading" secondItem="Oue-YJ-jwo" secondAttribute="leading" id="BaL-9o-9AK"/>
+                <constraint firstItem="p6E-Ez-uQp" firstAttribute="leading" secondItem="kj1-f8-mVP" secondAttribute="leading" id="CB1-UC-AZz"/>
+                <constraint firstItem="mgq-K4-7Xu" firstAttribute="trailing" secondItem="wlc-u6-00M" secondAttribute="trailing" id="DFZ-0B-xJo"/>
+                <constraint firstItem="5eI-j3-ddL" firstAttribute="trailing" secondItem="p6E-Ez-uQp" secondAttribute="trailing" id="Dpt-kp-kDP"/>
+                <constraint firstItem="kj1-f8-mVP" firstAttribute="trailing" secondItem="eDr-T7-z6f" secondAttribute="trailing" id="Fw4-Fe-9XD"/>
+                <constraint firstItem="Tgt-WI-Jph" firstAttribute="trailing" secondItem="5eI-j3-ddL" secondAttribute="trailing" id="HD0-jg-Cd6"/>
+                <constraint firstItem="p6E-Ez-uQp" firstAttribute="trailing" secondItem="kj1-f8-mVP" secondAttribute="trailing" id="HfJ-sK-IV6"/>
+                <constraint firstItem="mgq-K4-7Xu" firstAttribute="leading" secondItem="wlc-u6-00M" secondAttribute="leading" id="JqB-sm-P0X"/>
+                <constraint firstItem="kj1-f8-mVP" firstAttribute="leading" secondItem="eDr-T7-z6f" secondAttribute="leading" id="Kmf-yj-Ifx"/>
+                <constraint firstItem="Oue-YJ-jwo" firstAttribute="top" secondItem="mgq-K4-7Xu" secondAttribute="bottom" id="Ku5-Pw-f7T"/>
+                <constraint firstItem="3fh-D9-qeQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Lc9-KW-bcq"/>
+                <constraint firstItem="Z9Q-sp-fkz" firstAttribute="top" secondItem="Oue-YJ-jwo" secondAttribute="bottom" id="Mjo-ei-qVU"/>
+                <constraint firstItem="Oue-YJ-jwo" firstAttribute="trailing" secondItem="mgq-K4-7Xu" secondAttribute="trailing" id="MzD-Hi-m7c"/>
+                <constraint firstItem="5eI-j3-ddL" firstAttribute="leading" secondItem="p6E-Ez-uQp" secondAttribute="leading" id="OC7-L6-fzO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fPw-8d-lVP" secondAttribute="trailing" constant="24" id="OTe-Xk-xpB"/>
+                <constraint firstItem="3fh-D9-qeQ" firstAttribute="top" secondItem="BLS-kn-9Xz" secondAttribute="bottom" id="P3p-R5-baD"/>
+                <constraint firstItem="eDr-T7-z6f" firstAttribute="trailing" secondItem="Z9Q-sp-fkz" secondAttribute="trailing" id="Xqx-bs-z3R"/>
+                <constraint firstItem="wlc-u6-00M" firstAttribute="trailing" secondItem="3fh-D9-qeQ" secondAttribute="trailing" id="ZrO-VF-liO"/>
+                <constraint firstItem="mgq-K4-7Xu" firstAttribute="top" secondItem="wlc-u6-00M" secondAttribute="bottom" id="cGn-Ec-a83"/>
+                <constraint firstItem="fPw-8d-lVP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="d8c-Q4-cug"/>
+                <constraint firstItem="wlc-u6-00M" firstAttribute="top" secondItem="3fh-D9-qeQ" secondAttribute="bottom" id="eaa-uE-h1O"/>
+                <constraint firstItem="Oue-YJ-jwo" firstAttribute="leading" secondItem="mgq-K4-7Xu" secondAttribute="leading" id="gOK-Gv-nHT"/>
+                <constraint firstItem="p6E-Ez-uQp" firstAttribute="top" secondItem="kj1-f8-mVP" secondAttribute="bottom" id="gpg-ha-Jer"/>
+                <constraint firstItem="Tgt-WI-Jph" firstAttribute="leading" secondItem="5eI-j3-ddL" secondAttribute="leading" id="iC7-8V-Y41"/>
+                <constraint firstItem="kj1-f8-mVP" firstAttribute="top" secondItem="eDr-T7-z6f" secondAttribute="bottom" id="lfA-wR-Wps"/>
+                <constraint firstItem="5eI-j3-ddL" firstAttribute="top" secondItem="p6E-Ez-uQp" secondAttribute="bottom" id="oeY-08-j4P"/>
+                <constraint firstItem="BLS-kn-9Xz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="sG5-lM-6Dq"/>
+                <constraint firstItem="Z9Q-sp-fkz" firstAttribute="trailing" secondItem="Oue-YJ-jwo" secondAttribute="trailing" id="skW-18-wqT"/>
+                <constraint firstItem="Tgt-WI-Jph" firstAttribute="top" secondItem="5eI-j3-ddL" secondAttribute="bottom" id="tSV-bQ-WMZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BLS-kn-9Xz" secondAttribute="trailing" constant="24" id="zXD-PA-4bd"/>
+            </constraints>
+            <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="BlackCalendarColor10">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.05000000074505806" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="shimmer">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.18000000715255737" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

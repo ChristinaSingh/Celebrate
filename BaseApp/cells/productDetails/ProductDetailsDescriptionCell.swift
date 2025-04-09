@@ -1,0 +1,57 @@
+//
+//  ProductDetailsDescriptionCell.swift
+//  BaseApp
+//
+//  Created by Ihab yasser on 03/05/2024.
+//
+
+import UIKit
+import SnapKit
+
+extension String {
+    func trimLeadingSpaces() -> String {
+        guard let range = self.rangeOfCharacter(from: .whitespaces.inverted) else {
+            return "" // Return empty if the string is all spaces
+        }
+        return String(self[range.lowerBound...])
+    }
+}
+
+class ProductDetailsDescriptionCell: ProductDetailsCell {
+
+    let titleLbl:C8Label = {
+        let lbl = C8Label()
+        lbl.textColor = .black
+        lbl.font = AppFont.shared.font(family: .Inter, fontWeight: .regular, size: 14)
+        lbl.numberOfLines = 0
+        lbl.textAlignment = AppLanguage.isArabic() ? .right : .left
+        return lbl
+    }()
+    
+    
+    var desc:String?{
+        didSet{
+            self.titleLbl.text = desc?.trimLeadingSpaces()
+        }
+    }
+
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
+        self.containerView.addSubview(titleLbl)
+        titleLbl.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview().inset(16)
+            make.top.equalToSuperview()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+//    override func prepareForReuse() {
+//        self.titleLbl.text = nil
+//    }
+}

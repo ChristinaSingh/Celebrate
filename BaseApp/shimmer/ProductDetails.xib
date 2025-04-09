@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hA9-m1-Bdr">
+                    <rect key="frame" x="16" y="133" width="361" height="361"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="361" id="7la-vt-Bru"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHx-YM-OWk">
+                    <rect key="frame" x="16" y="518" width="240" height="24"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="2qb-cD-ApY"/>
+                        <constraint firstAttribute="height" constant="24" id="gX3-Mk-umq"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnc-oP-Qtl">
+                    <rect key="frame" x="16" y="546" width="120" height="24"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="M6i-by-x2T"/>
+                        <constraint firstAttribute="width" constant="120" id="Ohj-sg-wCm"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EG-zO-lSr">
+                    <rect key="frame" x="144" y="546" width="120" height="24"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="79f-yH-wC4"/>
+                        <constraint firstAttribute="width" constant="120" id="Cwm-7g-oXS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6T-hV-9jS">
+                    <rect key="frame" x="16" y="594" width="361" height="230"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="230" id="WGm-bX-HxD"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbc-vJ-t8X">
+                    <rect key="frame" x="16" y="848" width="361" height="300"/>
+                    <color key="backgroundColor" name="shimmer"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="zPF-a0-j1T"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hA9-m1-Bdr" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="74" id="C8q-Z7-50J"/>
+                <constraint firstItem="Rnc-oP-Qtl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="EGJ-RK-oEa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hA9-m1-Bdr" secondAttribute="trailing" constant="16" id="EnJ-Tb-8U2"/>
+                <constraint firstItem="Zbc-vJ-t8X" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="OwX-sP-N5s"/>
+                <constraint firstItem="RHx-YM-OWk" firstAttribute="top" secondItem="hA9-m1-Bdr" secondAttribute="bottom" constant="24" id="PVG-Vn-Bf1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Zbc-vJ-t8X" secondAttribute="trailing" constant="16" id="Q4P-De-lm6"/>
+                <constraint firstItem="C6T-hV-9jS" firstAttribute="top" secondItem="Rnc-oP-Qtl" secondAttribute="bottom" constant="24" id="VYo-r1-gJb"/>
+                <constraint firstItem="Rnc-oP-Qtl" firstAttribute="top" secondItem="RHx-YM-OWk" secondAttribute="bottom" constant="4" id="YA3-tg-oYj"/>
+                <constraint firstItem="C6T-hV-9jS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="bWr-E8-eZE"/>
+                <constraint firstItem="hA9-m1-Bdr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fOn-gN-6D6"/>
+                <constraint firstItem="4EG-zO-lSr" firstAttribute="top" secondItem="RHx-YM-OWk" secondAttribute="bottom" constant="4" id="gQ7-Bd-yXk"/>
+                <constraint firstItem="4EG-zO-lSr" firstAttribute="leading" secondItem="Rnc-oP-Qtl" secondAttribute="trailing" constant="8" symbolic="YES" id="hn0-Ia-E24"/>
+                <constraint firstItem="RHx-YM-OWk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="iDf-Gq-Pbd"/>
+                <constraint firstItem="Zbc-vJ-t8X" firstAttribute="top" secondItem="C6T-hV-9jS" secondAttribute="bottom" constant="24" id="lrt-Nr-bTs"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C6T-hV-9jS" secondAttribute="trailing" constant="16" id="nh1-hj-Bmy"/>
+            </constraints>
+            <point key="canvasLocation" x="93.89312977099236" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="shimmer">
+            <color red="0.47499999403953552" green="0.50199997425079346" blue="0.46299999952316284" alpha="0.18000000715255737" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>
