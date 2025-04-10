@@ -16,6 +16,19 @@ enum CartContextAction{
 
 class CartItemCell: UITableViewCell {
     
+    private let minusButton = UIButton()
+    private let plusButton = UIButton()
+    private let quantityLabel = UILabel()
+    
+    private var quantity = 1 {
+        didSet {
+            quantityLabel.text = "\(quantity)"
+        }
+    }
+    
+    private let statusLabel = UILabel() // "Waiting for approval" label
+
+
     private let containerView:UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -172,7 +185,16 @@ class CartItemCell: UITableViewCell {
         }
     }
     
+    @objc private func decreaseQuantity() {
+        if quantity > 1 {
+            quantity -= 1
+        }
+    }
     
+    @objc private func increaseQuantity() {
+        quantity += 1
+    }
+
     var contextActionDidTapped:((CartContextAction) -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -184,10 +206,51 @@ class CartItemCell: UITableViewCell {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        [dotView, titleLbl, priceLbl, vendorNameLbl, deliveryTimeLbl, deliveryFeesTitleLbl, deliveryFeesLbl, payUpApprovalLbl, seperator, moreBtn, loadingView].forEach { view in
+        [dotView, titleLbl, priceLbl, vendorNameLbl, deliveryTimeLbl, deliveryFeesTitleLbl, deliveryFeesLbl, payUpApprovalLbl, seperator, moreBtn, loadingView,minusButton, quantityLabel, plusButton].forEach { view in
             self.containerView.addSubview(view)
         }
+        minusButton.setTitle("-", for: .normal)
+        minusButton.setTitleColor(.black, for: .normal)
+        minusButton.layer.cornerRadius = 12
+        minusButton.layer.borderWidth = 1
+        minusButton.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
+        minusButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        minusButton.addTarget(self, action: #selector(decreaseQuantity), for: .touchUpInside)
         
+        // Setup quantity label
+        quantityLabel.text = "\(quantity)"
+        quantityLabel.font = .systemFont(ofSize: 14)
+        quantityLabel.textAlignment = .center
+        quantityLabel.textColor = .black
+        
+        // Setup plus button
+        plusButton.setTitle("+", for: .normal)
+        plusButton.setTitleColor(.black, for: .normal)
+        plusButton.layer.cornerRadius = 12
+        plusButton.layer.borderWidth = 1
+        plusButton.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
+        plusButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        plusButton.addTarget(self, action: #selector(increaseQuantity), for: .touchUpInside)
+        
+        minusButton.snp.makeConstraints { make in
+            make.top.equalTo(payUpApprovalLbl.snp.bottom).offset(10)
+            make.leading.equalTo(payUpApprovalLbl.snp.leading).inset(30)
+            make.width.height.equalTo(32)
+        }
+        
+        quantityLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(minusButton)
+            make.leading.equalTo(minusButton.snp.trailing).offset(8)
+            make.width.equalTo(30)
+        }
+        
+        plusButton.snp.makeConstraints { make in
+            make.centerY.equalTo(minusButton)
+            make.leading.equalTo(quantityLabel.snp.trailing).offset(8)
+            make.width.height.equalTo(32)
+        }
+
+
         dotView.snp.makeConstraints { make in
             make.width.height.equalTo(4)
             make.leading.top.equalToSuperview().inset(16)

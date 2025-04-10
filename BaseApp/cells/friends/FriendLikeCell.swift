@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 
 class FriendLikeCell: UICollectionViewCell {
-    
+    let badgeLabel = UILabel()
+
     let imageContainer:UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -67,9 +68,19 @@ class FriendLikeCell: UICollectionViewCell {
         }
     }
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [imageContainer , titleLbl, selectedIcon].forEach { view in
+        
+        badgeLabel.backgroundColor = UIColor.init(named: "AccentColor")
+        badgeLabel.textColor = .white
+        badgeLabel.font = .systemFont(ofSize: 12, weight: .bold)
+        badgeLabel.textAlignment = .center
+        badgeLabel.clipsToBounds = true
+        badgeLabel.layer.cornerRadius = 10
+        badgeLabel.isHidden = true
+
+        [imageContainer , titleLbl, selectedIcon, badgeLabel].forEach { view in
             self.contentView.addSubview(view)
         }
         
@@ -92,6 +103,13 @@ class FriendLikeCell: UICollectionViewCell {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(self.imageContainer.snp.bottom).offset(8)
         }
+        
+        badgeLabel.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.top.equalTo(img).offset(6)
+            make.right.equalTo(img).offset(-6)
+        }
+
     }
     
     required init?(coder: NSCoder) {

@@ -623,14 +623,9 @@ class CartViewController: UIViewController {
 //        }.store(in: &cancellables)
 //        
 //        cartViewModel.fetchCarts()
-//        
-    }
-    
-    // Refresh views on switch tab
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        
         self.view.backgroundColor = .white
-       // self.view.addSubview(headerView)
         self.view.addSubview(containerView)
         emptyState.message = "Looks like you don’t have any items in your cart".localized
         emptyState.icon = UIImage(named: "empty_wish_list")
@@ -683,24 +678,20 @@ class CartViewController: UIViewController {
         [selectedAddressView, tableView, totalCardView, emptyState].forEach { view in
             self.containerView.addSubview(view)
         }
-        
-//        headerView.snp.makeConstraints { make in
-//            //make.top.leading.trailing.equalToSuperview()
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-//            make.leading.trailing.equalToSuperview()
-//            make.height.equalTo(50)
-//        }
-        
+                
         selectedAddressView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16)
             make.height.equalTo(0)
         }
         
         
         totalCardView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(70)
             make.height.equalTo(101)
+           // make.width.equalToSuperview()
+
         }
         
         tableView.snp.makeConstraints { make in
@@ -732,7 +723,7 @@ class CartViewController: UIViewController {
         }
         
         proceedBtn.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(70)
+            make.top.trailing.equalToSuperview().inset(16)
             make.width.equalTo(210)
             make.height.equalTo(48)
         }
@@ -789,6 +780,12 @@ class CartViewController: UIViewController {
                 }
             }
         }
+
+    }
+    
+    // Refresh views on switch tab
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         cartViewModel.$loading.dropFirst().receive(on: DispatchQueue.main).sink { isLoading in
             if isLoading {

@@ -10,6 +10,7 @@ import SnapKit
 import Combine
 
 class FloatingButton: UIButton {
+    
     private let badgeLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -25,6 +26,7 @@ class FloatingButton: UIButton {
     }
 
     private func setupButton() {
+        
         self.backgroundColor = UIColor(red: 0.24, green: 0.16, blue: 0.73, alpha: 1)
         self.layer.cornerRadius = 30 // Circular button
         self.layer.shadowColor = UIColor.black.cgColor
@@ -33,9 +35,11 @@ class FloatingButton: UIButton {
         self.layer.shadowRadius = 4
         self.setImage(UIImage(systemName: "cart"), for: .normal) // SF Symbol
         self.tintColor = .white
+        
     }
 
     private func setupBadge() {
+        
         badgeLabel.backgroundColor = .red
         badgeLabel.textColor = .white
         badgeLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
@@ -43,8 +47,8 @@ class FloatingButton: UIButton {
         badgeLabel.layer.cornerRadius = 12
         badgeLabel.layer.masksToBounds = true
         badgeLabel.isHidden = true // Hide initially
-
         self.addSubview(badgeLabel)
+        
     }
 
     override func layoutSubviews() {
@@ -277,10 +281,17 @@ class ExploreViewController: UIViewController {
             dateFormatter.dateFormat = "dd MMM yyyy"
             return dateFormatter.string(from: date)
         }
+        func formattedDateStringT(for date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm a"
+            return dateFormatter.string(from: date)
+        }
 
         // Set the event date card's title
         if let date = OcassionDate.shared.getEventDate() {
             self.headerView.eventDateBtn.title = formattedDateString(for: date)
+            self.headerView.eventTimeBtn.title = OcassionDate.shared.getTime()
+
         }
 
         // Removed references to `eventTimeBtn` here
@@ -345,6 +356,15 @@ class ExploreViewController: UIViewController {
 
     private func actions() {
         headerView.eventDateBtn.tap = {
+            CalendarViewController.show(
+                on: self,
+                cartType: .normal,
+                selectedDate: OcassionDate.shared.getEventDate(),
+                delegate: self,
+                areaDelegate: OcassionLocation.shared.getAreaId().isEmpty ? self : nil
+            )
+        }
+        headerView.eventTimeBtn.tap = {
             CalendarViewController.show(
                 on: self,
                 cartType: .normal,
@@ -571,7 +591,7 @@ extension ExploreViewController: UITableViewDelegate, UITableViewDataSource {
         if let type = types.get(at: indexPath.row) {
             switch type {
             case .Banner:
-                return 240
+                return 200
             case .Categories:
                 return 358
             case .PopUps:
@@ -781,12 +801,20 @@ extension ExploreViewController: DaySelectionDelegate, AreaSelectionDelegate {
         dateFormatter.dateFormat = "dd MMM yyyy"
         return dateFormatter.string(from: date)
     }
+    private func formattedDateStringD(for date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        return dateFormatter.string(from: date)
+    }
 
     func dayDidSelected(day: Day?) {
         if let day = day {
             OcassionDate.shared.save(date: DateFormatter.standard.string(from: day.date))
+
             // Update only the date card
             self.headerView.eventDateBtn.title = formattedDateString(for: day.date)
+            self.headerView.eventTimeBtn.title = OcassionDate.shared.getTime()
+
             // If needed, remove check for time if you're not using it:
             if OcassionLocation.shared.getArea() != nil, OcassionDate.shared.getTime() != nil {
                 self.loadData()
@@ -798,6 +826,8 @@ extension ExploreViewController: DaySelectionDelegate, AreaSelectionDelegate {
         if let time = time {
             // Save the selected time
             OcassionDate.shared.saveTime(time: time.displaytext ?? "")
+            self.headerView.eventTimeBtn.title = time.displaytext ?? ""
+
             // Removed references to `eventTimeBtn` since it no longer exists
             if OcassionDate.shared.getDate() != nil,
                OcassionLocation.shared.getArea() != nil {

@@ -26,6 +26,7 @@
 		64233C372BA1960F001715FC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64233C362BA1960F001715FC /* AuthViewModel.swift */; };
 		64233C3C2BA19AA4001715FC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64233C3B2BA19AA4001715FC /* BaseViewController.swift */; };
 		7DBA16D82DA3F25E0060E7C9 /* UpdateSocialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA16D72DA3F25E0060E7C9 /* UpdateSocialVC.swift */; };
+		7DD88B892DA7F5B500092E96 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD88B882DA7F5B500092E96 /* NotificationVC.swift */; };
 		DB02A3732BE2BB5500440B11 /* LoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A3722BE2BB5500440B11 /* LoadingFooter.swift */; };
 		DB02A3752BE55C8400440B11 /* ProductOptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A3742BE55C8400440B11 /* ProductOptionType.swift */; };
 		DB02A3772BE55E9000440B11 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A3762BE55E9000440B11 /* ProductDetails.swift */; };
@@ -559,6 +560,7 @@
 		64233C3B2BA19AA4001715FC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		679AB949AD52C845C3B32B41 /* Pods_C8Notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C8Notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBA16D72DA3F25E0060E7C9 /* UpdateSocialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSocialVC.swift; sourceTree = "<group>"; };
+		7DD88B882DA7F5B500092E96 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		DB02A3722BE2BB5500440B11 /* LoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooter.swift; sourceTree = "<group>"; };
 		DB02A3742BE55C8400440B11 /* ProductOptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOptionType.swift; sourceTree = "<group>"; };
 		DB02A3762BE55E9000440B11 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
@@ -1458,6 +1460,7 @@
 				DB11A5362BC80832006737A3 /* HomeViewController.swift */,
 				DB11A5382BC80842006737A3 /* ExploreViewController.swift */,
 				DB11A53A2BC80854006737A3 /* ProfileViewController.swift */,
+				7DD88B882DA7F5B500092E96 /* NotificationVC.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -2665,6 +2668,7 @@
 				DB4CB6252CD62C6600C46F32 /* QuestionFooterView.swift in Sources */,
 				DBF214322D0DA8FC0010FE21 /* RateOrderViewController.swift in Sources */,
 				DBDE228D2CFCE8440076B1E9 /* OptionProductDetailsHeader.swift in Sources */,
+				7DD88B892DA7F5B500092E96 /* NotificationVC.swift in Sources */,
 				DB45E0832BFA8563002322A7 /* EditProfileDetailsViewController.swift in Sources */,
 				DB11A5332BC8065E006737A3 /* AppTabsViewController.swift in Sources */,
 				DB35F2FC2C920552004B843D /* CelebrateCategoriesViewController.swift in Sources */,

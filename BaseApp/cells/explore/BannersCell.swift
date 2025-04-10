@@ -14,7 +14,7 @@ class BannersCell: UITableViewCell {
         let layout = AppLanguage.isArabic() ? RTLYZCenterFlowLayout() : YZCenterFlowLayout()
         layout.scrollDirection = .horizontal
         layout.spacingMode = YZCenterFlowLayoutSpacingMode.fixed(spacing: 16)
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 64, height: 200)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 64, height: 160)
         let collectionView = CarouselCollectionView(frame: .zero, collectionViewFlowLayout: layout)
         collectionView.register(BannerImageCell.self, forCellWithReuseIdentifier: "BannerImageCell")
         collectionView.carouselDataSource = self
@@ -65,7 +65,7 @@ class BannersCell: UITableViewCell {
         self.contentView.addSubview(pageControl)
         self.collectionView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(160)
         }
         self.pageControl.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

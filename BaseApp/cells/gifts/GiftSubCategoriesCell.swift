@@ -23,15 +23,19 @@ class GiftSubCategoriesCell: FriendLikeCell {
                 }else{
                     titleLbl.text = "\(subCategory.name ?? "")'s Favorites"
                 }
-                
+                badgeLabel.isHidden = true
+
                 img.snp.remakeConstraints { make in
                     make.center.equalToSuperview()
                     make.width.height.equalTo(80)
                 }
-            }else{
+            } else {
                 img.snp.remakeConstraints { make in
                     make.edges.equalToSuperview()
                 }
+                
+                badgeLabel.text = "10"
+                badgeLabel.isHidden = false
                 titleLbl.text = AppLanguage.isArabic() ? subCategory.arName : subCategory.name
             }
             img.download(imagePath: subCategory.imageUrl ?? "", size: CGSize(width: 109, height: 109))

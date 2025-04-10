@@ -20,6 +20,17 @@ class ExploreHeader: UIView {
             eventDateBtn.title = formatter.string(from: date)
         }
     }
+    var selectedTime: Date? {
+        didSet {
+            guard let date = selectedTime else {
+                eventTimeBtn.title = "Select Time".localized
+                return
+            }
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            eventTimeBtn.title = formatter.string(from: date)
+        }
+    }
 
     // MARK: - UI Components
     let eventLocationBtn: C8IconButton = {
@@ -51,7 +62,28 @@ class ExploreHeader: UIView {
         btn.icon = UIImage(named: "date")
         // Initially show a placeholder; this will update when selectedDate is set.
         btn.title = "Event date".localized
-        btn.font = AppFont.shared.font(family: .Inter, fontWeight: .medium, size: 14)
+        btn.font = AppFont.shared.font(family: .Inter, fontWeight: .medium, size: 12)
+        btn.iconColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
+        btn.titleColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
+        btn.iconSize = CGSize(width: 16, height: 16)
+        
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialLight))
+        blurView.frame = btn.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.alpha = 0.9
+        btn.insertSubview(blurView, at: 0)
+        return btn
+    }()
+
+    let eventTimeBtn: C8IconButton = {
+        let btn = C8IconButton()
+        btn.backgroundColor = .clear
+        btn.layer.cornerRadius = 20
+        btn.layer.masksToBounds = true
+        btn.icon = UIImage(named: "date")
+        // Initially show a placeholder; this will update when selectedDate is set.
+        btn.title = "Event time".localized
+        btn.font = AppFont.shared.font(family: .Inter, fontWeight: .medium, size: 12)
         btn.iconColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
         btn.titleColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
         btn.iconSize = CGSize(width: 16, height: 16)
@@ -73,11 +105,13 @@ class ExploreHeader: UIView {
     private lazy var buttonStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             createButtonContainer(button: eventLocationBtn),
-            createButtonContainer(button: eventDateBtn)
+            createButtonContainer(button: eventDateBtn),
+            createButtonContainer(button: eventTimeBtn)
+
         ])
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-        stack.spacing = 12
+        stack.spacing = 6
         return stack
     }()
 

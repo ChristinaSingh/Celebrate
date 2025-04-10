@@ -40,5 +40,13 @@ class OcassionDate: NSObject {
         }
         return nil
     }
+    func getEventTime() -> Date? {
+        if let date = getTime() {
+            let formatter = DateFormatter.onlyTime
+            return formatter.date(from: date)
+        }
+        return nil
+    }
+
     
 }
