@@ -230,9 +230,24 @@ class ExploreViewController: UIViewController {
             if let cartTabBarItem = self.tabBarController?.tabBar.items?[2] {
                 cartTabBarItem.badgeValue = "\(stringValue)" // Your cart count
             }
-
             print("Received string: \(stringValue)")
+        } else {
+            print("Received deleetet")
+
+            if let currentBadge = tabBarController?.tabBar.items?[2].badgeValue, // index of the tab
+               let badgeCount = Int(currentBadge), badgeCount > 1 {
+                
+                // Decrease the badge count by 1
+                tabBarController?.tabBar.items?[2].badgeValue = "\(badgeCount - 1)"
+                
+            } else {
+                // If badge is "1" or nil, remove it
+                tabBarController?.tabBar.items?[2].badgeValue = nil
+            }
+
         }
+        
+
     }
 
     private func setupFloatingButton() {

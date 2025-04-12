@@ -55,6 +55,7 @@ class CartViewController: UIViewController {
     private var discount:Double
     private var totalFees:Double
     private var payment:PaymentMethod
+  
     private var cartType:CartType = .normal{
         didSet{
             if cartType == .popups{
@@ -786,7 +787,9 @@ class CartViewController: UIViewController {
     // Refresh views on switch tab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        emptyState.isHidden = true
+        self.tableView.isHidden = false
+
         cartViewModel.$loading.dropFirst().receive(on: DispatchQueue.main).sink { isLoading in
             if isLoading {
                 self.showShimmer()
@@ -986,6 +989,10 @@ class CartViewController: UIViewController {
                 self.selectedAddressView.snp.updateConstraints { make in
                     make.height.equalTo(0)
                 }
+                if let cartTabBarItem = self.tabBarController?.tabBar.items?[2] {
+                    cartTabBarItem.badgeValue = nil // Your cart count
+                }
+
             }
         }.store(in: &cancellables)
         
@@ -1138,6 +1145,9 @@ extension CartViewController:UITableViewDelegate, UITableViewDataSource {
                             tableView.reloadData()
                             if self.carts[safe: indexPath.section]?.items?.isEmpty == true {
                                 self.cartViewModel.deleteCart(id: self.carts[safe: indexPath.section]?.id ?? "")
+                             
+                                NotificationCenter.default.post(name: Notification.Name(rawValue: "cart.refresh"), object: nil)
+
                             }else{
                                 NotificationCenter.default.post(name: Notification.Name(rawValue: "cart.refresh"), object: nil)
                                 self.cartViewModel.fetchCarts()

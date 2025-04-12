@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController {
             SettingModel(setting: .wishlist , title: "Wishlist".localized , icon: UIImage(named: "settings_heart")),
             SettingModel(setting: .friends , title: "Friends".localized , icon: UIImage(named: "friends") , notify: true),
             SettingModel(setting: .orders , title: "Orders".localized , icon: UIImage(named: "orders")),
-            SettingModel(setting: .occassions , title: "Occasions".localized , icon: UIImage(named: "celebrations")),
+            SettingModel(setting: .occassions , title: "My Celebration".localized , icon: UIImage(named: "celebrations")),
             SettingModel(setting: .addresses , title: "Saved address".localized , icon: UIImage(named: "addresses")),
             SettingModel(setting: .contact , title: "Contact us".localized , icon: UIImage(named: "support")),
         ]
@@ -115,7 +115,11 @@ extension ProfileViewController:UICollectionViewDelegate , UICollectionViewDataS
                 self?.navigationController?.pushViewController(vc, animated: true)
                 break
             case .notifications://needs new page with api
+                let vc = NotificationVC()
+                vc.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(vc, animated: true)
                 break
+
             case .editProfile:
                 let vc = EditProfileDetailsViewController()
                 vc.isModalInPresentation = true
@@ -155,6 +159,8 @@ extension ProfileViewController:UICollectionViewDelegate , UICollectionViewDataS
             FriendsViewController()
         case .orders:
             OrdersViewController()
+        case .occassions:
+            MyCelebrationVC()
         case .addresses:
             AddressesViewController()
         case .contact:

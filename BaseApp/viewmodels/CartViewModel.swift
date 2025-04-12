@@ -174,6 +174,8 @@ class CartViewModel: ObservableObject {
             self.loading = false
             if let carts = data {
                 self.cartDeleted = carts
+                
+                
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "cart.refresh"), object: nil)
             }
         }

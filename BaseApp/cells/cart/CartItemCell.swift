@@ -233,21 +233,21 @@ class CartItemCell: UITableViewCell {
         plusButton.addTarget(self, action: #selector(increaseQuantity), for: .touchUpInside)
         
         minusButton.snp.makeConstraints { make in
-            make.top.equalTo(payUpApprovalLbl.snp.bottom).offset(10)
-            make.leading.equalTo(payUpApprovalLbl.snp.leading).inset(30)
-            make.width.height.equalTo(32)
+            make.top.equalTo(payUpApprovalLbl.snp.bottom).offset(4)
+            make.leading.equalTo(payUpApprovalLbl.snp.leading).inset(53)
+            make.width.height.equalTo(25)
         }
         
         quantityLabel.snp.makeConstraints { make in
             make.centerY.equalTo(minusButton)
             make.leading.equalTo(minusButton.snp.trailing).offset(8)
-            make.width.equalTo(30)
+            make.width.equalTo(23)
         }
         
         plusButton.snp.makeConstraints { make in
             make.centerY.equalTo(minusButton)
             make.leading.equalTo(quantityLabel.snp.trailing).offset(8)
-            make.width.height.equalTo(32)
+            make.width.height.equalTo(25)
         }
 
 

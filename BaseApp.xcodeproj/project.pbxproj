@@ -26,6 +26,9 @@
 		64233C372BA1960F001715FC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64233C362BA1960F001715FC /* AuthViewModel.swift */; };
 		64233C3C2BA19AA4001715FC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64233C3B2BA19AA4001715FC /* BaseViewController.swift */; };
 		7DBA16D82DA3F25E0060E7C9 /* UpdateSocialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA16D72DA3F25E0060E7C9 /* UpdateSocialVC.swift */; };
+		7DD741012DAA4A3200ADB161 /* MyCelebrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD741002DAA4A3200ADB161 /* MyCelebrationVC.swift */; };
+		7DD741052DAA4F4300ADB161 /* AddMyClebrateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD741042DAA4F4300ADB161 /* AddMyClebrateVC.swift */; };
+		7DD741072DAA509800ADB161 /* AddMyCelebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD741062DAA509800ADB161 /* AddMyCelebVC.swift */; };
 		7DD88B892DA7F5B500092E96 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD88B882DA7F5B500092E96 /* NotificationVC.swift */; };
 		DB02A3732BE2BB5500440B11 /* LoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A3722BE2BB5500440B11 /* LoadingFooter.swift */; };
 		DB02A3752BE55C8400440B11 /* ProductOptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB02A3742BE55C8400440B11 /* ProductOptionType.swift */; };
@@ -560,6 +563,9 @@
 		64233C3B2BA19AA4001715FC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		679AB949AD52C845C3B32B41 /* Pods_C8Notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C8Notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBA16D72DA3F25E0060E7C9 /* UpdateSocialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSocialVC.swift; sourceTree = "<group>"; };
+		7DD741002DAA4A3200ADB161 /* MyCelebrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCelebrationVC.swift; sourceTree = "<group>"; };
+		7DD741042DAA4F4300ADB161 /* AddMyClebrateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyClebrateVC.swift; sourceTree = "<group>"; };
+		7DD741062DAA509800ADB161 /* AddMyCelebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyCelebVC.swift; sourceTree = "<group>"; };
 		7DD88B882DA7F5B500092E96 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		DB02A3722BE2BB5500440B11 /* LoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooter.swift; sourceTree = "<group>"; };
 		DB02A3742BE55C8400440B11 /* ProductOptionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOptionType.swift; sourceTree = "<group>"; };
@@ -1461,6 +1467,9 @@
 				DB11A5382BC80842006737A3 /* ExploreViewController.swift */,
 				DB11A53A2BC80854006737A3 /* ProfileViewController.swift */,
 				7DD88B882DA7F5B500092E96 /* NotificationVC.swift */,
+				7DD741002DAA4A3200ADB161 /* MyCelebrationVC.swift */,
+				7DD741042DAA4F4300ADB161 /* AddMyClebrateVC.swift */,
+				7DD741062DAA509800ADB161 /* AddMyCelebVC.swift */,
 			);
 			path = tabs;
 			sourceTree = "<group>";
@@ -2487,6 +2496,7 @@
 				DB9F54882D20592A0013E536 /* PopUpsCell.swift in Sources */,
 				DB02A3792BE55F8500440B11 /* ProductsViewModel.swift in Sources */,
 				64233C3C2BA19AA4001715FC /* BaseViewController.swift in Sources */,
+				7DD741072DAA509800ADB161 /* AddMyCelebVC.swift in Sources */,
 				DB4CB60A2CD4C5F800C46F32 /* SurpriseOnBoarding.swift in Sources */,
 				DB11A5512BC962BA006737A3 /* DineOutTableViewCell.swift in Sources */,
 				DBF5FC232C67AC6F00E475C0 /* OrderPaymentDetailsCell.swift in Sources */,
@@ -2529,6 +2539,7 @@
 				DB6EB9192BEF848400D417CE /* Cart.swift in Sources */,
 				DB6EB9242BEFAB4400D417CE /* WishListType.swift in Sources */,
 				DB9F548C2D2436490013E536 /* CarouselCollectionView.swift in Sources */,
+				7DD741012DAA4A3200ADB161 /* MyCelebrationVC.swift in Sources */,
 				DBA7A73F2D496E210042F4CF /* AppVersion.swift in Sources */,
 				DBA909A22BDCEB04002EE3A8 /* ShimmerView.swift in Sources */,
 				DBA909512BDACB95002EE3A8 /* CategoryItemCell.swift in Sources */,
@@ -2627,6 +2638,7 @@
 				DB02A3972BE5926600440B11 /* ProductDetailsBody.swift in Sources */,
 				DB4CB68D2CDDFE1C00C46F32 /* ScratchView.swift in Sources */,
 				DB28FE442BF79C80001EC834 /* FriendLikeHeaderReusableView.swift in Sources */,
+				7DD741052DAA4F4300ADB161 /* AddMyClebrateVC.swift in Sources */,
 				DB02A39B2BE65A0000440B11 /* VendorsBody.swift in Sources */,
 				DB5A39D72C95B7A300DBAA2C /* BundleProductCell.swift in Sources */,
 				64232D3B2BA187E5001715FC /* SplashViewController.swift in Sources */,
