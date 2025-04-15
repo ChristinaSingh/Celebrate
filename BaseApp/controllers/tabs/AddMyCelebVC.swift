@@ -11,7 +11,7 @@ import SnapKit
 class AddMyCelebVC:BaseViewController {
     
     private var bottomViewBottomConstraint: Constraint?
-//    private var keyboardManager: KeyboardManager?
+    private var keyboardManager: KeyboardManager?
     private let profileImageView = UIImageView()
     private var selectedDOB: Date?
 
@@ -69,7 +69,7 @@ class AddMyCelebVC:BaseViewController {
         textfield.textfield.placeholder = "Select a date".localized
         return textfield
     }()
-    
+
     
     
     private let doneCardView:CardView = {
@@ -86,7 +86,7 @@ class AddMyCelebVC:BaseViewController {
     
     lazy var doneBtn:LoadingButton = {
         let btn = LoadingButton.createObject(title: "Done".localized, width: self.view.frame.width - CGFloat(32), height: 48.constraintMultiplierTargetValue.relativeToIphone8Height())
-        btn.enableDisableSaveButton(isEnable: false)
+        btn.enableDisableSaveButton(isEnable: true)
         btn.setActive(true)
         btn.loadingView.color = .white
         btn.loadingView.backgroundColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
@@ -108,19 +108,20 @@ class AddMyCelebVC:BaseViewController {
             datePicker.preferredDatePickerStyle = .wheels
         }
 
-        let alert = UIAlertController(title: "Select DOB", message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select DOB", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
         alert.view.addSubview(datePicker)
 
         datePicker.snp.makeConstraints { make in
-            make.top.equalTo(alert.view.snp.top).offset(50)
+            make.top.equalTo(alert.view.snp.top).offset(80)
             make.centerX.equalTo(alert.view)
-            make.height.equalTo(150)
+            make.height.equalTo(200)
         }
 
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
             let formatter = DateFormatter()
             formatter.dateFormat = "dd-MM-yyyy"
             self.selectedDOB = datePicker.date
+            self.dateTF.text = formatter.string(from: datePicker.date)
            // self.dobButton.setTitle("DOB: \(formatter.string(from: datePicker.date))", for: .normal)
         }))
 
@@ -132,14 +133,18 @@ class AddMyCelebVC:BaseViewController {
     override func setup() {
         self.view.backgroundColor = .white
         self.view.addSubview(containerView)
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showDatePicker))
+        dateTF.textfield.addGestureRecognizer(tapGesture)
+        dateTF.textfield.isUserInteractionEnabled = true
+
         // Profile image
         profileImageView.backgroundColor = .lightGray
         profileImageView.layer.cornerRadius = 50
         profileImageView.clipsToBounds = true
         profileImageView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectProfileImage))
-        profileImageView.addGestureRecognizer(tapGesture)
+        profileImageView.image = UIImage.init(named: "avatar_details")
+        let tapGesturef = UITapGestureRecognizer(target: self, action: #selector(selectProfileImage))
+        profileImageView.addGestureRecognizer(tapGesturef)
 
         self.containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -166,7 +171,9 @@ class AddMyCelebVC:BaseViewController {
             bottomViewBottomConstraint = make.bottom.equalToSuperview().constraint
         }
         
-        
+        scrollView.delaysContentTouches = false
+        scrollView.canCancelContentTouches = true
+
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(self.headerView.snp.bottom)
@@ -176,13 +183,15 @@ class AddMyCelebVC:BaseViewController {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            make.width.equalToSuperview()
+            make.width.height.equalToSuperview()
         }
         
         [profileImageView,nameLbl, nameTF, dateLbl, dateTF].forEach { view in
             self.contentView.addSubview(view)
         }
-        
+        contentView.bringSubviewToFront(profileImageView)
+        contentView.bringSubviewToFront(nameTF)
+
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.centerX.equalToSuperview()
@@ -202,7 +211,9 @@ class AddMyCelebVC:BaseViewController {
             make.height.equalTo(48)
         }
         
-        
+        print(profileImageView.frame)
+        print(profileImageView.superview?.subviews)
+
         
         
         dateLbl.snp.makeConstraints { make in
@@ -220,22 +231,22 @@ class AddMyCelebVC:BaseViewController {
         
         
         
-//        keyboardManager = KeyboardManager(viewController: self, bottomConstraint: bottomViewBottomConstraint)
+        keyboardManager = KeyboardManager(viewController: self, bottomConstraint: bottomViewBottomConstraint)
     }
     
-//    override func keyboardOpened(with height: CGFloat) {
-//        doneCardView.snp.updateConstraints { make in
-//            make.bottom.equalToSuperview().offset(-height)
-//            make.height.equalTo(80)
-//        }
-//    }
-//    
-//    override func keyboardClosed(with height: CGFloat) {
-//        doneCardView.snp.updateConstraints { make in
-//            make.bottom.equalToSuperview()
-//            make.height.equalTo(101)
-//        }
-//    }
+    override func keyboardOpened(with height: CGFloat) {
+        doneCardView.snp.updateConstraints { make in
+            make.bottom.equalToSuperview().offset(-height)
+            make.height.equalTo(80)
+        }
+    }
+    
+    override func keyboardClosed(with height: CGFloat) {
+        doneCardView.snp.updateConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(101)
+        }
+    }
 }
 extension AddMyCelebVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

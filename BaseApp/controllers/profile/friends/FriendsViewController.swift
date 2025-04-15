@@ -53,6 +53,11 @@ class FriendsViewController: UIViewController {
         return lbl
     }()
     
+    private let tabContainer = UIView()
+    private let suggestionsButton = UIButton(type: .system)
+    private let friendsButton = UIButton(type: .system)
+    private let underlineView = UIView()
+
     private let searchView:CardView = {
         let card = CardView()
         card.backgroundColor = .white
@@ -94,7 +99,23 @@ class FriendsViewController: UIViewController {
         return table
     }()
     
+    private lazy var tableViewSna:UITableView = {
+        let table = UITableView(frame: .zero, style: .plain)
+        table.backgroundColor = .clear
+        table.delegate = self
+        table.dataSource = self
+        table.separatorStyle = .none
+        table.register(FriendContactCell.self, forCellReuseIdentifier: "FriendCellx")
+        table.contentInset = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
+        return table
+    }()
+
+    // Sample dummy data
+    private let findFriends = ["M Moin", "Vimlesh", "Anand", "Morayo"]
+    private let inviteFriends = ["Gopal", "Bharat", "Amit", "Pankaj"]
+
     private let refreshControl = UIRefreshControl()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -104,24 +125,76 @@ class FriendsViewController: UIViewController {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        // Suggestions Button
+        suggestionsButton.setTitle("Suggestions", for: .normal)
+        suggestionsButton.setTitleColor(.label, for: .normal)
+        suggestionsButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        suggestionsButton.addTarget(self, action: #selector(selectSuggestions), for: .touchUpInside)
         
-        [headerView , tableView].forEach { view in
+        // Friends Button
+        friendsButton.setTitle("My Friends", for: .normal)
+        friendsButton.setTitleColor(.secondaryLabel, for: .normal)
+        friendsButton.titleLabel?.font = .systemFont(ofSize: 16)
+        friendsButton.addTarget(self, action: #selector(selectFriends), for: .touchUpInside)
+
+        
+        
+        
+        // Underline View
+
+        [ headerView ,tableViewSna ,tableView].forEach { view in
             self.view.addSubview(view)
         }
         
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(170)
+            make.height.equalTo(220)
         }
+        
+      
+        tableViewSna.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(self.headerView.snp.bottom)
+        }
+
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(self.headerView.snp.bottom)
         }
         
-        [titleView , searchView].forEach { view in
+        [titleView , searchView,tabContainer].forEach { view in
             self.headerView.addSubview(view)
         }
         
+        tabContainer.snp.makeConstraints { make in
+            make.top.equalTo(searchView.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
+        tabContainer.addSubview(suggestionsButton)
+        tabContainer.addSubview(friendsButton)
+        tabContainer.addSubview(underlineView)
+        
+        underlineView.backgroundColor = .systemPurple
+        underlineView.layer.cornerRadius = 2
+        underlineView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(3)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.left.equalToSuperview() // Start under suggestions
+        }
+
+        suggestionsButton.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.5)
+        }
+        
+        friendsButton.snp.makeConstraints { make in
+            make.right.top.bottom.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.5)
+        }
+
         titleView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(-4)
             make.leading.trailing.bottom.equalToSuperview()
@@ -164,7 +237,9 @@ class FriendsViewController: UIViewController {
             make.trailing.equalTo(self.searchIcon.snp.leading)
             make.top.bottom.equalToSuperview()
         }
-        
+        tableView.isHidden = true
+        tableViewSna.isHidden = false
+
         backBtn.tap {
             self.navigationController?.popViewController(animated: true)
         }
@@ -203,7 +278,52 @@ class FriendsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+    @objc private func selectSuggestions() {
+        underlineView.snp.remakeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(3)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.left.equalToSuperview()
+        }
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+        }
+
+        suggestionsButton.setTitleColor(.label, for: .normal)
+        suggestionsButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+
+        friendsButton.setTitleColor(.secondaryLabel, for: .normal)
+        friendsButton.titleLabel?.font = .systemFont(ofSize: 16)
+        tableView.isHidden = true
+        tableViewSna.isHidden = false
+
+        // TODO: update view to show suggestions
+    }
+
+    @objc private func selectFriends() {
+        underlineView.snp.remakeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(3)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.left.equalToSuperview().offset(tabContainer.frame.width * 0.5)
+        }
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+        }
+
+        friendsButton.setTitleColor(.label, for: .normal)
+        friendsButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+
+        suggestionsButton.setTitleColor(.secondaryLabel, for: .normal)
+        suggestionsButton.titleLabel?.font = .systemFont(ofSize: 16)
+        tableView.isHidden = false
+        tableViewSna.isHidden = true
+
+        // TODO: update view to show friend list
+    }
+
     func setupRefreshControl() {
         refreshControl.tintColor = .accent
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
@@ -248,58 +368,98 @@ class FriendsViewController: UIViewController {
 }
 
 extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends?.count ?? 0
-    }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if tableViewSna == tableView {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if tableViewSna == tableView {
+            return section == 0 ? findFriends.count : inviteFriends.count
+        } else {
+            return friends?.count ?? 0
+
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        header.text = section == 0 ? "   Find Friends" : "   Invite to Snapchat"
+        header.font = .boldSystemFont(ofSize: 16)
+        header.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
-        let friend = friends?.get(at: indexPath.row)
-        cell.friend = friend
-        cell.addBtn.tap {
-            self.friends?[safe: indexPath.row]?.loading = true
-            self.reloadRow(indexPath: indexPath, tableView: tableView)
-            self.viewModel.addFriend(friendId: friend?.fid ?? "") { res, err in
-                await MainActor.run {
-                   if let _ = res {
-                        self.friends?[safe: indexPath.row]?.invitestatus = 1
-                    }
-                    self.friends?[safe: indexPath.row]?.loading = false
-                    self.reloadRow(indexPath: indexPath, tableView: tableView)
-                }
+        
+        if tableViewSna == tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCellx", for: indexPath) as! FriendContactCell
+            if indexPath.section == 0 {
+                cell.configure(name: findFriends[indexPath.row], username: inviteFriends[indexPath.row], buttonTitle: "Add")
+            } else {
+                cell.configure(name: inviteFriends[indexPath.row], username: inviteFriends[indexPath.row], buttonTitle: "Invite")
             }
-        }
-        cell.acceptBtn.tap {
-            self.friends?[safe: indexPath.row]?.loading = true
-            self.reloadRow(indexPath: indexPath, tableView: tableView)
-            self.viewModel.acceptRejectFriendRequest(friendId: friend?.fid ?? "", status: "1") { res, err in
-                await MainActor.run {
-                   if let _ = res {
-                        self.friends?[safe: indexPath.row]?.invStatus = "1"
-                    }
-                    self.friends?[safe: indexPath.row]?.loading = false
-                    self.reloadRow(indexPath: indexPath, tableView: tableView)
-                }
-            }
-        }
-        cell.rejectBtn.tap {
-            self.friends?[safe: indexPath.row]?.loading = true
-            self.reloadRow(indexPath: indexPath, tableView: tableView)
-            self.viewModel.acceptRejectFriendRequest(friendId: friend?.fid ?? "", status: "2") { res, err in
-                await MainActor.run {
-                    if let _ = res {
-                        self.friends?.removeIfIndexExists(at: indexPath.row)
-                        tableView.performBatchUpdates {
-                            tableView.deleteRows(at: [indexPath], with: .automatic)
+            return cell
+
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+            let friend = friends?.get(at: indexPath.row)
+            cell.friend = friend
+            cell.addBtn.tap {
+                self.friends?[safe: indexPath.row]?.loading = true
+                self.reloadRow(indexPath: indexPath, tableView: tableView)
+                self.viewModel.addFriend(friendId: friend?.fid ?? "") { res, err in
+                    await MainActor.run {
+                       if let _ = res {
+                            self.friends?[safe: indexPath.row]?.invitestatus = 1
                         }
-                    }else{
                         self.friends?[safe: indexPath.row]?.loading = false
                         self.reloadRow(indexPath: indexPath, tableView: tableView)
                     }
                 }
             }
+            cell.acceptBtn.tap {
+                self.friends?[safe: indexPath.row]?.loading = true
+                self.reloadRow(indexPath: indexPath, tableView: tableView)
+                self.viewModel.acceptRejectFriendRequest(friendId: friend?.fid ?? "", status: "1") { res, err in
+                    await MainActor.run {
+                       if let _ = res {
+                            self.friends?[safe: indexPath.row]?.invStatus = "1"
+                        }
+                        self.friends?[safe: indexPath.row]?.loading = false
+                        self.reloadRow(indexPath: indexPath, tableView: tableView)
+                    }
+                }
+            }
+            cell.rejectBtn.tap {
+                self.friends?[safe: indexPath.row]?.loading = true
+                self.reloadRow(indexPath: indexPath, tableView: tableView)
+                self.viewModel.acceptRejectFriendRequest(friendId: friend?.fid ?? "", status: "2") { res, err in
+                    await MainActor.run {
+                        if let _ = res {
+                            self.friends?.removeIfIndexExists(at: indexPath.row)
+                            tableView.performBatchUpdates {
+                                tableView.deleteRows(at: [indexPath], with: .automatic)
+                            }
+                        }else{
+                            self.friends?[safe: indexPath.row]?.loading = false
+                            self.reloadRow(indexPath: indexPath, tableView: tableView)
+                        }
+                    }
+                }
+            }
+            return cell
+
         }
-        return cell
     }
     
     func reloadRow(indexPath:IndexPath , tableView:UITableView){
@@ -340,4 +500,80 @@ extension FriendsViewController:UITextFieldDelegate {
         return true
     }
     
+}
+class FriendContactCell: UITableViewCell {
+    
+    private let profileImage = UIImageView()
+    private let nameLabel = UILabel()
+    private let usernameLabel = UILabel()
+    private let actionButton = UIButton()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        let container = UIView()
+        container.layer.cornerRadius = 12
+        container.backgroundColor = .white
+        container.layer.shadowColor = UIColor.black.cgColor
+        container.layer.shadowOpacity = 0.05
+        container.layer.shadowRadius = 4
+        container.layer.shadowOffset = .zero
+        contentView.addSubview(container)
+
+        container.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(8)
+        }
+
+        [profileImage, nameLabel, usernameLabel, actionButton].forEach { container.addSubview($0) }
+
+        profileImage.layer.cornerRadius = 22
+        profileImage.clipsToBounds = true
+        profileImage.image = UIImage(systemName: "person.circle")
+        profileImage.tintColor = .gray
+        profileImage.contentMode = .scaleAspectFill
+        
+        nameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        usernameLabel.font = .systemFont(ofSize: 13)
+        usernameLabel.textColor = .gray
+        
+        actionButton.backgroundColor = .systemYellow
+        actionButton.setTitleColor(.black, for: .normal)
+        actionButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        actionButton.layer.cornerRadius = 16
+
+        profileImage.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(12)
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(44)
+        }
+
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileImage.snp.top)
+            make.left.equalTo(profileImage.snp.right).offset(12)
+            make.right.equalTo(actionButton.snp.left).offset(-12)
+        }
+
+        usernameLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(profileImage.snp.bottom)
+            make.left.equalTo(nameLabel.snp.left)
+            make.right.equalTo(nameLabel.snp.right)
+        }
+
+        actionButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(12)
+            make.width.equalTo(70)
+            make.height.equalTo(32)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func configure(name: String, username: String?, buttonTitle: String) {
+        nameLabel.text = name
+        usernameLabel.text = username
+        actionButton.setTitle(buttonTitle, for: .normal)
+    }
 }

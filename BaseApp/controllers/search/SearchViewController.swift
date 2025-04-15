@@ -18,7 +18,10 @@ class SearchViewController: UIViewController {
         btn.setTitleColor(UIColor(red: 0.157, green: 0.78, blue: 1, alpha: 1), for: .normal)
         return btn
     }()
-    
+    var recentSearches: [String] = ["Yoga Cake", "Baby Dinosaur Cake", "Candy Cake"]
+    var filteredResults: [String] = []
+    var isSearching = false
+
     
     private let titleLbl:C8Label = {
         let lbl = C8Label()
@@ -208,7 +211,7 @@ class SearchViewController: UIViewController {
         
         contentView.addSubview(autoCompleteView)
         contentView.addSubview(productsCollectionView)
-        autoCompleteView.isHidden = true
+        autoCompleteView.isHidden = false
         productsCollectionView.isHidden = true
         autoCompleteView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -241,53 +244,69 @@ class SearchViewController: UIViewController {
     }
     
      private func search(textfield:UITextField, isEditing:Bool = true){
-        body.searchtxt = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-         if body.searchtxt?.isBlank == true {
-//            searchResults.removeAll()
-//            self.showSearchHistory()
-           return
-        }
-         self.productsCollectionView.isHidden = isEditing
-         self.autoCompleteView.isHidden = !isEditing
-         self.showShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
-         if let vendor = vendor {
-             ProductsControllerAPI.vendorProducts(vendorId: vendor.id, text: body.searchtxt) { data, error in
-                 self.hideShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
-                 if let error = error {
-                     MainHelper.handleApiError(error)
-                 } else {
-     //                if isEditing {
-     //                    if textfield.text?.isBlank == true {
-     //                        self.showSearchHistory()
-     //                    }else{
-                             self.autoCompleteResults = data?.products ?? []
-     //                    }
-     //                }else{
-     //                    self.searchResults = data?.products ?? []
-     //                }
-                 }
+         
+         if searchTF.text?.count == 0 {
+             isSearching = false
+             autoCompleteView.reloadData()
+         } else {
+             isSearching = true
+             body.searchtxt = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+             if body.searchtxt?.isBlank == true {
+                 //            searchResults.removeAll()
+                 //            self.showSearchHistory()
+                 return
              }
-         }else{
-             ProductsControllerAPI.products(body: body) { data, error in
-                 self.hideShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
-                 if let error = error {
-                     MainHelper.handleApiError(error)
-                 } else {
-     //                if isEditing {
-     //                    if textfield.text?.isBlank == true {
-     //                        self.showSearchHistory()
-     //                    }else{
-                             self.autoCompleteResults = data?.products ?? []
-     //                    }
-     //                }else{
-     //                    self.searchResults = data?.products ?? []
-     //                }
+             self.productsCollectionView.isHidden = isEditing
+             self.autoCompleteView.isHidden = !isEditing
+             self.showShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
+             if let vendor = vendor {
+                 ProductsControllerAPI.vendorProducts(vendorId: vendor.id, text: body.searchtxt) { data, error in
+                     self.hideShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
+                     if let error = error {
+                         MainHelper.handleApiError(error)
+                     } else {
+                         //                if isEditing {
+                         //                    if textfield.text?.isBlank == true {
+                         //                        self.showSearchHistory()
+                         //                    }else{
+                         self.autoCompleteResults = data?.products ?? []
+                         //                    }
+                         //                }else{
+                         //                    self.searchResults = data?.products ?? []
+                         //                }
+                     }
+                 }
+             }else{
+                 ProductsControllerAPI.products(body: body) { data, error in
+                     self.hideShimmer(shimmerView: isEditing ? self.autoCompleteShimmer : self.productsShimmerView)
+                     if let error = error {
+                         MainHelper.handleApiError(error)
+                     } else {
+                         //                if isEditing {
+                         //                    if textfield.text?.isBlank == true {
+                         //                        self.showSearchHistory()
+                         //                    }else{
+                         self.autoCompleteResults = data?.products ?? []
+                         //                    }
+                         //                }else{
+                         //                    self.searchResults = data?.products ?? []
+                         //                }
+                     }
                  }
              }
          }
-      
     }
-    
+    func performSearch(with term: String) {
+        if !recentSearches.contains(term) {
+            recentSearches.insert(term, at: 0)
+            if recentSearches.count > 5 { recentSearches.removeLast() } // Limit
+        }
+
+//        filteredResults = data.filter { $0.localizedCaseInsensitiveContains(term) }
+        isSearching = true
+        autoCompleteView.reloadData()
+    }
+
     
 //    private func showSearchHistory(){
 //        if searchTF.text?.isBlank == true {
@@ -360,15 +379,28 @@ extension SearchViewController:UICollectionViewDelegate , UICollectionViewDataSo
 }
 extension SearchViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return autoCompleteResults.count
+      //  return autoCompleteResults.count
+        return isSearching ? autoCompleteResults.count : recentSearches.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AutoCompleteCell", for: indexPath) as! AutoCompleteCell
-        let text = AppLanguage.isArabic() ? autoCompleteResults[safe: indexPath.row]?.arName ?? "" : autoCompleteResults[safe: indexPath.row]?.name ?? ""
-        cell.productImg.download(imagePath: autoCompleteResults[safe: indexPath.row]?.imageURL ?? "", size: CGSize(width: 60, height: 40))
-        cell.textLbl.textAlignment = AppLanguage.isArabic() ? .right : .left
-        updateLabel(with: text, searchText: body.searchtxt ?? "", label: cell.textLbl)
+    
+
+        if !isSearching {
+            let ne = recentSearches[indexPath.row]
+            cell.textLbl.textAlignment = AppLanguage.isArabic() ? .right : .left
+            updateLabel(with: ne, searchText: ne, label: cell.textLbl)
+            cell.productImg.image = UIImage.init(named: "planeven4")
+
+        } else {
+            let text = AppLanguage.isArabic() ? autoCompleteResults[safe: indexPath.row]?.arName ?? "" : autoCompleteResults[safe: indexPath.row]?.name ?? ""
+            cell.productImg.download(imagePath: autoCompleteResults[safe: indexPath.row]?.imageURL ?? "", size: CGSize(width: 60, height: 40))
+            cell.textLbl.textAlignment = AppLanguage.isArabic() ? .right : .left
+            updateLabel(with: text, searchText: body.searchtxt ?? "", label: cell.textLbl)
+        }
+
         return cell
     }
     
@@ -394,19 +426,28 @@ extension SearchViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-       // self.searchTF.text = autoCompleteResults[safe: indexPath.row]?.searchTxt
-        if let product = autoCompleteResults.get(at: indexPath.row) {
-            let vc = ProductDetailsViewController(product: product)
-            vc.isModalInPresentation = true
-            self.present(vc, animated: true)
+        
+        if !isSearching {
+                let selected = recentSearches[indexPath.row]
+                isSearching = true
+                searchTF.text = selected
+                performSearch(with: selected)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+           // self.searchTF.text = autoCompleteResults[safe: indexPath.row]?.searchTxt
+            if let product = autoCompleteResults.get(at: indexPath.row) {
+                let vc = ProductDetailsViewController(product: product)
+                vc.isModalInPresentation = true
+                self.present(vc, animated: true)
+            }
+           // self.search(textfield: self.searchTF, isEditing: false)
+            self.searchTF.resignFirstResponder()
+            self.searchResults.removeAll()
+    //        if let search = autoCompleteResults[safe: indexPath.row]{
+    //            DBManager.shared.saveSearchTxt(searchHistory: search)
+    //        }
+
         }
-       // self.search(textfield: self.searchTF, isEditing: false)
-        self.searchTF.resignFirstResponder()
-        self.searchResults.removeAll()
-//        if let search = autoCompleteResults[safe: indexPath.row]{
-//            DBManager.shared.saveSearchTxt(searchHistory: search)
-//        }
     }
     
     
