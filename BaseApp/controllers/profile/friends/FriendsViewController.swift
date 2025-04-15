@@ -394,7 +394,12 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+     
+        if tableViewSna == tableView {
+            return 40
+        } else {
+            return 0
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70

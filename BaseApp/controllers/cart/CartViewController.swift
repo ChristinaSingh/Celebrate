@@ -754,11 +754,14 @@ class CartViewController: UIViewController {
                         if type == .PayNow {
                             if self.payment == .ApplePay {
                                 self.applePayManager.authorisePayment(toPayAmount: (self.totalFees + self.totalCart), on: self)
-                            }else{
+                            } else {
                                 self.cartViewModel.cartToOrder(cartId: self.carts.map({ cart in cart.id ?? ""}).joined(separator: "|"))
                             }
-                        }else{
+                        } else if type == .PayLater {
                             self.cartViewModel.pendingApprovalRequest(request: PendingApprovalRequest(cartItemID: self.getPendingItemsCartIds(), pendingOrderApprovalStatus: 1))
+                        } else if type == .PayPart {
+                            
+//                            self.cartViewModel.pendingApprovalRequest(request: PendingApprovalRequest(cartItemID: self.getPendingItemsCartIds(), pendingOrderApprovalStatus: 1))
                         }
                     }
                     self.present(vc, animated: true)

@@ -222,7 +222,8 @@ class CartViewModel: ObservableObject {
     }
     
     
-    func orderAddress(cartId:String , addressId:String , friendFlag:String){
+    func orderAddress(cartId:String , addressId:String , friendFlag:String) {
+        
         loading = true
         CartControllerAPI.orderAddress(cartId: cartId, addressId: addressId, friendFlag: friendFlag){ data, error in
             self.loading = false
@@ -232,6 +233,7 @@ class CartViewModel: ObservableObject {
                 self.orderAddress = data
             }
         }
+        
     }
     
     

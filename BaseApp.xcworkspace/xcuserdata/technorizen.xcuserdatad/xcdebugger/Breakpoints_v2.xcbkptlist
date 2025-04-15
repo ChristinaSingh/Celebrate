@@ -98,36 +98,6 @@
             endingLineNumber = "408"
             landmarkName = "actions()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "89A2DAA5-9A7A-4480-ACD6-7EB0E48A8AC0 - 3e65847ec74ee01e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in BaseApp.ProductDetailsViewController.actions() -&gt; ()"
-                  moduleName = "BaseApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/technorizen/Desktop/Celebrate-IOS%20f1/BaseApp/controllers/products/ProductDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "408"
-                  endingLineNumber = "408">
-               </Location>
-               <Location
-                  uuid = "89A2DAA5-9A7A-4480-ACD6-7EB0E48A8AC0 - 3e65847ec74ee01e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in BaseApp.ProductDetailsViewController.actions() -&gt; ()"
-                  moduleName = "BaseApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/technorizen/Desktop/Celebrate-IOS%20f1/BaseApp/controllers/products/ProductDetailsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "408"
-                  endingLineNumber = "408">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -172,8 +142,8 @@
             filePath = "BaseApp/controllers/cart/CartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "803"
-            endingLineNumber = "803"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -188,8 +158,8 @@
             filePath = "BaseApp/controllers/cart/CartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "805"
-            endingLineNumber = "805"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -367,6 +337,22 @@
             startingLineNumber = "255"
             endingLineNumber = "255"
             landmarkName = "search(textfield:isEditing:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C4D1392-5EE2-429D-B669-3194CE43F583"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BaseApp/controllers/cart/CartViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "751"
+            endingLineNumber = "751"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
