@@ -176,7 +176,7 @@ class FriendsViewController: UIViewController {
         tabContainer.addSubview(friendsButton)
         tabContainer.addSubview(underlineView)
         
-        underlineView.backgroundColor = .systemPurple
+        underlineView.backgroundColor = .accent
         underlineView.layer.cornerRadius = 2
         underlineView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
@@ -387,7 +387,7 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
-        header.text = section == 0 ? "   Find Friends" : "   Invite to Snapchat"
+        header.text = section == 0 ? "   Find Friends" : "   Invite to Celebrate"
         header.font = .boldSystemFont(ofSize: 16)
         header.backgroundColor = UIColor(white: 0.95, alpha: 1)
         return header
@@ -402,7 +402,11 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        if tableViewSna == tableView {
+            return 70
+        } else {
+            return 92
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -541,8 +545,8 @@ class FriendContactCell: UITableViewCell {
         usernameLabel.font = .systemFont(ofSize: 13)
         usernameLabel.textColor = .gray
         
-        actionButton.backgroundColor = .systemYellow
-        actionButton.setTitleColor(.black, for: .normal)
+        actionButton.backgroundColor = .accent
+        actionButton.setTitleColor(.white, for: .normal)
         actionButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
         actionButton.layer.cornerRadius = 16
 
