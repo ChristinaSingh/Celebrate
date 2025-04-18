@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Contacts
+
 
 class ProfileViewController: UIViewController {
     
@@ -41,7 +43,7 @@ class ProfileViewController: UIViewController {
         return collectionView
     }()
     
-    
+    //x-api-key
     private var settings:[SettingModel] = []
     
     override func viewDidLoad() {
@@ -61,6 +63,12 @@ class ProfileViewController: UIViewController {
         setupProfile()
         NotificationCenter.default.addObserver(self, selector: #selector(setupProfile), name: Notification.Name(rawValue: "LanguageChanged"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupProfile), name: Notification.Name("user.updated"), object: nil)
+        
+
+        if  UserDefaults.standard.value(forKey: "ContactSync") == nil {
+            ContactUploader().fetchAndUploadContacts()
+        }
+
     }
     
     
@@ -174,4 +182,85 @@ extension ProfileViewController:UICollectionViewDelegate , UICollectionViewDataS
     }
     
    
+}
+
+struct Contact: Codable {
+    let name: String
+    let phone: String
+}
+
+struct ContactSyncRequest: Codable {
+    let contacts: [Contact]
+}
+
+struct APIResponse: Codable {
+    let status: String
+    let message: String
+}
+
+class ContactUploader {
+
+    func fetchAndUploadContacts() {
+        let store = CNContactStore()
+        store.requestAccess(for: .contacts) { granted, error in
+            if granted {
+                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                var contacts: [Contact] = []
+
+                do {
+                    try store.enumerateContacts(with: request) { contact, _ in
+                        for phoneNumber in contact.phoneNumbers {
+                            let name = "\(contact.givenName) \(contact.familyName)".trimmingCharacters(in: .whitespaces)
+                            let number = phoneNumber.value.stringValue.filter("0123456789+".contains)
+                            contacts.append(Contact(name: name, phone: number))
+                        }
+                    }
+                    self.uploadContacts(contacts)
+                } catch {
+                    print("Failed to fetch contacts:", error)
+                }
+            } else {
+                print("Permission denied or error:", error ?? "")
+            }
+        }
+    }
+
+    private func uploadContacts(_ contacts: [Contact]) {
+        guard let url = URL(string: "https://celebrate.inchrist.co.in/api/friends/synk") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+        }
+
+        let body = ContactSyncRequest(contacts: contacts)
+        
+        print("contactscontacts \(contacts)")
+        do {
+            request.httpBody = try JSONEncoder().encode(body)
+        } catch {
+            print("Failed to encode contacts:", error)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(APIResponse.self, from: data)
+                    print("Upload response:", response)
+                    DispatchQueue.main.async {
+                        UserDefaults.standard.setValue("Yes", forKey: "ContactSync")
+                        ToastBanner.shared.show(message: "Contact Uploaded successfully", style: .success, position: .Bottom)
+                    }
+                } catch {
+                    print("Failed to parse response:", error)
+                }
+            } else {
+                print("Request failed:", error ?? "")
+            }
+        }.resume()
+    }
+
 }

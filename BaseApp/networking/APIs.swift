@@ -8,7 +8,9 @@ import Foundation
 
 public class SwaggerClientAPI {
   //  public static var basePath = "https://api.railmuseumubl.in/api"
-    public static var basePath = "https://admin.celebrateapp.com"
+   // public static var basePath = "https://admin.celebrateapp.com"
+      public static var basePath = "https://celebrate.inchrist.co.in"
+
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()

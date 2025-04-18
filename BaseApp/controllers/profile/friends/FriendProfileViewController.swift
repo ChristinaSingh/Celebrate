@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Combine
+import Foundation
+
 
 
 enum FriendProfile {
@@ -308,8 +310,9 @@ class FriendProfileViewController: UIViewController {
         viewModelA.getAddresses()
 
         updateReminder(isRemove: false)
-        
     }
+
+
         @objc private func tabButtonTapped(_ sender: UIButton) {
             if sender == favoritesButton {
                 selectedTab = .favorites
@@ -384,6 +387,7 @@ class FriendProfileViewController: UIViewController {
     private func hideShimmer(){
         shimmerView.removeFromSuperview()
     }
+
 }
 extension FriendProfileViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

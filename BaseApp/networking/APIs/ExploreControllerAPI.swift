@@ -22,6 +22,7 @@ open class ExploreControllerAPI {
 
         let url = URLComponents(string: URLString)
 
+        print("urlurl \(url)")
         let requestBuilder: RequestBuilder<Banners>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: nil, isBody: false)

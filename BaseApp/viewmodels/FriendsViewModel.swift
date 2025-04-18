@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class FriendsViewModel:NSObject {
+    
     @Published var loading: Bool = false
     @Published var unfriendLoading: Bool = false
     @Published var error: Error?

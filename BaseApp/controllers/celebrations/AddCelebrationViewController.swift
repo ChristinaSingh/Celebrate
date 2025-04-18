@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Foundation
 
 class AddCelebrationViewController: BaseViewController {
     
@@ -17,7 +18,8 @@ class AddCelebrationViewController: BaseViewController {
         view.backgroundColor = UIColor(red: 0.122, green: 0.098, blue: 0.149, alpha: 0.05)
         return view
     }()
-    
+    private var selectedDOB: Date?
+
     let headerView:HeaderViewWithCancelButton = {
         let view = HeaderViewWithCancelButton(title: "Celebration".localized)
         view.backgroundColor = .white
@@ -46,6 +48,7 @@ class AddCelebrationViewController: BaseViewController {
     private let nameTF:C8InputView = {
         let textfield = C8InputView()
         textfield.backgroundColor = .white
+        textfield.textfield.placeholder = "Enter".localized
         return textfield
     }()
     
@@ -58,10 +61,7 @@ class AddCelebrationViewController: BaseViewController {
     private let typeTF:C8InputView = {
         let textfield = C8InputView()
         textfield.backgroundColor = .white
-        textfield.textfield.rightViewMode = .always
-        textfield.textfield.rightView = UIImageView(image: UIImage(named: "collapse_arrow"))
-        textfield.textfield.isUserInteractionEnabled = false
-        textfield.textfield.placeholder = "Select an occassion".localized
+        textfield.textfield.placeholder = "Enter an occassion".localized
         return textfield
     }()
     
@@ -79,8 +79,52 @@ class AddCelebrationViewController: BaseViewController {
         textfield.textfield.isUserInteractionEnabled = false
         textfield.textfield.placeholder = "Select a date".localized
         return textfield
+        
     }()
-    
+    @objc private func showDatePicker1() {
+        
+        let vc = SelectAddressViewController(locationId: "", areaName: "")
+        vc.callback = { [self] address in
+            guard let address = address else {return}
+            self.locationTF.text = address.name
+            strLocationId = address.name
+        }
+        vc.isModalInPresentation = true
+        self.present(vc, animated: true)
+
+    }
+    @objc private func showDatePicker() {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.minimumDate = Date()
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+
+        let alert = UIAlertController(title: "Select DOB", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
+        alert.view.addSubview(datePicker)
+
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(alert.view.snp.top).offset(20)
+            make.centerX.equalTo(alert.view)
+            make.height.equalTo(150)
+        }
+
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy"
+            self.selectedDOB = datePicker.date
+            self.dateTF.text = formatter.string(from: datePicker.date)
+            self.strDate = formatter.string(from: datePicker.date)
+
+           // self.dobButton.setTitle("DOB: \(formatter.string(from: datePicker.date))", for: .normal)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(alert, animated: true)
+    }
+
     
     private let locationLbl:C8Label = {
         let lbl = C8Label.createMandatoryLabel(withText: "Location".localized, font: AppFont.shared.font(family: .Inter, fontWeight: .regular, size: 12), textColor: .black, asteriskColor: .red)
@@ -112,14 +156,28 @@ class AddCelebrationViewController: BaseViewController {
     
     lazy var doneBtn:LoadingButton = {
         let btn = LoadingButton.createObject(title: "Done".localized, width: self.view.frame.width - CGFloat(32), height: 48.constraintMultiplierTargetValue.relativeToIphone8Height())
-        btn.enableDisableSaveButton(isEnable: false)
+        btn.enableDisableSaveButton(isEnable: true)
         btn.setActive(true)
         btn.loadingView.color = .white
         btn.loadingView.backgroundColor = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
         return btn
     }()
+    var strLocationId:String! = ""
+    var strDate:String! = ""
 
     override func setup() {
+        
+        doneBtn.tap = { [self] in
+            addCelebration(name: nameTF.text!, locationID: strLocationId!, dateTime: strDate!, occasionType: typeTF.text!)
+        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showDatePicker))
+        dateTF.textfield.addGestureRecognizer(tapGesture)
+        dateTF.textfield.isUserInteractionEnabled = true
+
+        let tapGestured = UITapGestureRecognizer(target: self, action: #selector(showDatePicker1))
+        locationTF.textfield.addGestureRecognizer(tapGestured)
+        locationTF.textfield.isUserInteractionEnabled = true
+
         self.view.backgroundColor = .white
         self.view.addSubview(containerView)
         self.containerView.snp.makeConstraints { make in
@@ -235,4 +293,49 @@ class AddCelebrationViewController: BaseViewController {
             make.height.equalTo(101)
         }
     }
+
+    func addCelebration(name: String, locationID: String, dateTime: String, occasionType: String) {
+        guard let url = URL(string: "https://celebrate.inchrist.co.in/api/customer/addcelebration") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+
+        let body: [String: Any] = [
+            "celebration_name": name,
+            "location_id": locationID,
+            "date_time": dateTime,
+            "occassion_type": occasionType
+        ]
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+        } catch {
+            print("Error serializing JSON:", error)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("API Error:", error)
+                return
+            }
+
+            guard let data = data else { return }
+
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print("🎉 Celebration added:", json)
+                DispatchQueue.main.async {
+                    ToastBanner.shared.show(message: "Add celebration successfully", style: .success, position: .Bottom)
+                    self.dismiss(animated: true)
+                }
+
+            } catch {
+                print("Failed to parse response:", error)
+            }
+        }.resume()
+    }
+
 }

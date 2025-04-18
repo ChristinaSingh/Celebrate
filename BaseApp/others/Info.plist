@@ -65,10 +65,11 @@
 	</array>
 	<key>GIDClientID</key>
 	<string>283798411667-9r45q9uccqsibfesvrks0tot0k75vn49.apps.googleusercontent.com</string>
-    <key>NSCameraUsageDescription</key>
-    <string>We need access to your camera to take a profile photo.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to your photo library to select a profile picture.</string>
-
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take a profile photo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select a profile picture.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>We need access to your contacts.</string>
 </dict>
 </plist>

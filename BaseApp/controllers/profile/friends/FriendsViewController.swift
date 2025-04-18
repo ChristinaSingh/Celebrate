@@ -9,8 +9,64 @@ import UIKit
 import SnapKit
 import Combine
 
+struct MatchContactsResponse: Codable {
+    let status: String
+    let matchedContacts: [MatchedContact]
+
+    enum CodingKeys: String, CodingKey {
+        case status
+        case matchedContacts = "matched_contacts"
+    }
+}
+struct UNMatchContactsResponse: Codable {
+    let status: String
+    let unmatchedcontacts: [UnMatchedContact]
+
+    enum CodingKeys: String, CodingKey {
+        case status
+        case unmatchedcontacts = "unmatched_contacts"
+
+    }
+}
+struct UnMatchedContact: Codable {
+    let id: String
+    let name: String
+    let number: String?
+    let status: String?
+
+}
+
+struct MatchedContact: Codable {
+    let id: String
+    let name: String
+    let mobile: String
+    let phone: String?
+    let email: String?
+    let number: String?
+    let avatar: Avatar?
+    let status: String?
+    let is_frind: Bool?
+
+}
+
+struct Avatar: Codable {
+    let id: String
+    let name: String
+    let imageUrl: String
+    let status: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, status
+        case imageUrl = "image_url"
+    }
+}
+
+
 class FriendsViewController: UIViewController {
     
+    private let findFriends = ["M Moin", "Vimlesh", "Anand", "Morayo"]
+    private let inviteFriends = ["Gopal", "Bharat", "Amit", "Pankaj"]
+
     private let viewModel = FriendsViewModel()
     private var cancellables: Set<AnyCancellable>  = Set<AnyCancellable>()
     private var friends: Friends?
@@ -111,11 +167,11 @@ class FriendsViewController: UIViewController {
     }()
 
     // Sample dummy data
-    private let findFriends = ["M Moin", "Vimlesh", "Anand", "Morayo"]
-    private let inviteFriends = ["Gopal", "Bharat", "Amit", "Pankaj"]
 
     private let refreshControl = UIRefreshControl()
-  
+    var matchedContacts: [MatchedContact] = []
+    var unMatchedContacts: [UnMatchedContact] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -277,7 +333,69 @@ class FriendsViewController: UIViewController {
         setupRefreshControl()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        fetchMatchedContacts()
+        fetchUnmatchedMatchedContacts()
     }
+    
+    
+    func fetchMatchedContacts() {
+        guard let url = URL(string: "\(SwaggerClientAPI.basePath)/api/friends/matchcontacts") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(MatchContactsResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        print("Parsing JSOn:", response.matchedContacts)
+                        self.matchedContacts = response.matchedContacts
+                        self.tableViewSna.reloadData()
+                    }
+                } catch {
+                    print("Parsing error:", error)
+                }
+            } else {
+                print("Network error:", error ?? "")
+            }
+        }.resume()
+    }
+    
+    func fetchUnmatchedMatchedContacts() {
+        guard let url = URL(string: "\(SwaggerClientAPI.basePath)/api/friends/unmatchedcontacts") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+        }
+       // request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(UNMatchContactsResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        print("Parsing JSOn:", response.unmatchedcontacts)
+                        self.unMatchedContacts = response.unmatchedcontacts
+                        self.tableViewSna.reloadData()
+                    }
+                } catch {
+                    print("Parsing error:", error)
+                }
+            } else {
+                print("Network error:", error ?? "")
+            }
+        }.resume()
+    }
+
     @objc private func selectSuggestions() {
         underlineView.snp.remakeConstraints { make in
             make.bottom.equalToSuperview()
@@ -379,7 +497,7 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableViewSna == tableView {
-            return section == 0 ? findFriends.count : inviteFriends.count
+            return section == 0 ? self.matchedContacts.count : unMatchedContacts.count
         } else {
             return friends?.count ?? 0
 
@@ -413,9 +531,31 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
         if tableViewSna == tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCellx", for: indexPath) as! FriendContactCell
             if indexPath.section == 0 {
-                cell.configure(name: findFriends[indexPath.row], username: inviteFriends[indexPath.row], buttonTitle: "Add")
+                let new = self.matchedContacts[indexPath.row]
+                cell.configure(name: new.name, username: new.phone, buttonTitle: "Add", imageD: new.avatar?.imageUrl ?? "", status: new.is_frind!)
+                
+                cell.actionButton.tap {
+
+                    if !new.is_frind! {
+                        self.viewModel.addFriend(friendId: new.id) { res, err in
+                            await MainActor.run {
+                                self.fetchMatchedContacts()
+                            }
+                        }
+                    }
+
+                }
             } else {
-                cell.configure(name: inviteFriends[indexPath.row], username: inviteFriends[indexPath.row], buttonTitle: "Invite")
+                let new = self.unMatchedContacts[indexPath.row]
+                
+                    cell.configure(name: new.name, username: new.number, buttonTitle: "Invite", imageD: "", status: new.status! == "invited" ? true : false)
+               
+                cell.actionButton.tap { [self] in
+                    if new.status != "invited" {
+                        self.inviteTapped(for: unMatchedContacts[indexPath.row])
+                    }
+                }
+
             }
             return cell
 
@@ -494,6 +634,27 @@ extension FriendsViewController:UITableViewDelegate , UITableViewDataSource {
             MainHelper.showToastMessage(message: "you_are_not_friends".localized, style: .error, position: .Bottom)
         }
     }
+    func inviteTapped(for contact: UnMatchedContact) {
+        let message = "Hey! Join me on the Celebrate app 🎉 https://celebrateapp.com"
+
+        if let phone = contact.number!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            // Try WhatsApp first
+            if let whatsappURL = URL(string: "whatsapp://send?phone=\(phone)&text=\(message.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"),
+               UIApplication.shared.canOpenURL(whatsappURL) {
+                UIApplication.shared.open(whatsappURL)
+            } else {
+                // Fallback to SMS if WhatsApp is not available
+                if let smsURL = URL(string: "sms:\(phone)&body=\(message.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"),
+                   UIApplication.shared.canOpenURL(smsURL) {
+                    UIApplication.shared.open(smsURL)
+                } else {
+                    // Optional: Show alert that no app is available
+                    print("Cannot open WhatsApp or Messages")
+                }
+            }
+        }
+    }
+
 }
 
 extension FriendsViewController:UITextFieldDelegate {
@@ -515,7 +676,7 @@ class FriendContactCell: UITableViewCell {
     private let profileImage = UIImageView()
     private let nameLabel = UILabel()
     private let usernameLabel = UILabel()
-    private let actionButton = UIButton()
+    let actionButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -580,9 +741,33 @@ class FriendContactCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(name: String, username: String?, buttonTitle: String) {
+    func configure(name: String, username: String?, buttonTitle: String, imageD: String, status: Bool) {
         nameLabel.text = name
         usernameLabel.text = username
-        actionButton.setTitle(buttonTitle, for: .normal)
+        
+        
+        if buttonTitle == "Add" {
+            if status {
+                actionButton.setTitle("Await", for: .normal)
+            } else {
+                actionButton.setTitle("Add", for: .normal)
+
+            }
+            
+        } else {
+            if status {
+                actionButton.setTitle("Invited", for: .normal)
+            } else {
+                actionButton.setTitle("Invite", for: .normal)
+
+            }
+        }
+        if imageD == "" {
+            profileImage.image = UIImage(systemName: "person.circle")
+        } else {
+            profileImage.download(imagePath: imageD, size: CGSize(width: 44, height: 44))
+
+        }
+
     }
 }
