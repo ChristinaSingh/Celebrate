@@ -20,7 +20,8 @@ class CelebrationsViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.122, green: 0.098, blue: 0.149, alpha: 0.05)
         return view
     }()
-    
+    var celebrations: [Celebration] = []
+
     lazy private var tableView:UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
@@ -104,17 +105,52 @@ class CelebrationsViewController: UIViewController {
             vc.isModalInPresentation = true
             self.present(vc, animated: true)
         }
+        fetchCelebrationList { [weak self] list in
+            self?.celebrations = list
+            self?.tableView.reloadData()
+        }
+
     }
     
+    func fetchCelebrationList(completion: @escaping ([Celebration]) -> Void) {
+        guard let url = URL(string: "https://celebrate.inchrist.co.in/api/customer/celebrationlist") else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("API Error:", error)
+                return
+            }
+
+            guard let data = data else { return }
+
+            do {
+                let result = try JSONDecoder().decode(CelebrationResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(result.data)
+                }
+            } catch {
+                print("Decoding error:", error)
+            }
+        }.resume()
+    }
 
 }
 extension CelebrationsViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return celebrations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CelebrationCell") as! CelebrationCell
+        let celebration = celebrations[indexPath.row]
+        cell.titleLbl.text = "\(celebration.celebration_name)"
+        cell.addressLbl.text = "\(celebration.occassion_type)"
+        cell.monthDayLbl.text = "\(celebration.date_time)"
+
         return cell
     }
 }

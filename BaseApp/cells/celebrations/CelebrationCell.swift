@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 import SnapKit
 
+struct CelebrationResponse: Decodable {
+    let status: Bool
+    let message: String
+    let data: [Celebration]
+}
+
+struct Celebration: Decodable {
+    let id: String
+    let celebration_name: String
+    let location_id: String
+    let date_time: String
+    let occassion_type: String
+}
+
 class CelebrationCell:UITableViewCell {
     
     
@@ -28,7 +42,7 @@ class CelebrationCell:UITableViewCell {
         return icon
     }()
     
-    private let titleLbl:C8Label = {
+     let titleLbl:C8Label = {
         let lbl = C8Label()
         lbl.textColor = .black
         lbl.font = AppFont.shared.font(family: .Inter, fontWeight: .semibold, size: 14)
@@ -91,7 +105,7 @@ class CelebrationCell:UITableViewCell {
     }()
     
     
-    private let monthDayLbl:C8Label = {
+    let monthDayLbl:C8Label = {
         let lbl = C8Label()
         lbl.textColor = .white
         lbl.font = AppFont.shared.font(family: .Inter, fontWeight: .bold, size: 10)

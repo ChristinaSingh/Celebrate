@@ -442,8 +442,96 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
         let name = nameTF.text
         let user = User.load()?.details
         viewModel.updateProfile(name: name, email: user?.email, mobile: user?.mobileNumber, birthday: self.birthDay, username: username?.replacingOccurrences(of: "@", with: ""), ispublic: user?.ispublic)
+//        registerUser(
+//            name: name,
+//            mobile: user?.mobileNumber,
+//            phone: "33333333",
+//            password: "123123",
+//            email: user?.email,
+//            address: nil,
+//            image: UIImage(named: "your_image")!
+//        ) { success, message in
+//            print(success ? "✅ Success: \(message)" : "❌ Failed: \(message)")
+//        }
+
     }
-    
+    func registerUser(
+        name: String,
+        mobile: String,
+        phone: String,
+        password: String,
+        email: String,
+        address: String?,
+        image: UIImage,
+        completion: @escaping (Bool, String) -> Void
+    ) {
+        let url = URL(string: "https://celebrate.inchrist.co.in/api/customer/register")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var data = Data()
+
+        func appendFormField(name: String, value: String) {
+            data.append("--\(boundary)\r\n".data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n".data(using: .utf8)!)
+            data.append("\(value)\r\n".data(using: .utf8)!)
+        }
+
+        appendFormField(name: "name", value: name)
+        appendFormField(name: "mobile", value: mobile)
+        appendFormField(name: "phone", value: phone)
+        appendFormField(name: "password", value: password)
+        appendFormField(name: "email", value: email)
+        appendFormField(name: "address", value: address ?? "")
+
+        // Image
+        if let imageData = image.jpegData(compressionQuality: 0.8) {
+            data.append("--\(boundary)\r\n".data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"image\"; filename=\"profile.jpg\"\r\n".data(using: .utf8)!)
+            data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+            data.append(imageData)
+            data.append("\r\n".data(using: .utf8)!)
+        }
+
+        data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = data
+
+        // API Call
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, "Request error: \(error.localizedDescription)")
+                return
+            }
+
+            guard let data = data else {
+                completion(false, "No data received")
+                return
+            }
+
+            if let responseStr = String(data: data, encoding: .utf8) {
+                print("API Response: \(responseStr)")
+            }
+
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let status = json["status"] as? String,
+                   let message = json["message"] as? String {
+                    completion(status == "success", message)
+                } else {
+                    completion(false, "Unexpected response")
+                }
+            } catch {
+                completion(false, "JSON parse error")
+            }
+        }.resume()
+    }
+
     // MARK: - Toggle Actions
     
     @objc private func publicProfileSwitchChanged(_ sender: UISwitch) {
