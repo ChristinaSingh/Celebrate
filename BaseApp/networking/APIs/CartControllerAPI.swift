@@ -56,7 +56,11 @@ open class CartControllerAPI{
         let URLString = SwaggerClientAPI.basePath + path
         let url = URLComponents(string: URLString)
         print(item.convertToString ?? "")
+        print("paramtersparamters \(item)")
+
         let paramters = JSONEncodingHelper.encodingParameters(forEncodableObject: item)
+        
+        print("paramtersparamters \(paramters)")
 
         let requestBuilder: RequestBuilder<Cart>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -151,6 +155,7 @@ open class CartControllerAPI{
     
     open class func convertCartToOrder(cartId:String, completion: @escaping ((_ data: Orders?,_ error: Error?) -> Void)) {
         convertCartToOrderWithRequestBuilder(cartId:cartId).execute { (response, error) -> Void in
+            print("errorerrorerror \(error)")
             completion(response?.body, error)
         }
     }
@@ -162,6 +167,8 @@ open class CartControllerAPI{
         let paramters = JSONEncodingHelper.encodingParameters(forEncodableObject: ["cartID":cartId])
         let requestBuilder: RequestBuilder<Orders>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
+        print("paramters \(cartId)")
+        
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: paramters, isBody: true)
     }
     

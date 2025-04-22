@@ -19,13 +19,18 @@ class AddCelebrationViewController: BaseViewController {
         return view
     }()
     private var selectedDOB: Date?
+    var onDismiss: (() -> Void)?
 
     let headerView:HeaderViewWithCancelButton = {
         let view = HeaderViewWithCancelButton(title: "Celebration".localized)
         view.backgroundColor = .white
         return view
     }()
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onDismiss?()  // Call the closure when dismissed
+    }
+
     private let scrollView:UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .clear
@@ -115,6 +120,8 @@ class AddCelebrationViewController: BaseViewController {
             formatter.dateFormat = "dd-MM-yyyy"
             self.selectedDOB = datePicker.date
             self.dateTF.text = formatter.string(from: datePicker.date)
+            formatter.dateFormat = "yyyy-MM-dd"
+
             self.strDate = formatter.string(from: datePicker.date)
 
            // self.dobButton.setTitle("DOB: \(formatter.string(from: datePicker.date))", for: .normal)
@@ -300,7 +307,9 @@ class AddCelebrationViewController: BaseViewController {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+        }
 
         let body: [String: Any] = [
             "celebration_name": name,

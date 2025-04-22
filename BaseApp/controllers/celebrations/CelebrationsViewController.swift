@@ -103,6 +103,13 @@ class CelebrationsViewController: UIViewController {
         addCelebrationsBtn.tap = {
             let vc = AddCelebrationViewController()
             vc.isModalInPresentation = true
+            vc.onDismiss = { [weak self] in
+                self?.fetchCelebrationList { [weak self] list in
+                    self?.celebrations = list
+                    self?.tableView.reloadData()
+                }
+            }
+
             self.present(vc, animated: true)
         }
         fetchCelebrationList { [weak self] list in
@@ -117,7 +124,10 @@ class CelebrationsViewController: UIViewController {
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+            print("tokentoken \(token)")
+        }
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -126,6 +136,7 @@ class CelebrationsViewController: UIViewController {
             }
 
             guard let data = data else { return }
+            print("API Error:", data)
 
             do {
                 let result = try JSONDecoder().decode(CelebrationResponse.self, from: data)
@@ -149,8 +160,53 @@ extension CelebrationsViewController:UITableViewDelegate, UITableViewDataSource 
         let celebration = celebrations[indexPath.row]
         cell.titleLbl.text = "\(celebration.celebration_name)"
         cell.addressLbl.text = "\(celebration.occassion_type)"
-        cell.monthDayLbl.text = "\(celebration.date_time)"
+        let formatted = formatDate("\(celebration.date_time)")
+        let result = timeRemaining(from: celebration.date_time)
+
+        cell.monthDayLbl.text = formatted
+        cell.dateLbl.text = result
 
         return cell
     }
+    func formatDate(_ dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        if let date = inputFormatter.date(from: dateString) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "d MMMM" // Example: 19 April
+            return outputFormatter.string(from: date)
+        }
+        return ""
+    }
+    func timeRemaining(from dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let futureDate = dateFormatter.date(from: dateString) else { return "Invalid date" }
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        if futureDate < now {
+            return "Date has passed"
+        }
+
+        let components = calendar.dateComponents([.year, .month, .day], from: now, to: futureDate)
+
+        var parts: [String] = []
+
+        if let year = components.year, year > 0 {
+            parts.append("\(year) year\(year > 1 ? "s" : "")")
+        }
+        if let month = components.month, month > 0 {
+            parts.append("\(month) month\(month > 1 ? "s" : "")")
+        }
+        if let day = components.day, day > 0 {
+            parts.append("\(day) day\(day > 1 ? "s" : "")")
+        }
+
+        return parts.isEmpty ? "Today" : parts.joined(separator: ", ") + " left"
+    }
+
+
 }

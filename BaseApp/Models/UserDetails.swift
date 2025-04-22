@@ -6,18 +6,24 @@
 //
 
 import Foundation
+
+public class UpdateProfileResponse: Codable {
+    let details: UserDetails
+}
+
 public class UserDetails: Codable {
     public let id, fullName, mobileNumber:String?
     public let phoneNumber: String?
     public let email, status, creationDate, username: String?
     public let tag: Int?
-    public let avatar: UserAvatar?
+    public let avatar: avatar?
     public let birthday: String?
     public var ispublic: String?
     public let isverified:String?
+    public let isallowevents:String?
+
     
-    
-    init(id: String?, fullName: String?, mobileNumber: String?, phoneNumber: String?, email: String?, status: String?, creationDate: String?, username: String?, tag: Int?, avatar: UserAvatar?, birthday: String?, ispublic: String?, isverified: String?) {
+    init(id: String?, fullName: String?, mobileNumber: String?, phoneNumber: String?, email: String?, status: String?, creationDate: String?, username: String?, tag: Int?, avatar: avatar?, birthday: String?, ispublic: String?, isverified: String?, isallowevents: String?) {
         self.id = id
         self.fullName = fullName
         self.mobileNumber = mobileNumber
@@ -31,5 +37,7 @@ public class UserDetails: Codable {
         self.birthday = birthday
         self.ispublic = ispublic
         self.isverified = isverified
+        self.isallowevents = isallowevents
+
     }
 }

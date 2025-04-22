@@ -285,6 +285,8 @@ class CartViewModel: ObservableObject {
                     self.proceedLoading = false
                     if case .failure(let err) = completion {
                         self.error = err
+                        print("errorerrorerror \(self.error)")
+
                     }
                 }, receiveValue: { [unowned self] res in
                     self.cartOrder = res
@@ -297,7 +299,9 @@ class CartViewModel: ObservableObject {
            return Future { promise in
                CartControllerAPI.convertCartToOrder(cartId: cartId) { data, error in
                    if let error = error {
+                       print("errorerrorerror \(error)")
                        promise(.failure(error))
+                       
                    } else {
                        promise(.success(data))
                    }

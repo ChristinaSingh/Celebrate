@@ -110,7 +110,18 @@ class ProductCell: UICollectionViewCell {
         return view
     }()
     
-    
+    var onQuantityChange: ((Int) -> Void)?
+    private var quantity = 0 {
+        didSet {
+            quantityLabel.text = "\(quantity)"
+            onQuantityChange?(quantity)
+            updateUI()
+        }
+    }
+    private let plusButton = UIButton()
+    private let minusButton = UIButton()
+    private let quantityLabel = UILabel()
+
     let addBtn:UIButton = {
         let btn = UIButton()
         btn.backgroundColor = .white
@@ -120,8 +131,10 @@ class ProductCell: UICollectionViewCell {
         btn.clipsToBounds = true
         btn.setTitle("ADD".localized)
         btn.setTitleColor(.accent, for: .normal)
-        btn.isUserInteractionEnabled = false
+        btn.isUserInteractionEnabled = true
         btn.titleLabel?.font = AppFont.shared.font(family: .Inter, fontWeight: .bold, size: 12)
+        btn.addTarget(self, action: #selector(didTapAdd), for: .touchUpInside)
+
         return btn
     }()
     
@@ -233,11 +246,56 @@ class ProductCell: UICollectionViewCell {
     }
     
     private func setup(){
+        
+        minusButton.setTitle("-", for: .normal)
+        minusButton.setTitleColor(.black, for: .normal)
+        minusButton.layer.cornerRadius = 12
+        minusButton.layer.borderWidth = 1
+        minusButton.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
+        minusButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        minusButton.addTarget(self, action: #selector(decreaseQuantity), for: .touchUpInside)
+        
+        // Setup quantity label
+        quantityLabel.text = "\(quantity)"
+        quantityLabel.font = .systemFont(ofSize: 14)
+        quantityLabel.textAlignment = .center
+        quantityLabel.textColor = .black
+        
+        // Setup plus button
+        plusButton.setTitle("+", for: .normal)
+        plusButton.setTitleColor(.black, for: .normal)
+        plusButton.layer.cornerRadius = 12
+        plusButton.layer.borderWidth = 1
+        plusButton.layer.borderColor = UIColor.init(named: "AccentColor")?.cgColor
+        plusButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        plusButton.addTarget(self, action: #selector(increaseQuantity), for: .touchUpInside)
+
+//        // + Button
+//        plusButton.setTitle("+", for: .normal)
+//        plusButton.setTitleColor(.white, for: .normal)
+//        plusButton.backgroundColor = .systemPurple
+//        plusButton.layer.cornerRadius = 8
+//        plusButton.addTarget(self, action: #selector(increaseQuantity), for: .touchUpInside)
+//
+//        // - Button
+//        minusButton.setTitle("-", for: .normal)
+//        minusButton.setTitleColor(.white, for: .normal)
+//        minusButton.backgroundColor = .systemPurple
+//        minusButton.layer.cornerRadius = 8
+//        minusButton.addTarget(self, action: #selector(decreaseQuantity), for: .touchUpInside)
+//
+//
+//        // Quantity Label
+//        quantityLabel.text = "1"
+//        quantityLabel.textAlignment = .center
+//        quantityLabel.font = UIFont.boldSystemFont(ofSize: 16)
+
+
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        [collectionView, favoriteBtn ,badgeView , imagesIndicator , titleLbl , priceLbl , pricePerSelectionView, productStatusView , prevLbl, addBtn].forEach { view in
+        [collectionView, favoriteBtn ,badgeView , imagesIndicator , titleLbl , priceLbl , pricePerSelectionView, productStatusView , prevLbl, addBtn,plusButton,minusButton,quantityLabel].forEach { view in
             self.containerView.addSubview(view)
         }
         
@@ -297,16 +355,58 @@ class ProductCell: UICollectionViewCell {
             make.width.equalTo(59)
             make.height.equalTo(32)
         }
+        plusButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-12)
+            $0.bottom.equalToSuperview().offset(-12)
+            $0.width.equalTo(24)
+            $0.height.equalTo(24)
+        }
+        quantityLabel.snp.makeConstraints {
+            $0.centerY.equalTo(plusButton)
+            $0.right.equalTo(plusButton.snp.left).offset(-6)
+            $0.width.equalTo(24)
+        }
+
+        minusButton.snp.makeConstraints {
+                    $0.right.equalTo(quantityLabel.snp.left).offset(-6)
+                    $0.centerY.equalTo(plusButton)
+                    $0.width.height.equalTo(24)
+                }
+
+
         
+
         productStatusView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(12)
             make.top.equalTo(self.priceLbl.snp.bottom).offset(6)
             make.height.equalTo(24)
             make.width.equalTo(0)
         }
-        
+        updateUI()
+
     }
-    
+    private func updateUI() {
+        let isQuantityMode = quantity > 0
+        addBtn.isHidden = isQuantityMode
+        plusButton.isHidden = !isQuantityMode
+        minusButton.isHidden = !isQuantityMode
+        quantityLabel.isHidden = !isQuantityMode
+    }
+    @objc private func didTapAdd() {
+        quantity = 1
+    }
+
+    @objc private func increaseQuantity() {
+        quantity += 1
+    }
+
+    @objc private func decreaseQuantity() {
+        quantity -= 1
+        if quantity <= 0 {
+            quantity = 0
+        }
+    }
+
     override func prepareForReuse() {
         prevLbl.text = nil
         titleLbl.text = nil

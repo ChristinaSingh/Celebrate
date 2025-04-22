@@ -19,7 +19,8 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
     private let months = Calendar.current.monthSymbols
     private var birthDay: String = ""
     private var isValidUsername: Bool = false
-    
+    @Published var updatedUser:User?
+
     // MARK: - New Card and Toggle UI Properties
     
     public let preferenceCardView: CardView = {
@@ -419,12 +420,22 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
                     dateOfBirthTF.text = dateFormatter.string(from: birthDate)
                 }
             }
+            print("(User.load()?.deta \(user.avatar?.imageUrl ?? "no image")")
+
+
+            profileImg.download(imagePath: user.avatar?.imageUrl ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
+
             self.enableDisableSaveButton()
         }
     }
     
     @objc func updateProfileTriggered() {
-        profileImg.download(imagePath: User.load()?.details?.avatar?.imageURL ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
+        
+        print("(User.load()?.deta \(User.load()?.details?.avatar?.imageUrl ?? "no image")")
+//        profileImg.downloadImageDDDD(imagePath: User.load()?.details?.avatar?.imageUrl ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
+        profileImg.downloadImageDDDD(from: User.load()?.details?.avatar?.imageUrl ?? "",
+                                placeholder: UIImage(named: "placeholder"))
+
     }
     
     @objc func dateChanged() {
@@ -441,93 +452,130 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
         let username = usernameTF.text
         let name = nameTF.text
         let user = User.load()?.details
-        viewModel.updateProfile(name: name, email: user?.email, mobile: user?.mobileNumber, birthday: self.birthDay, username: username?.replacingOccurrences(of: "@", with: ""), ispublic: user?.ispublic)
-//        registerUser(
-//            name: name,
-//            mobile: user?.mobileNumber,
-//            phone: "33333333",
-//            password: "123123",
-//            email: user?.email,
-//            address: nil,
-//            image: UIImage(named: "your_image")!
-//        ) { success, message in
-//            print(success ? "✅ Success: \(message)" : "❌ Failed: \(message)")
+//        viewModel.updateProfile(name: name, email: user?.email, mobile: user?.mobileNumber, birthday: self.birthDay, username: username?.replacingOccurrences(of: "@", with: ""), ispublic: user?.ispublic)
+        
+//        if let user = User.load(), let updatedUser = updatedUser {
+//            user.details = updatedUser.details
+//            user.save()
+//            MainHelper.showToastMessage(message: "Profile updated successfully".localized, style: .success, position: .Bottom)
+//            self.dismiss(animated: true)
 //        }
-
+        updateProfileWithProgressHUD(
+            viewController: self,
+            name: name!,
+            mobile: user?.mobileNumber ?? "",
+            birthday: self.birthDay,
+            username: username?.replacingOccurrences(of: "@", with: "") ?? "",
+            email: user?.email ?? "",
+            isPublic: user?.ispublic ?? "",
+            isAllowEvents: user?.isallowevents ?? "",
+            image: profileImg.image!
+        )
     }
-    func registerUser(
+
+    func updateProfileWithProgressHUD(
+        viewController: UIViewController,
         name: String,
         mobile: String,
-        phone: String,
-        password: String,
+        birthday: String,
+        username: String,
         email: String,
-        address: String?,
-        image: UIImage,
-        completion: @escaping (Bool, String) -> Void
+        isPublic: String,
+        isAllowEvents: String,
+        image: UIImage
     ) {
-        let url = URL(string: "https://celebrate.inchrist.co.in/api/customer/register")!
-        
+        let url = URL(string: "https://celebrate.inchrist.co.in/api/customer")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("0693d647f0fd9b824b1a8c8876853bf4", forHTTPHeaderField: "x-api-key")
-        
         let boundary = UUID().uuidString
+
+        // Add headers
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        var data = Data()
-
-        func appendFormField(name: String, value: String) {
-            data.append("--\(boundary)\r\n".data(using: .utf8)!)
-            data.append("Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n".data(using: .utf8)!)
-            data.append("\(value)\r\n".data(using: .utf8)!)
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
         }
 
-        appendFormField(name: "name", value: name)
-        appendFormField(name: "mobile", value: mobile)
-        appendFormField(name: "phone", value: phone)
-        appendFormField(name: "password", value: password)
-        appendFormField(name: "email", value: email)
-        appendFormField(name: "address", value: address ?? "")
+        // Show HUD
+        let hud = UIActivityIndicatorView(style: .large)
+        hud.center = viewController.view.center
+        hud.startAnimating()
+        viewController.view.addSubview(hud)
 
-        // Image
+        var body = Data()
+
+        func appendFormField(_ name: String, value: String) {
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n")
+            body.append("\(value)\r\n")
+        }
+
+        // Append form fields
+        appendFormField("name", value: name)
+        appendFormField("mobile", value: mobile)
+        appendFormField("birthday", value: birthday)
+        appendFormField("username", value: username)
+        appendFormField("email", value: email)
+        appendFormField("ispublic", value: isPublic)
+        appendFormField("isallowevents", value: isAllowEvents)
+
+        // Append image
         if let imageData = image.jpegData(compressionQuality: 0.8) {
-            data.append("--\(boundary)\r\n".data(using: .utf8)!)
-            data.append("Content-Disposition: form-data; name=\"image\"; filename=\"profile.jpg\"\r\n".data(using: .utf8)!)
-            data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-            data.append(imageData)
-            data.append("\r\n".data(using: .utf8)!)
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"profile.jpg\"\r\n")
+            body.append("Content-Type: image/jpeg\r\n\r\n")
+            body.append(imageData)
+            body.append("\r\n")
         }
 
-        data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        request.httpBody = data
+        body.append("--\(boundary)--\r\n")
+        request.httpBody = body
 
-        // API Call
+        // Send API
         URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                hud.stopAnimating()
+                hud.removeFromSuperview()
+            }
+
             if let error = error {
-                completion(false, "Request error: \(error.localizedDescription)")
+                print("❌ Upload error:", error)
                 return
             }
 
-            guard let data = data else {
-                completion(false, "No data received")
-                return
-            }
+            if let response = response as? HTTPURLResponse {
+                print("✅ Status code:", response.statusCode)
+                
+                do {
+                           let decoder = JSONDecoder()
+                        //   decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let updateResponse = try decoder.decode(UpdateProfileResponse.self, from: data!)
+                    DispatchQueue.main.async {
 
-            if let responseStr = String(data: data, encoding: .utf8) {
-                print("API Response: \(responseStr)")
-            }
+                           if let user = User.load() {
+                               user.details = updateResponse.details
+                               user.save()
+                               //convertFromSnakeCase
+                               print("dfdf\(updateResponse.details.avatar?.imageUrl)")
+                               print("fdd \(user.details?.avatar?.imageUrl)")
 
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                   let status = json["status"] as? String,
-                   let message = json["message"] as? String {
-                    completion(status == "success", message)
-                } else {
-                    completion(false, "Unexpected response")
-                }
-            } catch {
-                completion(false, "JSON parse error")
+                                   MainHelper.showToastMessage(message: "Profile updated successfully".localized, style: .success, position: .Bottom)
+                               self.dismiss(animated: true)
+
+                               }
+                           }
+                       } catch {
+                           print("❌ JSON Decode Error:", error.localizedDescription)
+                       }
+//                if let user = User.load(), let updatedUser = updatedUser {
+//                    user.details = updatedUser.details
+//                    user.save()
+//                    MainHelper.showToastMessage(message: "Profile updated successfully".localized, style: .success, position: .Bottom)
+//                    self.dismiss(animated: true)
+//                }
+            }
+            if let data = data {
+                print("✅ Response data:", String(data: data, encoding: .utf8) ?? "No response body")
+                
             }
         }.resume()
     }
@@ -538,13 +586,19 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
         let newValue = sender.isOn ? "1" : "0"
         if let user = User.load(), let details = user.details {
             // Update the profile's public status
-            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
+//            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
         }
     }
     
     @objc private func allowFriendsSwitchChanged(_ sender: UISwitch) {
         // Handle the "Allow friends to plan events" toggle change.
         print("Allow friends to plan events toggled: \(sender.isOn)")
+        let newValue = sender.isOn ? "1" : "0"
+        if let user = User.load(), let details = user.details {
+            // Update the profile's public status
+//            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
+        }
+
     }
     
     override func keyboardOpened(with height: CGFloat) {
@@ -612,5 +666,12 @@ extension EditProfileDetailsViewController: UITextFieldDelegate {
         let englishCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
         let isEnglish = string.rangeOfCharacter(from: englishCharacterSet.inverted) == nil
         return isEnglish
+    }
+}
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
     }
 }

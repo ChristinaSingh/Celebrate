@@ -67,10 +67,10 @@ class ChangeProfileImageViewController: UIViewController {
         }.store(in: &cancellables)
         
         viewModel.$updatedUser.dropFirst().receive(on: DispatchQueue.main).sink { user in
-            if let savedUser = User.load() {
-                savedUser.details?.avatar?.imageURL = user?.details?.avatar?.imageURL
-                savedUser.save()
-            }
+//            if let savedUser = User.load() {
+//                savedUser.details?.avatar?.imageUrl = user?.details?.avatar?.imageUrl
+//                savedUser.save()
+//            }
             self.dismiss(animated: true)
         }.store(in: &cancellables)
         viewModel.getAvatars()

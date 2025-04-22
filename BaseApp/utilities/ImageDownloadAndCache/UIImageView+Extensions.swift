@@ -8,6 +8,62 @@
 import Foundation
 import UIKit
 
+import UIKit
+
+//class ImageCacheManager {
+//    static let shared = NSCache<NSString, UIImage>()
+//}
+
+private var currentURLKey: UInt8 = 0
+
+extension UIImageView {
+    
+    func downloadImageDDDD(from urlString: String, placeholder: UIImage? = nil) {
+        self.image = placeholder
+        self.currentImageUrl = urlString
+        
+        // Return cached image if available
+        if let cachedImage = ImageCacheManager.shared.image(forKey: urlString) {
+                self.image = cachedImage
+                return
+          
+        }
+        
+        // Ensure valid URL
+        guard let url = URL(string: urlString) else {
+            print("❌ Invalid image URL: \(urlString)")
+            return
+        }
+
+        // Download task
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
+
+            // Handle error
+            if let error = error {
+                print("❌ Image download error: \(error)")
+                return
+            }
+
+            // Validate data and create image
+            if let data = data, let image = UIImage(data: data) {
+                // Cache image
+                ImageCacheManager.shared.setImage(image, forKey: urlString)
+                              //  ImageCacheManager.shared.setImage(image, forKey: imagePath)
+
+                // Set image if URL matches to prevent race conditions
+                DispatchQueue.main.async {
+                    if self.currentImageUrl == urlString {
+                        UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve) {
+                            self.image = image
+                        }
+                    }
+                }
+            }
+        }.resume()
+    }
+}
+
 extension UIImageView {
     
     private static var taskKey: UInt8 = 0
@@ -40,6 +96,8 @@ extension UIImageView {
             return
         }
         guard let url = URL(string: imagePath) else { return }
+        print("🔍 Downloading from: \(url.absoluteString)")
+
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let self = self else { return }
             if let data = data, let image = UIImage(data: data)/*?.scaleImage(toSize: size)*/ {
@@ -48,6 +106,7 @@ extension UIImageView {
                     if self.currentImageUrl == imagePath {
                         UIView.transition(with: self, duration: 0.75, options: .transitionCrossDissolve, animations: {
                             self.image = image
+                            print("self.imageself.image \(self.image)")
                         }, completion: nil)
                     }
                 }

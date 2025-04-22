@@ -88,7 +88,7 @@ class AddressCell: UITableViewCell {
         loading.color = UIColor(red: 0.243, green: 0.165, blue: 0.733, alpha: 1)
         return loading
     }()
-    
+    var isFrindsScreen:Bool! = false
     var address:Address?{
         didSet{
             guard let address = address else {return}

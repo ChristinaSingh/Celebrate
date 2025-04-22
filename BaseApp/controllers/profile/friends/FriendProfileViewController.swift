@@ -104,7 +104,7 @@ class FriendProfileViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
-        table.register(AddressCell.self, forCellReuseIdentifier: "AddressCell")
+        table.register(AddressTableViewCell.self, forCellReuseIdentifier: "AddressTableViewCell")
         table.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         return table
     }()
@@ -405,47 +405,11 @@ extension FriendProfileViewController:UITableViewDelegate, UITableViewDataSource
         
         if tableViewAddress == tableView {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
-            let address = addresses.get(at: indexPath.row)
-            cell.address = address
-            cell.editBtn.tap {
-                Task{
-                    await MainActor.run {
-                        if let address = address {
-                            let vc = EditAddressViewController(address: address)
-                            vc.addressDidAdd = { _ in
-                                self.viewModelA.getAddresses()
-                            }
-                            vc.isModalInPresentation = true
-                            self.present(vc, animated: true)
-                        }else{
-                            MainHelper.showToastMessage(message: "Unable to edit address due to invalid details. Please contact us for assistance.".localized, style: .error, position: .Bottom)
-                        }
-                    }
-                }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AddressTableViewCell.identifier, for: indexPath) as? AddressTableViewCell else {
+                return UITableViewCell()
             }
-            cell.editBtn.isHidden = true
-            cell.deleteBtn.isHidden = true
-            cell.deleteBtn.tap {
-                self.addresses[safe: indexPath.row]?.loading = true
-                self.reloadRow(indexPath: indexPath, tableView: tableView)
-                self.viewModelA.deleteAddress(addressId: address?.id ?? "") { res, err in
-                    DispatchQueue.main.async {
-                        if let _ = res {
-                            if self.addresses.indices.contains(indexPath.row) {
-                                self.addresses.removeIfIndexExists(at: indexPath.row)
-                                tableView.reloadData()
-                            }
-                            self.emptyState.isHidden = !self.addresses.isEmpty
-                            self.tableView.isHidden = self.addresses.isEmpty
-                        }else if let _ = err {
-                            self.addresses[safe: indexPath.row]?.loading = false
-                            self.reloadRow(indexPath: indexPath, tableView: tableView)
-                            MainHelper.showToastMessage(message: "Failed to delete the address. Please try again.".localized, style: .error, position: .Bottom)
-                        }
-                    }
-                }
-            }
+            let name = "Mr Graceful" // Example nickname
+            cell.configure(nickname: name)
             return cell
 
         } else {
@@ -611,5 +575,91 @@ extension FriendProfileViewController: DaySelectionDelegate {
     func timeDidSelected(time: PreferredTime?) {
         let vc = GiftsSubCategoriesViewController(date: self.selectedDate, addressId: friend.addressId ?? "", locationId: friend.locationId ?? "", time: time, friend: friend)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+
+class AddressTableViewCell: UITableViewCell {
+
+    static let identifier = "AddressTableViewCell"
+
+    private let cardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 14
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.05
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
+        return view
+    }()
+
+    private let locationImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "mappin.and.ellipse"))
+        imageView.tintColor = UIColor(hex: "#3D2ABA")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
+    private let nicknameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
+
+    private let payNowButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Pay Now", for: .normal)
+        button.setTitleColor(UIColor(hex: "#3D2ABA"), for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
+        return button
+    }()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupViews() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+
+        contentView.addSubview(cardView)
+        cardView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(12)
+        }
+
+        cardView.addSubview(locationImageView)
+        cardView.addSubview(nicknameLabel)
+        cardView.addSubview(payNowButton)
+
+        locationImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.width.height.equalTo(20)
+        }
+
+        nicknameLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(locationImageView)
+            make.left.equalTo(locationImageView.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-16)
+        }
+
+        payNowButton.snp.makeConstraints { make in
+            make.top.equalTo(nicknameLabel.snp.bottom).offset(12)
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-16)
+        }
+    }
+
+    // MARK: - Configure
+    func configure(nickname: String) {
+        nicknameLabel.text = nickname
     }
 }

@@ -64,7 +64,7 @@ class ProfileDetailsCell: UICollectionViewCell {
     var user:UserDetails?{
         didSet{
             guard let user = user else {return}
-            profileImg.download(imagePath: user.avatar?.imageURL ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
+            profileImg.download(imagePath: user.avatar?.imageUrl ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
             userNameLbl.text = "@\(user.username ?? "")"
             numberLbl.text = user.mobileNumber
             verifiedIcon.isHidden = user.isverified != "1"
