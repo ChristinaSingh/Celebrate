@@ -37,7 +37,10 @@ open class CartControllerAPI{
         let URLString = SwaggerClientAPI.basePath + path
         let url = URLComponents(string: URLString)
         let body = CreateCartBody(ocassionID: ocassionID, locationID: popupLocationID == nil ? locationID : popupLocationID, deliveryDate: popupLocationDate?.date == nil ? deliveryDate : popupLocationDate?.date, cartType: cartType, popupLocationID: popupLocationID, popupLocationDate: popupLocationDate, addressID: addressID, cartTime: cartTime, friendID: friendID)
+        
+        print("bodybodybody \(body)")
         let paramters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        print("paramtersparamters \(paramters)")
 
         let requestBuilder: RequestBuilder<Cart>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

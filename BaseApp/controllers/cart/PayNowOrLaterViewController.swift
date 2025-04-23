@@ -58,8 +58,9 @@ class PayNowOrLaterViewController:UIViewController {
     
     let array:[PayNowOrLater] = [
         PayNowOrLater(img: .payNow, title: "Pay Now".localized, subTitle: "You’ll be paying for the items that do not require an approval right away and the rest once they are approved.".localized, type: .PayNow),
-        PayNowOrLater(img: .payLater, title: "Pay upon approval".localized, subTitle: "You’ll be paying for all the items once the products that require approval has been provided.".localized, type: .PayLater),
-        PayNowOrLater(img: .payLa, title: "Pay for available Item".localized, subTitle: "You’ll be pay partial amount for available items and wait for pay on approval from admin".localized, type: .PayPart)
+        PayNowOrLater(img: .payLater, title: "Pay upon approval".localized, subTitle: "You’ll be paying for all the items once the products that require approval has been provided.".localized, type: .PayLater)
+//        ,
+//        PayNowOrLater(img: .payLa, title: "Pay for available Item".localized, subTitle: "You’ll be pay partial amount for available items and wait for pay on approval from admin".localized, type: .PayPart)
 
     ]
     //pay_later

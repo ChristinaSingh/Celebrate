@@ -57,7 +57,7 @@ class ProductHandler: NSObject {
     @MainActor class func createCartBody(product: ProductDetails, date:String? , location:String? , timeSlotID:String? = nil , selections:[CartBodyOption]?, addressid: String?, cartTime:String?, friendID:String?) -> CartBody{
         return CartBody(productID: product.id, resourceSlotID: timeSlotID, config: selections, cartID: nil, deliveryDate: date == nil ? OcassionDate.shared.getDate() : date, ocassionID: "1", locationID: location == nil ? OcassionLocation.shared.getAreaId() : location, addressid: addressid, cartTime: cartTime, friendID: friendID)
     }
-    
+    //quantity
     class func isvalidSelections(product: ProductDetails) -> (message:String?, section:Int?, selections:[CartBodyOption]?) {
         var cartOptions:[CartBodyOption] = []
         for (index , var option) in (product.options ?? []).enumerated() {

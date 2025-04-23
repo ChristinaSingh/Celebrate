@@ -118,6 +118,7 @@ extension NewArrivalsCell:UICollectionViewDelegate , UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
         cell.product = products.get(at: indexPath.row)
+
         return cell
     }
     
@@ -139,3 +140,4 @@ extension NewArrivalsCell:UICollectionViewDelegate , UICollectionViewDataSource 
         self.delegate?.show(product: product)
     }
 }
+

@@ -14,7 +14,8 @@ public struct CartBody: Codable {
     var addressid: String?
     var cartTime:String?
     var friendID:String?
-    
+  //  var quant:String?
+
     init(productID: String? = nil, resourceSlotID: String? = nil, config: [CartBodyOption]? = nil, cartID: String? = nil, deliveryDate: String? = nil, ocassionID: String? = nil, locationID: String? = nil, addressid: String? = nil, cartTime:String?, friendID:String?) {
         self.productID = productID
         self.resourceSlotID = resourceSlotID

@@ -289,12 +289,14 @@ class CartViewModel: ObservableObject {
 
                     }
                 }, receiveValue: { [unowned self] res in
+                    print("errorerrorerror \(res)")
+
                     self.cartOrder = res
                 })
                 .store(in: &cancellables)
         }
     }
-       
+       //Payment Failed
        private func convertCartToOrder(cartId: String) -> AnyPublisher<Orders?, Error> {
            return Future { promise in
                CartControllerAPI.convertCartToOrder(cartId: cartId) { data, error in
@@ -303,6 +305,8 @@ class CartViewModel: ObservableObject {
                        promise(.failure(error))
                        
                    } else {
+                       print("convertToString \(data?.convertToString)")
+
                        promise(.success(data))
                    }
                }

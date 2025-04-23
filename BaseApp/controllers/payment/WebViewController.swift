@@ -101,13 +101,16 @@ extension WebViewController: WKUIDelegate , WKNavigationDelegate{
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if webView.url?.absoluteString.contains("https://www.kpay.com.kw/kpg/paymentpage.htm?PaymentID") == true{
+      
+        if webView.url?.absoluteString.contains("https://www.kpay.com.kw/kpg/paymentpage.htm?PaymentID") == true {
             activityView.stopAnimating()
         }
         
         webView.evaluateJavaScript("document.body.innerText") { result, error in
             if let resultString = result as? String,
                resultString.lowercased().contains("Invalid".lowercased()) || resultString.lowercased().contains("Failed".lowercased()) {
+                print("resultStringInvalid \(resultString)")
+
                 self.openFailPage()
             }
             if let resultString = result as? String,
@@ -117,6 +120,7 @@ extension WebViewController: WKUIDelegate , WKNavigationDelegate{
             
             if let resultString = result as? String,
                resultString.contains("An Error Was Encountered") {
+                print("resultString \(resultString)")
                 self.openFailPage()
             }
         }

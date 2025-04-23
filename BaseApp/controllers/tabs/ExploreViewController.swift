@@ -120,9 +120,9 @@ class ExploreViewController: UIViewController {
 
     @objc private func handleCartIconTapped() {
         print("Cart Icon Tapped")
-        setupCartCount()
-        cartVC.modalPresentationStyle = .fullScreen
-        present(cartVC, animated: true)
+//        setupCartCount()
+//        cartVC.modalPresentationStyle = .fullScreen
+//        present(cartVC, animated: true)
     }
 
     // Listener for cart count
@@ -162,7 +162,6 @@ class ExploreViewController: UIViewController {
                 self.floatingButton.updateBadge(count: count)
                 
                 print("countcountcount \(count)")
-
                 
                 if let cartTabBarItem = self.tabBarController?.tabBar.items?[2] {
                     cartTabBarItem.badgeValue = "\(count)" // Your cart count

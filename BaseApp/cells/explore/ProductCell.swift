@@ -391,9 +391,63 @@ class ProductCell: UICollectionViewCell {
         plusButton.isHidden = !isQuantityMode
         minusButton.isHidden = !isQuantityMode
         quantityLabel.isHidden = !isQuantityMode
+        
+        updateCartQuantity(cartItemId: product?.id ?? "0", quantity: quantityLabel.text!) { success in
+            DispatchQueue.main.async {
+                if success {
+                    print("✅ Cart updated")
+                } else {
+                    print("❌ Failed to update cart")
+                }
+            }
+        }
+
     }
     @objc private func didTapAdd() {
         quantity = 1
+
+//            guard let product = self.product else {
+//                //TODO:- show invlaid product toast
+//                return
+//            }
+//            let tuple = ProductHandler.isvalidSelections(product: product)
+//            if let section = tuple.section {
+//                self.tableView.performBatchUpdates({
+//                    self.scrollToSection(section + self.getTopSectionsCount())
+//                })
+//                ToastBanner.shared.show(message: tuple.message ?? "", style: .info, position: .Top)
+//                return
+//            }
+//            if let productDetails = self.productDetails {
+//                if let cartItem = self.cartItem {
+//                    self.cartViewModel.loading = true
+//                    CartControllerAPI.deleteItemFromCart(id: cartItem.groupHash ?? "", cartId: self.cartId ?? ""){ [self] data, error in
+//                        if let _ = data {
+//                            self.cartBody = ProductHandler.createCartBody(product: productDetails, date: self.date, location: self.locationId, selections: tuple.selections, addressid: self.giftAddressId, cartTime: self.cartTime ?? "", friendID: friendId)
+//                            guard let body = self.cartBody else{return}
+//                            self.cartViewModel.addItemToCart(item: body, cartType: self.cartType, popupLocationID: self.popupLocationID, popupLocationDate: self.popupLocationDate)
+//                        }else if let error = error {
+//                            self.cartViewModel.loading = false
+//                            MainHelper.handleApiError(error)
+//                        }else{
+//                            self.cartViewModel.loading = false
+//                        }
+//                    }
+//                }else{
+//                    if let popupLocationDate = self.popupLocationDate {
+//                        self.cartBody = ProductHandler.createCartBody(product: productDetails, date: popupLocationDate.date, location: self.popupLocationID , selections: tuple.selections, addressid: self.giftAddressId, cartTime: popupLocationDate.time, friendID: friendId)
+//                        guard let body = self.cartBody else{return}
+//                        self.cartViewModel.addItemToCart(item: body, cartType: self.cartType, popupLocationID: self.popupLocationID, popupLocationDate: self.popupLocationDate)
+//                        
+//                    }else {
+//                        self.cartBody = ProductHandler.createCartBody(product: productDetails, date: self.giftDate == nil ? self.date : self.giftDate, location: self.locationId, selections: tuple.selections, addressid: self.giftAddressId, cartTime: self.cartType == .normal ? OcassionDate.shared.getTime() : self.cartTime, friendID: self.friendId)
+//                        guard let body = self.cartBody else{return}
+//                        self.cartViewModel.addItemToCart(item: body, cartType: self.cartType, popupLocationID: self.popupLocationID, popupLocationDate: self.popupLocationDate)
+//                    }
+//                }
+//            }
+            
+            //ExploreViewController.shared.setupCartCount()
     }
 
     @objc private func increaseQuantity() {
@@ -472,4 +526,48 @@ extension ProductCell:UICollectionViewDelegate , UICollectionViewDataSource , UI
         guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
         imagesIndicator.currentPage = indexPath.item
     }
+}
+func updateCartQuantity(cartItemId: String, quantity: String, completion: @escaping (Bool) -> Void) {
+    
+    print("✅ Status Code: \(quantity)")
+    print("✅ Status Code: \(cartItemId)")
+
+    let url = URL(string: "https://celebrate.inchrist.co.in/api/v3/cart")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+
+    // Generate multipart form data
+    let boundary = UUID().uuidString
+    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    if let token = User.load()?.token {
+        request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+    }
+
+    var body = Data()
+    body.append("--\(boundary)\r\n")
+    body.append("Content-Disposition: form-data; name=\"cart_item_id\"\r\n\r\n")
+    body.append("\(cartItemId)\r\n")
+
+    body.append("--\(boundary)\r\n")
+    body.append("Content-Disposition: form-data; name=\"quantity\"\r\n\r\n")
+    body.append("\(quantity)\r\n")
+
+    body.append("--\(boundary)--\r\n")
+    request.httpBody = body
+
+    // Send request
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        if let error = error {
+            print("❌ Error: \(error.localizedDescription)")
+            completion(false)
+            return
+        }
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("✅ Status Code: \(httpResponse.statusCode)")
+            completion(httpResponse.statusCode == 200)
+        } else {
+            completion(false)
+        }
+    }.resume()
 }

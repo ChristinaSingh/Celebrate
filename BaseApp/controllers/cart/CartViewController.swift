@@ -32,10 +32,12 @@ enum CartSections {
 }
 
 
-enum ItemsType{
+enum ItemsType {
+    
     case payonApproval
     case normal
     case mixed
+    
 }
 
 class CartViewController: UIViewController {
@@ -52,6 +54,8 @@ class CartViewController: UIViewController {
     private var coupon: String
     private var couponAppling: Bool
     private var totalCart:Double
+    private var totalCartNew:Double
+
     private var discount:Double
     private var totalFees:Double
     private var payment:PaymentMethod
@@ -78,6 +82,7 @@ class CartViewController: UIViewController {
         self.carts = []
         self.addresses = []
         self.totalCart = 0.0
+        self.totalCartNew = 0.0
         self.totalFees = 0.0
         self.deliveryAddress = nil
         self.payment = .ApplePay
@@ -256,6 +261,9 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      //  CartOverlayManager.shared.showCartOverlay()
+
+        
 //        headerView.delegate = self
 //        print("HeaderView delegate set: \(headerView.delegate != nil)")
 //        self.view.backgroundColor = .white
@@ -635,6 +643,7 @@ class CartViewController: UIViewController {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+     //   WebView
         self.selectedAddressView.isHidden = true
         [navigation, addressType, separatorView, addressLbl, dropdownIcon, reselectBtn].forEach { view in
             self.selectedAddressView.addSubview(view)
@@ -970,7 +979,12 @@ class CartViewController: UIViewController {
         cartViewModel.$cartOrder.dropFirst().receive(on: DispatchQueue.main).sink { res in
             guard let res = res else {return}
             guard let url = self.generatePaymentLink(res: res) else{return}
-            let vc = WebViewController(url: url, orderId: (res.orders ?? []).map({ order in "#\(order.id ?? "")"}).joined(separator: ","), orderDate: DateFormatter.formateDate(date: Date(), formate: "dd MMM, yyyy"), deliveryDate: DateFormatter.formateDate(date: OcassionDate.shared.getEventDate() ?? Date(), formate: "dd MMM, yyyy"), total: "KWD \((self.totalFees + self.totalCart))")
+            
+            print("Paymenturlurlurlurlurl \(url)")
+            let vc = WebViewController(url: url, orderId: (res.orders ?? []).map({ order in "#\(order.id ?? "")"}).joined(separator: ","), orderDate: DateFormatter.formateDate(date: Date(), formate: "dd MMM, yyyy"), deliveryDate: DateFormatter.formateDate(date: OcassionDate.shared.getEventDate() ?? Date(), formate: "dd MMM, yyyy"), total: "KWD \((self.totalFees + self.totalCartNew))")
+            print("KWDKWDKWD \((self.totalFees + self.totalCartNew))")
+            print("KWDKWDKWD \((self.totalFees))")
+
             vc.callback = {
                 let vc = ExpiredViewController(titleStr: "Payment Failed".localized, message: "We’re sorry, but your payment could not be processed at this time. Please check your payment details and try again.".localized) {}
                 SheetPresenter.shared.presentSheet(vc, on: self, height: 260, isCancellable: false)
@@ -1024,8 +1038,13 @@ class CartViewController: UIViewController {
         self.discount = 0
         for cart in carts {
             for item in cart.items ?? [] {
-                if let priceStr = item.actualAmount, let price = Double(priceStr) {
+                if let priceStr = item.actualAmount, let price = Double(priceStr)  {
+                    
+                    if item.pendingOrderApproval == 0 {
+                        self.totalCartNew += price
+                    }
                     self.totalCart += price
+
                 }
             }
             self.totalFees += cart.deliveryFees?.total ?? 0.0
@@ -1037,10 +1056,13 @@ class CartViewController: UIViewController {
     }
     
     private func generatePaymentLink(res:Orders) -> String? {
+        
         let ids = res.orders?.map({ order in order.id ?? ""}).joined(separator: "|") ?? ""
         let custID = User.load()?.details?.id ?? ""
         let cartID = self.carts.map({ cart in cart.id ?? ""}).joined(separator: "|")
-        return "https://admin.celebrateapp.com/pg/gotap/request?orderID=\(ids)&customerID=\(custID)&cartID=\(cartID)&paymenttype=\(self.payment.rawValue)"
+        return "\(SwaggerClientAPI.basePath)/pg/gotap/request?orderID=\(ids)&customerID=\(custID)&cartID=\(cartID)&paymenttype=\(self.payment.rawValue)"
+        
+        
     }
     
     
@@ -1110,6 +1132,7 @@ class CartViewController: UIViewController {
         }
     }
 }
+
 extension CartViewController:UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -1247,6 +1270,7 @@ extension CartViewController:UITableViewDelegate, UITableViewDataSource {
         return 32
     }
 }
+
 extension CartViewController:ApplePayManagerDelegate, CouponDelegate, DaySelectionDelegate {
     func dayDidSelected(day: Day?) {}
     
@@ -1281,4 +1305,148 @@ extension CartViewController:ApplePayManagerDelegate, CouponDelegate, DaySelecti
     func didFailApplePay(_ error: String) {
         ToastBanner.shared.show(message: error, style: .error, position: .Bottom)
     }
+}
+
+
+class CartInfoView: UIView {
+
+    private let titleLabel = UILabel()
+    private let priceLabel = UILabel()
+    private let viewCartButton = UIButton(type: .system)
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+
+    private func setupUI() {
+        backgroundColor = .white
+        layer.cornerRadius = 16
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 8
+
+        titleLabel.text = "3 items"
+        titleLabel.font = .systemFont(ofSize: 14)
+        titleLabel.textColor = .darkGray
+
+        priceLabel.text = "KD 12.000"
+        priceLabel.font = .boldSystemFont(ofSize: 16)
+        priceLabel.textColor = UIColor(hex: "#3D2ABA")
+
+        viewCartButton.setTitle("View Cart", for: .normal)
+        viewCartButton.setTitleColor(.white, for: .normal)
+        viewCartButton.backgroundColor = UIColor(hex: "#3D2ABA")
+        viewCartButton.layer.cornerRadius = 12
+        viewCartButton.titleLabel?.font = .boldSystemFont(ofSize: 14)
+
+        addSubview(titleLabel)
+        addSubview(priceLabel)
+        addSubview(viewCartButton)
+
+        titleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(16)
+            make.centerY.equalToSuperview()
+        }
+
+        priceLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+
+        viewCartButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(16)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(36)
+        }
+    }
+}
+
+
+class CartOverlayManager {
+
+    static let shared = CartOverlayManager()
+
+    private var window: UIWindow?
+    private var cartView: CartInfoView?
+    private var isVisible = false
+
+    private init() {}
+
+    func showCartOverlay(animated: Bool = true) {
+        guard !isVisible else { return }
+
+        let cartView = CartInfoView()
+        cartView.layer.zPosition = UIWindow.Level.statusBar.rawValue + 1
+
+        let windowScene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+
+        let overlayWindow = UIWindow(windowScene: windowScene!)
+        overlayWindow.backgroundColor = .clear
+        overlayWindow.windowLevel = .alert + 1
+        overlayWindow.rootViewController = UIViewController()
+        overlayWindow.makeKeyAndVisible()
+
+        overlayWindow.rootViewController?.view.addSubview(cartView)
+        cartView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(70)
+            make.bottom.equalToSuperview().offset(100) // Start hidden
+        }
+
+        self.window = overlayWindow
+        self.cartView = cartView
+        self.isVisible = true
+
+        // Animate in
+        if animated {
+            overlayWindow.rootViewController?.view.layoutIfNeeded()
+            cartView.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().inset(100)
+            }
+
+            UIView.animate(withDuration: 0.35, delay: 0, options: [.curveEaseOut], animations: {
+                overlayWindow.rootViewController?.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    }
+
+    func hideCartOverlay(animated: Bool = true) {
+        guard isVisible else { return }
+
+        guard let cartView = cartView else { return }
+
+        if animated {
+            cartView.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().offset(100)
+            }
+
+            UIView.animate(withDuration: 0.3, animations: {
+                self.window?.rootViewController?.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.cleanup()
+            })
+        } else {
+            cleanup()
+        }
+    }
+
+    private func cleanup() {
+        cartView?.removeFromSuperview()
+        window?.isHidden = true
+        window = nil
+        cartView = nil
+        isVisible = false
+    }
+}
+
+func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    CartOverlayManager.shared.hideCartOverlay()
 }
