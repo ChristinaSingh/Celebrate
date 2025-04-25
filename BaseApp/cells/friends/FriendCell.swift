@@ -100,7 +100,7 @@ class FriendCell: UITableViewCell {
             guard let friend = friend else {return}
             friendLbl.text = "@\(friend.customer?.username ?? "")"
             birthDayLbl.text = "\("Birthday:".localized)\(friend.customer?.formateDate() ?? "")"
-            avatarImg.download(imagePath: friend.customer?.avatar?.imageURL ?? "", size: CGSize(width: 64, height: 64))
+            avatarImg.download(imagePath: friend.customer?.avatar?.imageURL ?? "", size: CGSize(width: 64, height: 64),placeholder: UIImage(systemName: "person.circle"))
             if friend.loading {
                 acceptRejectActions.isHidden = true
                 addSentActions.isHidden = true
@@ -197,6 +197,8 @@ class FriendCell: UITableViewCell {
         self.friendLbl.text = nil
         self.birthDayLbl.text = nil
         self.avatarImg.image = nil
+        self.avatarImg.image = UIImage(systemName: "person.circle")
+
     }
     
     

@@ -35,8 +35,10 @@ class HomeViewController: BaseViewController, OrderSummeryCellDelegate {
     }
     func didTapPayNow() {
         print("HomeViewController Pay Now Button Tap")
-        cartVC.modalPresentationStyle = .fullScreen
-        present(cartVC, animated: true, completion: nil)
+//        cartVC.modalPresentationStyle = .fullScreen
+//        present(cartVC, animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = 2
+
     }
     
     private let orderSummeryCell:(HomeCellType , CGFloat) = (.OrderSummery , 170)

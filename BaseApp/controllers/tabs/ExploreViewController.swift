@@ -123,6 +123,7 @@ class ExploreViewController: UIViewController {
 //        setupCartCount()
 //        cartVC.modalPresentationStyle = .fullScreen
 //        present(cartVC, animated: true)
+        self.tabBarController?.selectedIndex = 2
     }
 
     // Listener for cart count

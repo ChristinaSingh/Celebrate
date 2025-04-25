@@ -20,6 +20,11 @@ enum FriendProfile {
 enum FriendTabType: Int {
     case favorites = 0, occasions, addresss
 }
+enum Step {
+    case favorites
+    case occasions
+    case address
+}
 
 class FriendProfileViewController: UIViewController {
     
@@ -29,16 +34,28 @@ class FriendProfileViewController: UIViewController {
     private var likes: [Product] = []
     private var selectedDate:Date = Date()
     private var cancellables: Set<AnyCancellable>  = Set<AnyCancellable>()
-    private var addresses: [Address] = []
+    private var addresses: [FriendProfileAddress] = []
     private let viewModelA = AddressesViewModel()
+    var celebrations: [Celebration] = []
+    var selectedProduct:Product?
+    var addressId:String?
+    var locationId:String?
+    var ocassionId:String?
 
     var callback:(() -> Void)?
     init(friend: Friend) {
         self.friend = friend
         self.friendProfile = []
+        self.friend = friend
+//        self.addressId = addressId
+//        self.locationId = locationId
+
         super.init(nibName: nil, bundle: nil)
     }
     var selectedTab: FriendTabType = .favorites
+    private let segmentedControl = UISegmentedControl(items: ["Favorites", "Occasions", "Address"])
+    private var currentStep: Step = .favorites
+//    var ocassionId:String
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -156,24 +173,25 @@ class FriendProfileViewController: UIViewController {
     private let addressButton = UIButton(type: .system)
 
     func setupTabButtons() {
-        favoritesButton.setTitle("Favorites", for: .normal)
-        occasionsButton.setTitle("Occasions", for: .normal)
-        addressButton.setTitle("Address", for: .normal)
         
-        [favoritesButton, occasionsButton, addressButton].forEach {
-            $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            $0.layer.cornerRadius = 16
-            $0.backgroundColor = .clear
-            $0.addTarget(self, action: #selector(tabButtonTapped(_:)), for: .touchUpInside)
-            tabStackView.addArrangedSubview($0)
-        }
-
-        tabStackView.axis = .horizontal
-        tabStackView.distribution = .fillEqually
-        tabStackView.spacing = 12
-        
-
-        updateTabSelection()
+//        favoritesButton.setTitle("Favorites", for: .normal)
+//        occasionsButton.setTitle("Occasions", for: .normal)
+//        addressButton.setTitle("Address", for: .normal)
+//        
+//        [favoritesButton, occasionsButton, addressButton].forEach {
+//            $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//            $0.layer.cornerRadius = 16
+//            $0.backgroundColor = .clear
+//            $0.addTarget(self, action: #selector(tabButtonTapped(_:)), for: .touchUpInside)
+//            tabStackView.addArrangedSubview($0)
+//        }
+//
+//        tabStackView.axis = .horizontal
+//        tabStackView.distribution = .fillEqually
+//        tabStackView.spacing = 12
+//        
+//
+//        updateTabSelection()
     }
 
 
@@ -188,10 +206,10 @@ class FriendProfileViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         headerView.cancel(vc: self)
-        [headerView , collectionView,tabStackView,collectionViewFavourt,tableView,tableViewAddress,actionsStackView].forEach { view in
+        [headerView , collectionView,segmentedControl,collectionViewFavourt,tableView,tableViewAddress,actionsStackView].forEach { view in
             self.containerView.addSubview(view)
         }
-        setupTabButtons()
+      //  setupTabButtons()
 
         headerView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -210,25 +228,42 @@ class FriendProfileViewController: UIViewController {
             make.top.equalTo(self.headerView.snp.bottom)
             make.height.equalTo(268)
         }
-        tabStackView.snp.makeConstraints { make in
+        segmentedControl.selectedSegmentTintColor = UIColor.init(named: "AccentColor")
+
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white, // Text color for selected segment
+            .font: UIFont.boldSystemFont(ofSize: 14)
+        ]
+
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.darkGray,
+            .font: UIFont.systemFont(ofSize: 14)
+        ]
+
+        segmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
+        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
+
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.isUserInteractionEnabled = false // Disable manual tapping
+        segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(self.collectionView.snp.bottom).offset(10)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(32)
         }
-
+      
         collectionViewFavourt.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(self.tabStackView.snp.bottom).offset(16)
+            make.top.equalTo(self.segmentedControl.snp.bottom).offset(16)
             make.bottom.equalTo(self.actionsStackView.snp.top).offset(-16)
         }
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(self.tabStackView.snp.bottom).offset(16)
+            make.top.equalTo(self.segmentedControl.snp.bottom).offset(16)
             make.bottom.equalTo(self.actionsStackView.snp.top).offset(-16)
         }
         tableViewAddress.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
-            make.top.equalTo(self.tabStackView.snp.bottom).offset(16)
+            make.top.equalTo(self.segmentedControl.snp.bottom).offset(16)
             make.bottom.equalTo(self.actionsStackView.snp.top).offset(-16)
         }
 
@@ -273,9 +308,19 @@ class FriendProfileViewController: UIViewController {
                 self.actionsStackView.snp.updateConstraints { make in
                     make.height.equalTo(32)
                 }
+//                    self.emptyState.isHidden = true
+//                   self.tableViewAddress.isHidden = false
+                self.addresses = addresses ?? []
+                    self.tableViewAddress.reloadData()
+               
+            }else{
+//                    self.emptyState.isHidden = true
+//                    self.tableViewAddress.isHidden = true
+               
             }
+
         }.store(in: &cancellables)
-        
+        //getfriendgiftfavourite avatar_details
         viewModel.$likes.receive(on: DispatchQueue.main).sink { res in
             if self.viewModel.loading {return}
             self.friendProfile.append(.details)
@@ -289,27 +334,55 @@ class FriendProfileViewController: UIViewController {
         
         viewModelA.$addresses.receive(on: DispatchQueue.main).sink { addresses in
             if self.viewModelA.loading {return}
-            if let addresses = addresses?.addresses , !addresses.isEmpty {
-                self.emptyState.isHidden = true
-              // self.tableView.isHidden = false
-                self.addresses = addresses
-                self.tableViewAddress.reloadData()
-            }else{
-                self.emptyState.isHidden = true
-                self.tableViewAddress.isHidden = true
-            }
+//            if let addresses = addresses?.addresses , !addresses.isEmpty {
+//                self.emptyState.isHidden = true
+//              // self.tableView.isHidden = false
+//                self.addresses = addresses
+//                self.tableViewAddress.reloadData()
+//            }else{
+//                self.emptyState.isHidden = true
+//                self.tableViewAddress.isHidden = true
+//            }
         }.store(in: &cancellables)
         
         viewModelA.$error.receive(on: DispatchQueue.main).sink{ error in
-            if self.viewModelA.loading {return}
-            self.emptyState.isHidden = true
-            self.tableView.isHidden = true
-            MainHelper.handleApiError(error)
+//            if self.viewModelA.loading {return}
+//            self.emptyState.isHidden = true
+//            self.tableView.isHidden = true
+//            MainHelper.handleApiError(error)
         }.store(in: &cancellables)
         
-        viewModelA.getAddresses()
-
+        //viewModelA.getAddresses()
         updateReminder(isRemove: false)
+        
+        fetchCelebrationList { [weak self] list in
+            self?.celebrations = list
+            self?.tableView.reloadData()
+        }
+
+    }
+    private func goToNextStep() {
+        switch currentStep {
+        case .favorites:
+            currentStep = .occasions
+            segmentedControl.selectedSegmentIndex = 1
+            collectionViewFavourt.isHidden = true
+            tableView.isHidden = false
+            tableViewAddress.isHidden = true
+
+        case .occasions:
+            currentStep = .address
+            segmentedControl.selectedSegmentIndex = 2
+            collectionViewFavourt.isHidden = true
+            tableView.isHidden = true
+            tableViewAddress.isHidden = false
+
+        case .address:
+            // Completed flow
+
+            break
+        }
+        collectionView.reloadData()
     }
 
 
@@ -334,7 +407,7 @@ class FriendProfileViewController: UIViewController {
 
             }
 
-            updateTabSelection()
+          //  updateTabSelection()
 //            collectionView.reloadData()
         }
         private func updateTabSelection() {
@@ -387,17 +460,52 @@ class FriendProfileViewController: UIViewController {
     private func hideShimmer(){
         shimmerView.removeFromSuperview()
     }
+    
+    func fetchCelebrationList(completion: @escaping ([Celebration]) -> Void) {
+        guard var components = URLComponents(string: "https://celebrate.inchrist.co.in/api/v3/gifts/celebrationlist") else { return }
+        
+        components.queryItems = [
+            URLQueryItem(name: "friend_id", value: self.friend.friendCustid ?? "")
+        ]
+        
+        guard let url = components.url else { return }
+        print("urlurlurl  \(url)")
+//address/friendaddress
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        if let token = User.load()?.token {
+            request.setValue(token, forHTTPHeaderField: "x-api-key") // ✅ Custom header
+            print("tokentoken \(token)")
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("API Error:", error)
+                return
+            }
+
+            guard let data = data else { return }
+            print("API Error:", data)
+
+            do {
+                let result = try JSONDecoder().decode(CelebrationResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(result.data)
+                }
+            } catch {
+                print("Decoding error:", error)
+            }
+        }.resume()
+    }
 
 }
 extension FriendProfileViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableViewAddress == tableView {
-            return addresses.count
-           // return 5
-
+            return self.addresses.count
         } else {
-            return 5
+            return celebrations.count
         }
     }
     
@@ -409,16 +517,73 @@ extension FriendProfileViewController:UITableViewDelegate, UITableViewDataSource
                 return UITableViewCell()
             }
             let name = "Mr Graceful" // Example nickname
-            cell.configure(nickname: name)
-            return cell
+            let asd = addresses[indexPath.row]
+            cell.configure(nickname: asd.name!)
+            cell.payNowButton.tap {
+                self.addressId = asd.id ?? ""
+                self.locationId = asd.location?.locationID ?? ""
 
+                CalendarViewController.show(on: self, cartType: .gift, selectedDate: self.selectedDate, delegate: self)
+
+            }
+            return cell
+            
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CelebrationCell") as! CelebrationCell
+            let celebration = celebrations[indexPath.row]
+            cell.titleLbl.text = "\(celebration.celebration_name)"
+            cell.addressLbl.text = "\(celebration.occassion_type)"
+            let formatted = formatDate("\(celebration.date_time)")
+            let result = timeRemaining(from: celebration.date_time)
+            
+            cell.monthDayLbl.text = formatted
+            cell.dateLbl.text = result
+            
+            
             return cell
+        }
+    }
+        func formatDate(_ dateString: String) -> String {
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+            if let date = inputFormatter.date(from: dateString) {
+                let outputFormatter = DateFormatter()
+                outputFormatter.dateFormat = "d MMMM" // Example: 19 April
+                return outputFormatter.string(from: date)
+            }
+            return ""
+        }
+        func timeRemaining(from dateString: String) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            guard let futureDate = dateFormatter.date(from: dateString) else { return "Invalid date" }
+
+            let calendar = Calendar.current
+            let now = Date()
+
+            if futureDate < now {
+                return "Date has passed"
+            }
+
+            let components = calendar.dateComponents([.year, .month, .day], from: now, to: futureDate)
+
+            var parts: [String] = []
+
+            if let year = components.year, year > 0 {
+                parts.append("\(year) year\(year > 1 ? "s" : "")")
+            }
+            if let month = components.month, month > 0 {
+                parts.append("\(month) month\(month > 1 ? "s" : "")")
+            }
+            if let day = components.day, day > 0 {
+                parts.append("\(day) day\(day > 1 ? "s" : "")")
+            }
+
+            return parts.isEmpty ? "Today" : parts.joined(separator: ", ") + " left"
         }
 
 
-    }
     func reloadRow(indexPath:IndexPath , tableView:UITableView){
         UIView.performWithoutAnimation {
             tableView.performBatchUpdates {
@@ -427,6 +592,26 @@ extension FriendProfileViewController:UITableViewDelegate, UITableViewDataSource
                 tableView.endUpdates()
             }
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableViewAddress == tableView {
+//            let asd = addresses[indexPath.row]
+//            self.addressId = asd.id ?? ""
+//            self.locationId = asd.location?.locationID ?? ""
+
+        } else {
+            let asd = celebrations[indexPath.row]
+            self.ocassionId = asd.id
+
+        }
+        
+        print("self.addressId \(self.addressId)")
+        print("self.locationId \(self.locationId)")
+        print("self.ocassionId \(self.ocassionId)")
+
+        goToNextStep()
+
+
     }
 }
 
@@ -551,16 +736,17 @@ extension FriendProfileViewController: UICollectionViewDelegate , UICollectionVi
 //        }
 //    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        goToNextStep()
+
         guard let product = likes.get(at: indexPath.row) else { return }
-       // self.selectedProduct = product
-        if OcassionDate.shared.getEventDate() == nil && OcassionLocation.shared.getArea() == nil {
-      //      CalendarViewController.show(on: self, cartType: .normal , selectedDate: OcassionDate.shared.getEventDate() , delegate: self , areaDelegate: self)
-        }else{
-            let vc = ProductDetailsViewController(product: product)
-            vc.isModalInPresentation = true
-            self.present(vc, animated: true)
-        }
+        self.selectedProduct = product
+//        if OcassionDate.shared.getEventDate() == nil && OcassionLocation.shared.getArea() == nil {
+//      //      CalendarViewController.show(on: self, cartType: .normal , selectedDate: OcassionDate.shared.getEventDate() , delegate: self , areaDelegate: self)
+//        }else{
+//            let vc = ProductDetailsViewController(product: product)
+//            vc.isModalInPresentation = true
+//            self.present(vc, animated: true)
+//        }
     }
 }
 extension FriendProfileViewController: DaySelectionDelegate {
@@ -573,9 +759,30 @@ extension FriendProfileViewController: DaySelectionDelegate {
     }
     
     func timeDidSelected(time: PreferredTime?) {
-        let vc = GiftsSubCategoriesViewController(date: self.selectedDate, addressId: friend.addressId ?? "", locationId: friend.locationId ?? "", time: time, friend: friend)
-        self.navigationController?.pushViewController(vc, animated: true)
+        print("self.addressId \(self.addressId)")
+        print("self.locationId \(self.locationId)")
+        print("self.ocassionId \(self.ocassionId)")
+
+        let vc = ProductDetailsViewController(product: self.selectedProduct,locationId: self.locationId! ,cartType: .gift, giftAddressId: self.addressId!, giftDate: DateFormatter.formateDate(date: self.selectedDate, formate: "yyyy-MM-dd"), cartTime: time?.displaytext ?? "", friendId: self.friend.friendCustid ?? "")
+        vc.isModalInPresentation = true
+        vc.callback = { cartItem in
+            guard let tabBarController = (self.tabBarController as? AppTabsViewController) else { return }
+            let instance = tabBarController.instance
+            instance.setAmount(amount: "\(cartItem?.items?.count ?? 0) items | KD \(cartItem?.cartTotal ?? 0)")
+            tabBarController.showCartView()
+        }
+
+        self.present(vc, animated: true)
     }
+//    {
+//        
+//        
+//        let vc = GiftsSubCategoriesViewController(date: self.selectedDate, addressId: friend.addressId ?? "", locationId: friend.locationId ?? "", time: time, friend: friend)
+//        self.navigationController?.pushViewController(vc, animated: true)
+////        let vc = SendGiftFriendsViewController(date: self.selectedDate, time: time)
+////        self.navigationController?.pushViewController(vc, animated: true)
+//
+//    }
 }
 
 
@@ -601,14 +808,14 @@ class AddressTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let nicknameLabel: UILabel = {
+    var nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
 
-    private let payNowButton: UIButton = {
+   var payNowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Pay Now", for: .normal)
         button.setTitleColor(UIColor(hex: "#3D2ABA"), for: .normal)

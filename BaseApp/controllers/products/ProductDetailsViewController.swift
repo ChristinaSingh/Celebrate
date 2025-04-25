@@ -297,9 +297,15 @@ class ProductDetailsViewController: UIViewController {
         self.cartViewModel.$addedItemToCart.receive(on: DispatchQueue.main).sink { item in
             guard let _ = item else {return}
             if self.cartType == .ai || self.cartType == .gift || self.cartType == .popups{
-                let vc = CartViewController()
-                vc.isModalInPresentation = true
-                self.present(vc, animated: true)
+//                let vc = CartViewController()
+//                vc.isModalInPresentation = true
+//                self.present(vc, animated: true)
+                self.tabBarController?.selectedIndex = 2
+
+                self.dismiss(animated: true) {
+                    self.callback?(item)
+                }
+
             }else {
                 self.dismiss(animated: true) {
                     self.callback?(item)

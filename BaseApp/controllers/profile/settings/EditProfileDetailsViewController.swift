@@ -21,6 +21,9 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
     private var isValidUsername: Bool = false
     @Published var updatedUser:User?
 
+    private var isPublick: String = ""
+    private var isAllowEvent: String = ""
+
     // MARK: - New Card and Toggle UI Properties
     
     public let preferenceCardView: CardView = {
@@ -421,8 +424,22 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
                 }
             }
             print("(User.load()?.deta \(user.avatar?.imageUrl ?? "no image")")
+            isPublick = user.ispublic ?? "0"
+            isAllowEvent = user.isallowevents ?? "0"
 
+            if isPublick == "1" {
+                makeProfilePublicSwitch.setOn(true, animated:  true)
+            } else {
+                makeProfilePublicSwitch.setOn(false, animated:  true)
 
+            }
+            
+            if isAllowEvent == "1" {
+                allowFriendsToPlanEventsSwitch.setOn(true, animated:  true)
+            } else {
+                allowFriendsToPlanEventsSwitch.setOn(false, animated:  true)
+
+            }
             profileImg.download(imagePath: user.avatar?.imageUrl ?? "", size: CGSize(width: 81, height: 81), placeholder: UIImage(named: "avatar_details"))
 
             self.enableDisableSaveButton()
@@ -452,14 +469,6 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
         let username = usernameTF.text
         let name = nameTF.text
         let user = User.load()?.details
-//        viewModel.updateProfile(name: name, email: user?.email, mobile: user?.mobileNumber, birthday: self.birthDay, username: username?.replacingOccurrences(of: "@", with: ""), ispublic: user?.ispublic)
-        
-//        if let user = User.load(), let updatedUser = updatedUser {
-//            user.details = updatedUser.details
-//            user.save()
-//            MainHelper.showToastMessage(message: "Profile updated successfully".localized, style: .success, position: .Bottom)
-//            self.dismiss(animated: true)
-//        }
         updateProfileWithProgressHUD(
             viewController: self,
             name: name!,
@@ -467,10 +476,20 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
             birthday: self.birthDay,
             username: username?.replacingOccurrences(of: "@", with: "") ?? "",
             email: user?.email ?? "",
-            isPublic: user?.ispublic ?? "",
-            isAllowEvents: user?.isallowevents ?? "",
+            isPublic: isPublick,
+            isAllowEvents: isAllowEvent,
             image: profileImg.image!
         )
+        
+        //        viewModel.updateProfile(name: name, email: user?.email, mobile: user?.mobileNumber, birthday: self.birthDay, username: username?.replacingOccurrences(of: "@", with: ""), ispublic: user?.ispublic)
+                
+        //        if let user = User.load(), let updatedUser = updatedUser {
+        //            user.details = updatedUser.details
+        //            user.save()
+        //            MainHelper.showToastMessage(message: "Profile updated successfully".localized, style: .success, position: .Bottom)
+        //            self.dismiss(animated: true)
+        //        }
+
     }
 
     func updateProfileWithProgressHUD(
@@ -584,20 +603,23 @@ class EditProfileDetailsViewController: BaseViewController, UIImagePickerControl
     
     @objc private func publicProfileSwitchChanged(_ sender: UISwitch) {
         let newValue = sender.isOn ? "1" : "0"
-        if let user = User.load(), let details = user.details {
-            // Update the profile's public status
-//            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
-        }
+        isPublick = newValue
+//        if let user = User.load(), let details = user.details {
+//            // Update the profile's public status
+////            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
+//        }
     }
     
     @objc private func allowFriendsSwitchChanged(_ sender: UISwitch) {
         // Handle the "Allow friends to plan events" toggle change.
         print("Allow friends to plan events toggled: \(sender.isOn)")
         let newValue = sender.isOn ? "1" : "0"
-        if let user = User.load(), let details = user.details {
-            // Update the profile's public status
-//            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
-        }
+        isAllowEvent = newValue
+
+//        if let user = User.load(), let details = user.details {
+//            // Update the profile's public status
+////            viewModel.updateProfile(name: details.fullName, email: details.email, mobile: details.mobileNumber, birthday: details.birthday, username: details.username, ispublic: newValue)
+//        }
 
     }
     

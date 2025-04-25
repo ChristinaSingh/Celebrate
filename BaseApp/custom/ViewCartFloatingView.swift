@@ -107,9 +107,11 @@ class ViewCartFloatingView: NSObject {
         }
         
         viewCartBtn.tap {
-            let vc = CartViewController()
-            vc.isModalInPresentation = true
-            viewController.present(vc, animated: true)
+//            let vc = CartViewController()
+//            vc.isModalInPresentation = true
+//            viewController.present(vc, animated: true)
+          //  self.tabBarController?.selectedIndex = 2
+
         }
         self.removeFromSuperview()
         viewCardView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]

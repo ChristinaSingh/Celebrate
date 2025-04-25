@@ -108,7 +108,7 @@ class FriendProfileDetailsCell: UICollectionViewCell {
             guard let friend = friend else {return}
             friendLbl.text = friend.customer?.fullname
             birthDayLbl.text = "\("Birthday:".localized)\(friend.customer?.formateDate() ?? "")"
-            avatarImg.download(imagePath: friend.customer?.avatar?.imageURL ?? "", size: CGSize(width: 64, height: 64))
+            avatarImg.download(imagePath: friend.customer?.avatar?.imageURL ?? "", size: CGSize(width: 64, height: 64),placeholder: UIImage.init(named: "avatar_details"))
             updateRemindView(friend: friend)
         }
     }

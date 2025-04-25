@@ -148,9 +148,10 @@ class BundleItemsOptionsViewController: UIViewController, BundleItemsOptionsCell
         
         self.viewModel.$addedItemToCart.receive(on: DispatchQueue.main).sink { item in
             guard item != nil else {return}
-            let vc = CartViewController()
-            vc.isModalInPresentation = true
-            self.present(vc, animated: true)
+//            let vc = CartViewController()
+//            vc.isModalInPresentation = true
+//            self.present(vc, animated: true)
+            self.tabBarController?.selectedIndex = 2
         }.store(in: &cancellables)
         
         self.viewModel.$loading.dropFirst().receive(on: DispatchQueue.main).sink { isLoading in
